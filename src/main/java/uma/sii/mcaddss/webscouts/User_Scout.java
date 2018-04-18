@@ -43,8 +43,10 @@ public class User_Scout implements Serializable {
     private Date birthday;
     @ManyToMany(mappedBy="users")
     private Set<Role_Scout> roles;
-    @OneToMany(mappedBy="users")
-    private Set<Permission> temporal_privileges;  
+    @OneToMany(mappedBy="user")
+    private Set<Permission> temporal_privileges; 
+    @OneToMany
+    private Set<Multimedia> multimedia;
 
     public Long getId() {
         return id;
