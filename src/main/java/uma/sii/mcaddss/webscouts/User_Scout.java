@@ -7,16 +7,13 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,10 +39,8 @@ public class User_Scout implements PrivilegesHolder, Serializable {
     private String civil_status;
     @Temporal(TemporalType.DATE)
     private Date birthday;
-    @ManyToMany(mappedBy="users")
-    private Set<Role_Scout> roles;
-    @OneToMany(mappedBy="users")
-    private Set<Privilege> temporal_privileges;  
+    @ManyToOne
+    private Role_Scout role; 
     @OneToOne
     private Multimedia photo;
 
@@ -122,58 +117,16 @@ public class User_Scout implements PrivilegesHolder, Serializable {
         this.birthday = birthday;
     }
 
-    public Set<Role_Scout> getRoles() {
-        return roles;
+    public Role_Scout getRoles() {
+        return role;
     }
 
-    public void setRoles(Set<Role_Scout> roles) {
-        this.roles = roles;
-    }
-    
-    public void addRole(Role_Scout role, User_Scout user){
-        user.roles.add(role);
-    }
-    
-    public void removeRole(Role_Scout role, User_Scout user){
-        if(user.roles.contains(role)){
-            user.roles.remove(role);
-        }
-    }
-
-    public Set<Privilege> getTemporalPrivileges() {
-        return temporal_privileges;
-    }
-
-    public void setTemporalPrivileges(Set<Privilege> temporal_privileges) {
-        this.temporal_privileges = temporal_privileges;
-    }
-    
-    public void addTemporalPrivilege(Privilege privilege, User_Scout user){
-        user.temporal_privileges.add(privilege);
-    }
-    
-    public void addTemporalPrivilege(Set<Privilege> privileges, User_Scout user){
-        user.temporal_privileges.addAll(privileges);
-    }
-    
-    public void removePrivilege(Privilege privilege, User_Scout user){
-        if(user.temporal_privileges.contains(privilege)){
-            user.temporal_privileges.remove(privilege);
-        }
-    }
-    
-    public void removePrivilege(Set<Privilege> privileges, User_Scout user){
-        if(user.temporal_privileges.containsAll(privileges)){
-            user.temporal_privileges.removeAll(privileges);
-        }
+    public void setRole(Role_Scout roles) {
+        this.role = role;
     }
     
     public Set<Privilege> getAllPrivileges() {
-        Set<Privilege> privileges = new HashSet<>();
-        for(Role_Scout role : roles){
-            privileges.addAll(role.getPermissions());
-        }
-        return privileges;
+        return role.getPermissions();
     }
 
     @Override
