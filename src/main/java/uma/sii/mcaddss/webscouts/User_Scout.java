@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,11 +26,7 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
-<<<<<<< HEAD
-public class User_Scout implements PrivilegeHolder, Serializable {
-=======
 public class User_Scout implements PrivilegesHolder, Serializable {
->>>>>>> d62f85cd05948bddefb57496100b51aca340312e
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,6 +46,8 @@ public class User_Scout implements PrivilegesHolder, Serializable {
     private Set<Role_Scout> roles;
     @OneToMany(mappedBy="users")
     private Set<Privilege> temporal_privileges;  
+    @OneToOne
+    private Multimedia photo;
 
 
     public Long getId() {
