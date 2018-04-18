@@ -27,7 +27,7 @@ public class Role_Scout implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Set<Permission> permissions;
+    private Set<Privilege> permissions;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiration;
     @ManyToMany(mappedBy="roles")
@@ -38,15 +38,15 @@ public class Role_Scout implements Serializable {
         return id;
     }
 
-    public void grantPermission(Permission permission) {
+    public void grantPermission(Privilege permission) {
         getPermissions().add(permission);
     }
     
-    public void revokePermission(Permission permission) {
+    public void revokePermission(Privilege permission) {
         getPermissions().remove(permission);
     }
     
-    public boolean hasPermission(Permission permission) {
+    public boolean hasPermission(Privilege permission) {
         return getPermissions().contains(permission);
     }
 
@@ -58,14 +58,14 @@ public class Role_Scout implements Serializable {
     /**
      * @return the permissions
      */
-    public Set<Permission> getPermissions() {
+    public Set<Privilege> getPermissions() {
         return permissions;
     }
 
     /**
      * @param permissions the permissions to set
      */
-    public void setPermissions(Set<Permission> permissions) {
+    public void setPermissions(Set<Privilege> permissions) {
         this.permissions = permissions;
     }
 
