@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
-public class User_Scout implements Serializable {
+public class User_Scout implements PrivilegeHolder, Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -138,6 +138,11 @@ public class User_Scout implements Serializable {
         }
     }
 
+    @Override
+    public boolean hasPermission(Permission perm) {
+        return getAllPrivileges().contains(perm);
+    }
+    
     public Set<Permission> getTemporalPrivileges() {
         return temporal_privileges;
     }
