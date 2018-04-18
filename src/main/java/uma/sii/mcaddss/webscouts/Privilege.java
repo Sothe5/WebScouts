@@ -5,7 +5,6 @@
  */
 package uma.sii.mcaddss.webscouts;
 
-import uma.sii.mcaddss.webscouts.Resource;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,25 +17,34 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uma.sii.mcaddss.webscouts.Grantable;
 
 /**
  *
  * @author zolastro
  */
 @Entity
-public class Permission implements Serializable {
+public class Privilege implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private PermissionType type;
-    private List<Resource> resources;
     private Long id;
+    private Grantable resource;
+    private PermissionType type;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiration;
-    @ManyToOne
-    private Set<User_Scout> users;
 
+    public Privilege(Grantable resource, PermissionType type) {
+        this(resource, type, null);
+    }
+    
+    public Privilege(Grantable resource, PermissionType type, Date expiration) {
+        this.resource = resource;
+        this.type = type;
+        this.expiration = expiration;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -55,10 +63,10 @@ public class Permission implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permission)) {
+        if (!(object instanceof Privilege)) {
             return false;
         }
-        Permission other = (Permission) object;
+        Privilege other = (Privilege) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -78,17 +86,10 @@ public class Permission implements Serializable {
     }
 
     /**
-     * @return the resources
-     */
-    public List<Resource> getResources() {
-        return resources;
-    }
-
-    /**
      * @param resources the resources to set
      */
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
+    public void setResource(Grantable resources) {
+        this.resource = resource;
     }
 
     /**
@@ -103,13 +104,6 @@ public class Permission implements Serializable {
      */
     public void setExpiration(Date expiration) {
         this.expiration = expiration;
-    }
-
-    /**
-     * @return the users
-     */
-    public Set<User_Scout> getUsers() {
-        return users;
     }
     
 }

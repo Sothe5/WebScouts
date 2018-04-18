@@ -25,7 +25,11 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
+<<<<<<< HEAD
 public class User_Scout implements PrivilegeHolder, Serializable {
+=======
+public class User_Scout implements PrivilegesHolder, Serializable {
+>>>>>>> d62f85cd05948bddefb57496100b51aca340312e
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,10 +47,9 @@ public class User_Scout implements PrivilegeHolder, Serializable {
     private Date birthday;
     @ManyToMany(mappedBy="users")
     private Set<Role_Scout> roles;
-    @OneToMany(mappedBy="user")
-    private Set<Permission> temporal_privileges; 
-    @OneToMany
-    private Set<Multimedia> multimedia;
+    @OneToMany(mappedBy="users")
+    private Set<Privilege> temporal_privileges;  
+
 
     public Long getId() {
         return id;
@@ -138,41 +141,36 @@ public class User_Scout implements PrivilegeHolder, Serializable {
         }
     }
 
-    @Override
-    public boolean hasPermission(Permission perm) {
-        return getAllPrivileges().contains(perm);
-    }
-    
-    public Set<Permission> getTemporalPrivileges() {
+    public Set<Privilege> getTemporalPrivileges() {
         return temporal_privileges;
     }
 
-    public void setTemporalPrivileges(Set<Permission> temporal_privileges) {
+    public void setTemporalPrivileges(Set<Privilege> temporal_privileges) {
         this.temporal_privileges = temporal_privileges;
     }
     
-    public void addTemporalPrivilege(Permission privilege, User_Scout user){
+    public void addTemporalPrivilege(Privilege privilege, User_Scout user){
         user.temporal_privileges.add(privilege);
     }
     
-    public void addTemporalPrivilege(Set<Permission> privileges, User_Scout user){
+    public void addTemporalPrivilege(Set<Privilege> privileges, User_Scout user){
         user.temporal_privileges.addAll(privileges);
     }
     
-    public void removePrivilege(Permission privilege, User_Scout user){
+    public void removePrivilege(Privilege privilege, User_Scout user){
         if(user.temporal_privileges.contains(privilege)){
             user.temporal_privileges.remove(privilege);
         }
     }
     
-    public void removePrivilege(Set<Permission> privileges, User_Scout user){
+    public void removePrivilege(Set<Privilege> privileges, User_Scout user){
         if(user.temporal_privileges.containsAll(privileges)){
             user.temporal_privileges.removeAll(privileges);
         }
     }
     
-    public Set<Permission> getAllPrivileges() {
-        Set<Permission> privileges = new HashSet<>();
+    public Set<Privilege> getAllPrivileges() {
+        Set<Privilege> privileges = new HashSet<>();
         for(Role_Scout role : roles){
             privileges.addAll(role.getPermissions());
         }
@@ -202,6 +200,16 @@ public class User_Scout implements PrivilegeHolder, Serializable {
     @Override
     public String toString() {
         return "webscouts.Usuario[" + user_name + " identificado por número de id " + id +" (" + surname + " " + last_name +")]";
+    }
+
+    @Override
+    public boolean addPrivilege(Privilege privilege) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removePrivilege(Privilege privilege) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -7,8 +7,10 @@ package uma.sii.mcaddss.webscouts;
 
 /**
  *
- * @author zolastro
+ * @author Carles Bordas
  */
-public interface Resource {
+public abstract class Expirable {
+    
+    
     
 }
