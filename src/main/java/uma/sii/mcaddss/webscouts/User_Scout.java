@@ -46,6 +46,7 @@ public class User_Scout implements PrivilegesHolder, Serializable {
     @OneToMany(mappedBy="users")
     private Set<Privilege> temporal_privileges;  
 
+
     public Long getId() {
         return id;
     }
