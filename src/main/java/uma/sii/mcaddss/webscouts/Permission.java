@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscouts;
+package uma.sii.mcaddss.webscouts;
 
+import uma.sii.mcaddss.webscouts.Resource;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

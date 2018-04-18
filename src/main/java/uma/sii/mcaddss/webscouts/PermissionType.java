@@ -1,4 +1,4 @@
-package webscouts;
+package uma.sii.mcaddss.webscouts;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
