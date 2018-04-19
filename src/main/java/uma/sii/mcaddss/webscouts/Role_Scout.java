@@ -30,7 +30,7 @@ public class Role_Scout implements Serializable {
     private Set<Privilege> permissions;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiration;
-    @ManyToMany(mappedBy="roles")
+    @ManyToMany(mappedBy="role")
     private Set<User_Scout> users;
     
     
