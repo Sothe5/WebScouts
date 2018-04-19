@@ -7,10 +7,15 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,11 +30,21 @@ public class Privilege implements Serializable, Expirable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @JoinColumn(nullable = false)
     private Grantable resource;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private PermissionType type;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = true)
     private Date expiration;
+    @ManyToOne
+    private Role_Scout role;
 
+    public Privilege() {
+        
+    }
+    
     public Privilege(Grantable resource, PermissionType type) {
         this(resource, type, null);
     }
@@ -42,10 +57,6 @@ public class Privilege implements Serializable, Expirable {
     
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override

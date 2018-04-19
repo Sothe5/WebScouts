@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,21 +24,24 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @Column(nullable = false)
-    private final User_Scout user;
+    @JoinColumn(nullable = false)
+    private User_Scout user;
     @ManyToOne
-    @Column(nullable = false)
-    private final Event event;
-    @OneToOne
+    @JoinColumn(nullable = false)
+    private Event event;
     @Column(nullable = false, length = 2048)
     private String message;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private final Date postDate;
+    private Date postDate;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date lastModify;
 
+    public Comment() {
+        
+    }
+    
     public Comment(User_Scout user, Event event, String message) {
         this.user = user;
         this.event = event;

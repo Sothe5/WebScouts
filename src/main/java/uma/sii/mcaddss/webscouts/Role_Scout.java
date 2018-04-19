@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,18 +23,19 @@ import javax.persistence.TemporalType;
  * @author zolastro
  */
 @Entity
+@Table(name = "Roles_scout")
 public class Role_Scout implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Set<Privilege> permissions;
+    @OneToMany(mappedBy = "role")
+    private Set<Privilege> privileges;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiration;
-    @ManyToMany(mappedBy="role")
+    @OneToMany(mappedBy="role")
     private Set<User_Scout> users;
-    
     
     public Long getId() {
         return id;
@@ -56,17 +59,16 @@ public class Role_Scout implements Serializable {
     }
 
     /**
-     * @return the permissions
-     */
+     * @return the pprivileges     */
     public Set<Privilege> getPermissions() {
-        return permissions;
+        return privileges;
     }
 
     /**
-     * @param permissions the permissions to set
+     * @param permissions the perprivileges set
      */
     public void setPermissions(Set<Privilege> permissions) {
-        this.permissions = permissions;
+        this.privileges = permissions;
     }
 
     /**

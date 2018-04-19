@@ -6,15 +6,15 @@
 package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
@@ -26,8 +26,8 @@ import javax.persistence.TemporalType;
  * @author Alvaro
  */
 @Entity
-@Table(name="Events")
-public class Event implements Serializable {
+@Table(name = "Events")
+public class Event implements Serializable, Grantable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,8 +40,12 @@ public class Event implements Serializable {
     private String category;
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
+
+    public Event() {
+        
+    }
     
-    private Event (String name, Date date, int cost, String category){
+    private Event(String name, Date date, int cost, String category) {
         this.name = name;
         this.date = date;
         this.cost = cost;
@@ -55,53 +59,53 @@ public class Event implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public Date getDate() {
         return date;
     }
-    
+
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
     public int getCost() {
         return cost;
     }
-    
-    public void setCost(int cost){
+
+    public void setCost(int cost) {
         this.cost = cost;
     }
-    
+
     public String getCategory() {
         return category;
     }
-    
-    public void setCategory(String category){
+
+    public void setCategory(String category) {
         this.category = category;
     }
-    
-    public void createEvent(String nom, Date fe, int co, String cat) throws Exception{
+
+    public void createEvent(String nom, Date fe, int co, String cat) throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("eventData");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        
-        Event event = new Event(nom,fe,co,cat);
-        
+
+        Event event = new Event(nom, fe, co, cat);
+
         tx.begin();
         em.persist(event);
         tx.commit();
         em.close();
-        
+
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -126,5 +130,5 @@ public class Event implements Serializable {
     public String toString() {
         return "webscouts.Events[ id=" + id + "Event(" + name + ", " + category + ", " + date + ", " + cost + ") ]";
     }
-    
+
 }
