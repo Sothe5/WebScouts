@@ -34,11 +34,11 @@ public class Group implements Serializable {
     private List<Multimedia> multimediaContents;
     private Fee fee;
     @ElementCollection
-    private Set<Events> events;
+    private Set<Event> events;
     
     // dudas:
     @ElementCollection
-    private Set<Events> pastEvents;
+    private Set<Event> pastEvents;
     
     public void addMember(User_Scout user){
         members.add(user);
@@ -56,11 +56,11 @@ public class Group implements Serializable {
         multimediaContents.remove(multimedia);
     }
     
-     public void addEvent(Events event){
+     public void addEvent(Event event){
         events.add(event);
     }
     
-    public void deleteEvent(Events event){
+    public void deleteEvent(Event event){
         events.remove(event);
     }
     
@@ -185,14 +185,14 @@ public class Group implements Serializable {
     /**
      * @return the events
      */
-    public Set<Events> getEvents() {
+    public Set<Event> getEvents() {
         return events;
     }
 
     /**
      * @param events the events to set
      */
-    public void setEvents(Set<Events> events) {
+    public void setEvents(Set<Event> events) {
         this.events = events;
     }
     

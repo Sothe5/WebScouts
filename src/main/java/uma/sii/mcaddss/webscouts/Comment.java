@@ -1,10 +1,8 @@
-
 package uma.sii.mcaddss.webscouts;
 
-
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,68 +24,99 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    private Event event;
+    @Column(nullable = false)
+    private final User_Scout user;
+    @ManyToOne
+    @Column(nullable = false)
+    private final Event event;
     @OneToOne
-    private User_Scout user;
+    @Column(nullable = false, length = 2048)
     private String message;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    @Column(nullable = false)
+    private final Date postDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date lastModify;
 
+    public Comment(User_Scout user, Event event, String message) {
+        this.user = user;
+        this.event = event;
+        this.message = message;
+        this.postDate = new Date();
+    }
+    
     public Long getId() {
         return id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comment)) {
-            return false;
-        }
-        Comment other = (Comment) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return user.getUser_name() + " comment on event " + event.getName() + ": " + this.message;
-    }
-
     /**
-     * @return the user
+     * @return user who commented the event
      */
     public User_Scout getUser() {
         return user;
     }
 
     /**
-     * @param user the user to set
-     */
-    public void setUser(User_Scout user) {
-        this.user = user;
-    }
-
-    /**
-     * @return the message
+     * @return body of the comment
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * @param message the message to set
+     * @param message body of the comment
      */
     public void setMessage(String message) {
         this.message = message;
+        lastModify = new Date();
+    }
+
+    /**
+     * 
+     * @return event that the comment refers to
+     */
+    public Event getEvent() {
+        return event;
+    }
+
+    public Date getPostDate() {
+        return postDate;
+    }
+    
+    public Date getLastModifyDate() {
+        return lastModify;
+    }
+    
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    /**
+     * 
+     * @param object Object to compare to
+     * @return True if both comments refer to the same event, where made by the 
+     * same user and were posted on the exact same moment, False otherwise
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Comment)) return false;
+        Comment other = (Comment) object;
+        return this.event.equals(other.event) &&
+               this.user.equals(other.user) &&
+               this.postDate.equals(other.postDate);
+    }
+
+    /**
+     * 
+     * @return string representation of the comment, which contains the name of
+     * the user who posted it, the event that it refers and the date it was
+     * posted.
+     */
+    @Override
+    public String toString() {
+        return "user " + user + " comment on event " + event + ": " + this.message.substring(0, 32);
     }
     
 }
