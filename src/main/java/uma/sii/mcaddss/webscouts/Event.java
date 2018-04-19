@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,6 +38,8 @@ public class Event implements Serializable {
     private Date date;
     private int cost;
     private String category;
+    @OneToMany(mappedBy = "event")
+    private List<Comment> comments;
     
     private Event (String name, Date date, int cost, String category){
         this.name = name;

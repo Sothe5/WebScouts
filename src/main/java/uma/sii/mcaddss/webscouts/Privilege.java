@@ -7,17 +7,12 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import uma.sii.mcaddss.webscouts.Grantable;
 
 /**
  *
@@ -67,15 +62,16 @@ public class Privilege implements Serializable, Expirable {
             return false;
         }
         Privilege other = (Privilege) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
+    /**
+     * 
+     * @return a string representing a privilege
+     */
     @Override
     public String toString() {
-        return type + " " + resource + " until " + expiration;
+        return "Privilege to " + type + " " + resource + " until " + expiration + ".";
     }
 
     /**
@@ -86,9 +82,9 @@ public class Privilege implements Serializable, Expirable {
     }
 
     /**
-     * @param resources the resources to set
+     * @param resource the resources to set
      */
-    public void setResource(Grantable resources) {
+    public void setResource(Grantable resource) {
         this.resource = resource;
     }
 

@@ -1,15 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uma.sii.mcaddss.webscouts;
 
+
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -22,16 +25,16 @@ public class Comment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
     private Event event;
+    @OneToOne
     private User_Scout user;
     private String message;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -56,7 +59,7 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "uma.sii.mcaddss.webscouts.Comment[ id=" + id + " ]";
+        return user.getUser_name() + " comment on event " + event.getName() + ": " + this.message;
     }
 
     /**
