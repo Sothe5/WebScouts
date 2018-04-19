@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
-public class User_Scout implements PrivilegesHolder, Serializable {
+public class User_Scout implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,7 +38,7 @@ public class User_Scout implements PrivilegesHolder, Serializable {
     private String email;
     private String civil_status;
     @Temporal(TemporalType.DATE)
-    private Date birthday;
+    private Date birthdate;
     @ManyToOne
     private Role_Scout role; 
     @OneToOne
@@ -109,12 +109,12 @@ public class User_Scout implements PrivilegesHolder, Serializable {
         this.civil_status = civil_status;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Role_Scout getRoles() {
@@ -125,8 +125,8 @@ public class User_Scout implements PrivilegesHolder, Serializable {
         this.role = role;
     }
     
-    public Set<Privilege> getAllPrivileges() {
-        return role.getPermissions();
+    public boolean hasPrivileges(Set<Privilege> privileges) {
+        return role.getPermissions().containsAll(privileges);
     }
 
     @Override
@@ -153,15 +153,4 @@ public class User_Scout implements PrivilegesHolder, Serializable {
     public String toString() {
         return "webscouts.Usuario[" + user_name + " identificado por número de id " + id +" (" + surname + " " + last_name +")]";
     }
-
-    @Override
-    public boolean addPrivilege(Privilege privilege) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removePrivilege(Privilege privilege) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
