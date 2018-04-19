@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 /**
  *
@@ -22,6 +25,9 @@ public class Fee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int amount;   
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     public Long getId() {
         return id;
@@ -29,6 +35,37 @@ public class Fee implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    /**
+     * 
+     * @return amount
+     */
+    public int getAmount(){
+        return amount;
+    }
+    /**
+     * 
+     * @param amount to set new amount
+     */
+    public void setAmount(int amount){
+        this.amount = amount;
+    }
+    
+    /**
+     * 
+     * @return date
+     */
+    public Date getDate(){
+        return date;
+    }
+    
+    /**
+     * 
+     * @param date to set new date
+     */
+    public void setDate(Date date){
+        this.date = date;
     }
 
     @Override
