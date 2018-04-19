@@ -58,5 +58,33 @@ public class Comment implements Serializable {
     public String toString() {
         return "uma.sii.mcaddss.webscouts.Comment[ id=" + id + " ]";
     }
+
+    /**
+     * @return the user
+     */
+    public User_Scout getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User_Scout user) {
+        this.user = user;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
     
 }
