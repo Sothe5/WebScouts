@@ -32,7 +32,6 @@ public class Multimedia implements Serializable {
     private String extension;
     private String type;
     private Long file_size;
-    @Temporal(TemporalType.TIME)
     private Long duration;
     @Temporal(TemporalType.DATE)
     private Date creation_date;
