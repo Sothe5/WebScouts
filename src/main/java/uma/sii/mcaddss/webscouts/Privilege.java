@@ -24,7 +24,7 @@ import uma.sii.mcaddss.webscouts.Grantable;
  * @author zolastro
  */
 @Entity
-public class Privilege implements Serializable {
+public class Privilege implements Serializable, Expirable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -75,7 +75,7 @@ public class Privilege implements Serializable {
 
     @Override
     public String toString() {
-        return "webscouts.Permission[ id=" + id + " ]";
+        return type + " " + resource + " until " + expiration;
     }
 
     /**
@@ -95,6 +95,7 @@ public class Privilege implements Serializable {
     /**
      * @return the expiration
      */
+    @Override
     public Date getExpiration() {
         return expiration;
     }
@@ -102,8 +103,18 @@ public class Privilege implements Serializable {
     /**
      * @param expiration the expiration to set
      */
+    @Override
     public void setExpiration(Date expiration) {
         this.expiration = expiration;
+    }
+
+    /**
+     * 
+     * @return true if object has overpassed its expiration date
+     */
+    @Override
+    public boolean hasExpired() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
