@@ -5,11 +5,11 @@
  */
 package uma.sii.mcaddss.webscouts;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Invoices")
 @PrimaryKeyJoinColumn(referencedColumnName="did")
-public class Invoice extends Document {
+public class Invoice extends Document implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
