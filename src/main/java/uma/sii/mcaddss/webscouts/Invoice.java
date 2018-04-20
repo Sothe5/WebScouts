@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -33,7 +34,7 @@ public class Invoice extends Document implements Serializable {
     private Date invoiceDate;
     private String invoicingAddress;
     
-    public Invoice (String name, double size, String status, String type, int ivnum, Date ivdate, String ivaddress) {
+    public Invoice (String name, Long size, String status, String type, int ivnum, Date ivdate, String ivaddress) {
         super(name, size, status, type);  
         this.invoiceNum = ivnum;
         this.invoiceDate = ivdate;
