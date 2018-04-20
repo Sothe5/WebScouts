@@ -126,7 +126,7 @@ public class User_Scout implements Serializable {
         return role;
     }
 
-    public void setRole(Role_Scout roles) {
+    public void setRole(Role_Scout role) {
         this.role = role;
     }
     
