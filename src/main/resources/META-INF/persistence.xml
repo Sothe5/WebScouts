@@ -5,6 +5,7 @@
     <class>uma.sii.mcaddss.webscouts.Comment</class>
     <class>uma.sii.mcaddss.webscouts.Event</class>
     <class>uma.sii.mcaddss.webscouts.Fee</class>
+    <class>uma.sii.mcaddss.webscouts.Invoice</class>
     <class>uma.sii.mcaddss.webscouts.Multimedia</class>
     <class>uma.sii.mcaddss.webscouts.Privilege</class>
     <class>uma.sii.mcaddss.webscouts.Role_Scout</class>
