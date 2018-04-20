@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +39,8 @@ public class Document implements Serializable {
     private Date upload_date;
     private Long file_size;
     private String status;
+    @ManyToOne
+    private User_Scout owner;
 
     public Document() {
         
@@ -48,6 +51,7 @@ public class Document implements Serializable {
         this.file_size = file_size;
         this.status = status;
         this.type = type;
+        this.upload_date= new Date();
     }
     
     public Long getId() {
