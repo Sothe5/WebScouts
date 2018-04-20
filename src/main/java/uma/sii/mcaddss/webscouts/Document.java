@@ -36,8 +36,20 @@ public class Document implements Serializable {
     private String type;
     @Temporal(TemporalType.TIMESTAMP)
     private Date upload_date;
-    private Long file_size; 
+    private Long file_size;
+    private String status;
 
+    public Document() {
+        
+    }
+    
+    public Document(String name, Long file_size, String status, String type) {
+        this.name = name;
+        this.file_size = file_size;
+        this.status = status;
+        this.type = type;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -73,6 +85,20 @@ public class Document implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+    
+    /**
+     * @return the upload_date
+     */
+    public Date getUploadDate() {
+        return upload_date;
+    }
+
+    /**
+     * @param upload_date the upload_date to set
+     */
+    public void setUploadDate(Date upload_date) {
+        this.upload_date = upload_date;
+    }
 
     /**
      * @return the file_size
@@ -89,17 +115,17 @@ public class Document implements Serializable {
     }
 
     /**
-     * @return the upload_date
+     * @return the status
      */
-    public Date getUploadDate() {
-        return upload_date;
+    public String getStatus() {
+        return status;
     }
 
     /**
-     * @param upload_date the upload_date to set
+     * @param status the status to set
      */
-    public void setUploadDate(Date upload_date) {
-        this.upload_date = upload_date;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
