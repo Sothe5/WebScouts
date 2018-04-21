@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -49,6 +50,8 @@ public class User_Scout implements Serializable {
     private Multimedia photo;
     @OneToMany(mappedBy = "owner")
     private List<Document> documents;
+    @ManyToMany(mappedBy="attendants")
+    private List<Event> events;
 
     public Long getId() {
         return id;

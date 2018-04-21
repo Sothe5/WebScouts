@@ -8,6 +8,7 @@ package uma.sii.mcaddss.webscouts;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,6 +16,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
@@ -40,6 +44,9 @@ public class Event implements Serializable, Grantable {
     private String category;
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
+    @ManyToMany
+    @JoinTable(name = "EVENT_ATTENDANTS", joinColumns = @JoinColumn(name = "attendant_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+    private List<User_Scout> attendants;
 
     public Event() {
         
