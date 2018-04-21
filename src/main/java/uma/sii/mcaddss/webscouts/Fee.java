@@ -25,7 +25,7 @@ public class Fee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private int amount;   
+    private Double amount;   
     @Temporal(TemporalType.DATE)
     private Date date;
 
@@ -41,14 +41,14 @@ public class Fee implements Serializable {
      * 
      * @return amount
      */
-    public int getAmount(){
+    public Double getAmount(){
         return amount;
     }
     /**
      * 
      * @param amount to set new amount
      */
-    public void setAmount(int amount){
+    public void setAmount(Double amount){
         this.amount = amount;
     }
     

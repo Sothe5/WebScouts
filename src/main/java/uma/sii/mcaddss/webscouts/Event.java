@@ -39,7 +39,7 @@ public class Event implements Serializable, Grantable {
     private String name;
     @Temporal(TemporalType.DATE)
     private Date date;
-    private int cost;
+    private Double cost;
     private String category;
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
@@ -51,7 +51,7 @@ public class Event implements Serializable, Grantable {
         
     }
     
-    private Event(String name, Date date, int cost, String category) {
+    private Event(String name, Date date, Double cost, String category) {
         this.name = name;
         this.date = date;
         this.cost = cost;
@@ -82,11 +82,11 @@ public class Event implements Serializable, Grantable {
         this.date = date;
     }
 
-    public int getCost() {
+    public Double getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(Double cost) {
         this.cost = cost;
     }
 
@@ -126,7 +126,7 @@ public class Event implements Serializable, Grantable {
         this.attendants = attendants;
     }
 
-    public void createEvent(String nom, Date fe, int co, String cat) throws Exception {
+    public void createEvent(String nom, Date fe, Double co, String cat) throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("eventData");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
