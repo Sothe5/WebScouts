@@ -33,7 +33,7 @@ public class Document implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
     private String name;
     private String type;
     @Temporal(TemporalType.TIMESTAMP)

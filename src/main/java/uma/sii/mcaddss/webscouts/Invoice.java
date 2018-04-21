@@ -23,12 +23,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Invoices")
-@PrimaryKeyJoinColumn(referencedColumnName="did")
+@PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Invoice extends Document implements Serializable {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private int invoiceNum;
     @Temporal(TemporalType.DATE)
     private Date invoiceDate;
