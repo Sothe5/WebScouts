@@ -134,6 +134,20 @@ public class Document implements Serializable {
         this.status = status;
     }
 
+    /**
+     * @return the owner
+     */
+    public User_Scout getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User_Scout owner) {
+        this.owner = owner;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

@@ -8,7 +8,6 @@ package uma.sii.mcaddss.webscouts;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -97,6 +96,34 @@ public class Event implements Serializable, Grantable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    /**
+     * @return the comments
+     */
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    /**
+     * @param comments the comments to set
+     */
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    /**
+     * @return the attendants
+     */
+    public List<User_Scout> getAttendants() {
+        return attendants;
+    }
+
+    /**
+     * @param attendants the attendants to set
+     */
+    public void setAttendants(List<User_Scout> attendants) {
+        this.attendants = attendants;
     }
 
     public void createEvent(String nom, Date fe, int co, String cat) throws Exception {

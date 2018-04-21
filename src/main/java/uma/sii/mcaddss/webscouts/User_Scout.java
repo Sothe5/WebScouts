@@ -61,11 +61,11 @@ public class User_Scout implements Serializable {
         this.id = id;
     }
 
-    public String getUser_name() {
+    public String getUsername() {
         return user_name;
     }
 
-    public void setUser_name(String user_name) {
+    public void setUsername(String user_name) {
         this.user_name = user_name;
     }
 
@@ -77,11 +77,11 @@ public class User_Scout implements Serializable {
         this.surname = surname;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return last_name;
     }
 
-    public void setLast_name(String last_name) {
+    public void setLastName(String last_name) {
         this.last_name = last_name;
     }
 
@@ -109,11 +109,11 @@ public class User_Scout implements Serializable {
         this.email = email;
     }
 
-    public String getCivil_status() {
+    public String getCivilStatus() {
         return civil_status;
     }
 
-    public void setCivil_status(String civil_status) {
+    public void setCivilStatus(String civil_status) {
         this.civil_status = civil_status;
     }
 
@@ -131,6 +131,48 @@ public class User_Scout implements Serializable {
 
     public void setRole(Role_Scout role) {
         this.role = role;
+    }
+
+    /**
+     * @return the photo
+     */
+    public Multimedia getPhoto() {
+        return photo;
+    }
+
+    /**
+     * @param photo the photo to set
+     */
+    public void setPhoto(Multimedia photo) {
+        this.photo = photo;
+    }
+
+    /**
+     * @return the documents
+     */
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    /**
+     * @param documents the documents to set
+     */
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
+    }
+
+    /**
+     * @return the events
+     */
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    /**
+     * @param events the events to set
+     */
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
     
     public boolean hasPrivileges(Set<Privilege> privileges) {
