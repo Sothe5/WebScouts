@@ -21,7 +21,7 @@ public class Ronda_solar {
     @Temporal(TemporalType.DATE)
     private Date startOfRound;
     
-    public boolean init_Ronda_solar(Date sDate, Date fDate) {
+    public static boolean init_Ronda_solar(Date sDate, Date fDate) {
         
         boolean res = false;
         
