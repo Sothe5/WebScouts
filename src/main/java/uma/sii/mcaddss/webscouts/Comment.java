@@ -49,11 +49,16 @@ public class Comment implements Serializable {
         this.postDate = new Date();
     }
     
+    /**
+     * 
+     * @return id of the comment
+     */
     public Long getId() {
         return id;
     }
 
     /**
+     * 
      * @return user who commented the event
      */
     public User_Scout getUser() {
@@ -61,6 +66,7 @@ public class Comment implements Serializable {
     }
 
     /**
+     * 
      * @return body of the comment
      */
     public String getMessage() {
@@ -68,6 +74,7 @@ public class Comment implements Serializable {
     }
 
     /**
+     * 
      * @param message body of the comment
      */
     public void setMessage(String message) {
