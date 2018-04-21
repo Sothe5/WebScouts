@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,7 +25,7 @@ import javax.persistence.TemporalType;
  * @author zolastro
  */
 @Entity
-@Table(name = "Privileges")
+@Table(name = "Privs")
 public class Privilege implements Serializable, Expirable {
 
     private static final long serialVersionUID = 1L;
@@ -122,7 +123,7 @@ public class Privilege implements Serializable, Expirable {
      */
     @Override
     public boolean hasExpired() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Date().after(expiration);
     }
     
 }
