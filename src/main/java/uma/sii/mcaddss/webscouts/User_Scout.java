@@ -49,7 +49,6 @@ public class User_Scout implements Serializable {
     @Column(nullable = false)
     private Date birthdate;
     @ManyToOne
-    @JoinColumn(name="GROUP_ID")
     private Group_Scout groupscout;
     @ManyToOne
     private Role_Scout role; 

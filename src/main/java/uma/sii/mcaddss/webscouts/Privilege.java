@@ -42,6 +42,14 @@ public class Privilege implements Serializable, Expirable {
     @ManyToOne
     private Role_Scout role;
 
+    public Role_Scout getRole() {
+        return role;
+    }
+
+    public void setRole(Role_Scout role) {
+        this.role = role;
+    }
+
     public Privilege() {
         
     }
@@ -69,7 +77,6 @@ public class Privilege implements Serializable, Expirable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Privilege)) {
             return false;
         }

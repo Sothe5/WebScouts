@@ -33,13 +33,13 @@ public class Group_Scout implements Serializable {
     private int maxAge;
     @Column(nullable = false)
     private int minAge;
-    @OneToMany(mappedBy = "user_name")
+    @OneToMany
     private Set<User_Scout> members;
-    @OneToMany(mappedBy = "name")
+    @OneToMany(mappedBy = "group_Scout")
     private List<Multimedia> multimediaContents;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "amount")
+    @OneToOne(fetch = FetchType.LAZY)
     private Fee fee;
-    @OneToMany(mappedBy = "name")
+    @OneToMany(mappedBy = "groupscout")
     private Set<Event> events;
     
     public Long getId() {
