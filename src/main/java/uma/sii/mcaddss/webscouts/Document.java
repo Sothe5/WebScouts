@@ -46,9 +46,8 @@ public class Document implements Serializable {
     @Column(nullable=false)
     private Long file_size;
     private String status;
-    @Column(nullable=false)
     @ManyToOne
-    @JoinColumn(name="OWNER_ID")
+    @JoinColumn(name="OWNER_ID", nullable=false)
     private User_Scout owner;
 
     public Document() {
