@@ -17,13 +17,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class FeeId implements Serializable {
  
-    private User_Scout userscout;
-    private Event event;
+    private Long userscout;
+    private Long event;
 
     public FeeId(){
     }
     
-    public FeeId(User_Scout userscout, Event event){
+    public FeeId(Long userscout, Long event){
         this.userscout = userscout;
         this.event = event;
     }
