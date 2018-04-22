@@ -8,11 +8,15 @@ package uma.sii.mcaddss.webscouts;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,20 +31,20 @@ public class Group_Scout implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int maxAge;
+    @Column(nullable = false)
     private int minAge;
-    @ElementCollection
+    @OneToMany(mappedBy = "user_name")
     private Set<User_Scout> members;
-    @ElementCollection
+    @OneToMany(mappedBy = "name")
     private List<Multimedia> multimediaContents;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "amount")
     private Fee fee;
-    @ElementCollection
+    @OneToMany(mappedBy = "name")
     private Set<Event> events;
-    
-    // dudas:
-    @ElementCollection
-    private Set<Event> pastEvents;
     
     public void addMember(User_Scout user){
         members.add(user);
