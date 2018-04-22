@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webscouts;
+
+package uma.sii.mcaddss.webscouts;
 
 import java.util.Date;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -13,28 +15,29 @@ import javax.persistence.TemporalType;
  *
  * @author elmau
  */
-public class Ronda_solar {
+@Table(name = "SOLAR_ROUND")
+public class Solar_round {
     
-    private static Ronda_solar this_round;
+    private static Solar_round this_round;
     @Temporal(TemporalType.DATE)
     private Date endOfRound;
     @Temporal(TemporalType.DATE)
     private Date startOfRound;
     
-    public static boolean init_Ronda_solar(Date sDate, Date fDate) {
+    public static boolean init_SOLAR_ROUND(Date sDate, Date fDate) {
         
         boolean res = false;
         
         if (this_round == null) {
             res = true;
-            this_round = new Ronda_solar(sDate, fDate);
+            this_round = new Solar_round(sDate, fDate);
         }             
         
         return res;
         
     }
 
-    private Ronda_solar(Date sDate, Date fDate) {
+    private Solar_round(Date sDate, Date fDate) {
         
         this.endOfRound = fDate;
         this.startOfRound = sDate;

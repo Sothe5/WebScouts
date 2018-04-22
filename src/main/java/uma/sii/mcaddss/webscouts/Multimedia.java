@@ -7,6 +7,7 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,14 +27,19 @@ public class Multimedia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true,nullable = false)
     private Long id;
+    @Column(nullable = false)
     private String file_path;
+    @Column(nullable = false)
     private String name;
     private String extension;
     private String type;
     private Long file_size;
+    @Column(nullable = false)
     private Long duration;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date creation_date;
 
     public Long getId() {
@@ -122,7 +128,7 @@ public class Multimedia implements Serializable {
 
     @Override
     public String toString() {
-        return "uma.sii.mcaddss.webscouts.Multimedia[ id=" + id + " ]";
+        return "uma.sii.mcaddss.webscouts.MULTIMEDIA[ id=" + id + " ]";
     }
     
 }

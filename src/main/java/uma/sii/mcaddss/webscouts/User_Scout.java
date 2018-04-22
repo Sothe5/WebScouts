@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,25 +34,32 @@ public class User_Scout implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String user_name;
+    @Column(nullable = false)
     private String surname;
+    @Column(nullable = false)
     private String last_name;
+    @Column(nullable = false)
     private String password;
     private String address;
     private String email;
     private String civil_status;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date birthdate;
     @ManyToOne
     private Role_Scout role; 
     @OneToOne
     private Multimedia photo;
     @OneToMany(mappedBy = "owner")
+    @ElementCollection
     private List<Document> documents;
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
+    @ElementCollection
     private List<EventAttendance> events;
 
     public Long getId() {
@@ -190,10 +198,10 @@ public class User_Scout implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User_Scout)) {
+        if (!(object instanceof User_Scout )) {
             return false;
         }
-        User_Scout other = (User_Scout) object;
+        User_Scout  other = (User_Scout ) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
