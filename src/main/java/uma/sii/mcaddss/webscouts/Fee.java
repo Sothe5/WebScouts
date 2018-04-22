@@ -1,44 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
+import java.util.Objects;
+import javax.persistence.EmbeddedId;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
- *
+ * Las cuotas recogen el pago de eventos por los educandos
+ * 
  * @author Alvaro
  */
 @Entity
 @Table(name = "FEES")
 public class Fee implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    
+    @EmbeddedId
+    private FeeId  id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("event")
+    private Event event;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("userscout")
+    private User_Scout userscout;
+    
     private Double amount;   
     @Temporal(TemporalType.DATE)
     private Date date;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "INVOICE_ID", nullable = false)
+    @JoinColumn(name="INVOICE_ID")
     private Invoice invoice;
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
     
     /**
      * 
@@ -80,20 +83,17 @@ public class Fee implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Fee)) {
-            return false;
-        }
+        if (this == object) return true;
+        if (!(object instanceof Fee)) return false;
+      
         Fee other = (Fee) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.userscout, other.userscout) &&
+                Objects.equals(this.event, other.event);
     }
 
     @Override
     public String toString() {
-        return "uma.sii.mcaddss.webscouts.Fee[ id=" + id + " ]";
+        return "uma.sii.mcaddss.webscouts.Fee[ id=" + id + " + user= " + userscout + "event= " + event + "]";
     }
-    
+        
 }

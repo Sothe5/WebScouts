@@ -8,6 +8,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/*
+This entity represents the invoices of the database.
+It is a class that extends from document as it is an special case of Document.
+*/
 /**
  *
  * @author dan147
