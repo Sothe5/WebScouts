@@ -51,7 +51,7 @@ public class User_Scout implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date birthdate;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="GROUP_ID")
     private Group_Scout groupscout;
     @ManyToOne
