@@ -2,6 +2,7 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * 
  * @author Carles Bordas
  */
 @Entity
@@ -39,6 +41,10 @@ public class Comment implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date lastModify;
+    @OneToMany(mappedBy = "target")
+    private List<Comment> responses;
+    @ManyToOne
+    private Comment target;
 
     public Comment() {
         
@@ -49,6 +55,7 @@ public class Comment implements Serializable {
         this.event = event;
         this.message = message;
         this.postDate = new Date();
+        this.lastModify = this.postDate;
     }
     
     /**
@@ -96,8 +103,20 @@ public class Comment implements Serializable {
         return postDate;
     }
     
-    public Date getLastModifyDate() {
+    public Date getLastModify() {
         return lastModify;
+    }
+
+    public List<Comment> getResponses() {
+        return responses;
+    }
+    
+    public Comment getTarget() {
+        return target;
+    }
+
+    public void setTarget(Comment target) {
+        this.target = target;
     }
     
     @Override
@@ -106,7 +125,6 @@ public class Comment implements Serializable {
     }
 
     /**
-     * 
      * @param object Object to compare to
      * @return True if both comments refer to the same event, where made by the 
      * same user and were posted on the exact same moment, False otherwise

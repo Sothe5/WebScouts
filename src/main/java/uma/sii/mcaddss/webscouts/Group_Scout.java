@@ -6,10 +6,10 @@
 package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,11 +47,15 @@ public class Group_Scout implements Serializable {
     @OneToMany(mappedBy = "name")
     private Set<Event> events;
     
+    public Long getId() {
+        return id;
+    }
+    
     public void addMember(User_Scout user){
         members.add(user);
     }
     
-    public void deleteMember(User_Scout user){
+    public void removeMember(User_Scout user){
         members.remove(user);
     }
     
@@ -67,17 +71,8 @@ public class Group_Scout implements Serializable {
         events.add(event);
     }
     
-    public void deleteEvent(Event event){
+    public void removeEvent(Event event){
         events.remove(event);
-    }
-    
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -131,6 +126,7 @@ public class Group_Scout implements Serializable {
      */
     public void setMaxAge(int maxAge) {
         this.maxAge = maxAge;
+        checkAges(true);
     }
 
     /**
@@ -145,6 +141,27 @@ public class Group_Scout implements Serializable {
      */
     public void setMinAge(int minAge) {
         this.minAge = minAge;
+        checkAges(true);
+    }
+    
+    /**
+     * @throws RuntimeException if param remove is set to false and there is
+     * a member of the group whose age overpasses the specified max and min ages.
+     * @param remove 
+     * @return True if all members are in the age range, False otherwise.
+     */
+    private boolean checkAges(boolean remove) {
+        Iterator<User_Scout> it = members.iterator();
+        boolean correct = true;
+        while (it.hasNext()) {
+            User_Scout member = it.next();
+            if (member.getAge() < minAge || member.getAge() > maxAge) {
+                if (remove) it.remove();
+                else throw new RuntimeException("Member " + member + " cannot be in group " + name+ " by age");
+                correct = false;
+            }
+        }
+        return correct;
     }
 
     /**

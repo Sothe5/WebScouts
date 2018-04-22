@@ -32,8 +32,8 @@ public class Privilege implements Serializable, Expirable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JoinColumn(nullable = false)
-    private Grantable resource;
+    @Enumerated(EnumType.STRING)
+    private Resource resource;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private PermissionType type;
@@ -47,11 +47,11 @@ public class Privilege implements Serializable, Expirable {
         
     }
     
-    public Privilege(Grantable resource, PermissionType type) {
+    public Privilege(Resource resource, PermissionType type) {
         this(resource, type, null);
     }
     
-    public Privilege(Grantable resource, PermissionType type, Date expiration) {
+    public Privilege(Resource resource, PermissionType type, Date expiration) {
         this.resource = resource;
         this.type = type;
         this.expiration = expiration;
@@ -97,7 +97,7 @@ public class Privilege implements Serializable, Expirable {
     /**
      * @param resource the resources to set
      */
-    public void setResource(Grantable resource) {
+    public void setResource(Resource resource) {
         this.resource = resource;
     }
 

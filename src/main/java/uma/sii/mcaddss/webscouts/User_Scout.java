@@ -6,8 +6,13 @@
 package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -188,8 +193,10 @@ public class User_Scout implements Serializable {
         this.events = events;
     }
     
-    public boolean hasPrivileges(Set<Privilege> privileges) {
-        return role.getPermissions().containsAll(privileges);
+    public int getAge() {
+        LocalDate bd = birthdate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate now = LocalDate.now();
+        return Period.between(bd, now).getYears();
     }
 
     @Override

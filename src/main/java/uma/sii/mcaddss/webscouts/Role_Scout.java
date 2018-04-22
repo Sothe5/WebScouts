@@ -39,11 +39,11 @@ public class Role_Scout implements Serializable {
         return id;
     }
 
-    public void grantPermission(Privilege permission) {
+    public void grantPrivilege(Privilege permission) {
         getPermissions().add(permission);
     }
     
-    public void revokePermission(Privilege permission) {
+    public void revokePrivilege(Privilege permission) {
         getPermissions().remove(permission);
     }
     
@@ -57,16 +57,9 @@ public class Role_Scout implements Serializable {
     }
 
     /**
-     * @return the pprivileges     */
+     * @return the privileges     */
     public Set<Privilege> getPermissions() {
         return privileges;
-    }
-
-    /**
-     * @param permissions the perprivileges set
-     */
-    public void setPermissions(Set<Privilege> permissions) {
-        this.privileges = permissions;
     }
 
     /**
@@ -93,8 +86,6 @@ public class Role_Scout implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
 
     @Override
     public int hashCode() {
