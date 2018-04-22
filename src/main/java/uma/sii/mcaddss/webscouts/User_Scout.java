@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -50,6 +51,9 @@ public class User_Scout implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date birthdate;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="GROUP_ID")
+    private Group_Scout groupscout;
     @ManyToOne
     private Role_Scout role; 
     @OneToOne
