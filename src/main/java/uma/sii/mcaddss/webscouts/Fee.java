@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,7 +33,10 @@ public class Fee implements Serializable {
     private Double amount;   
     @Temporal(TemporalType.DATE)
     private Date date;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "INVOICE_ID", nullable = false)
+    private Invoice invoice;
+    
     public Long getId() {
         return id;
     }
