@@ -20,7 +20,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Controla los miembros de un grupo, los eventos que tienen pendientes 
+ * y han tenido y la edad minima y máxima que pueden tener los miembros del grupo
  * @author Alvaro
  */
 @Entity
