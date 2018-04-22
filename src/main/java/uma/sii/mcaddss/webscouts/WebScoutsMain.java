@@ -1,4 +1,3 @@
-
 package uma.sii.mcaddss.webscouts;
 
 import javax.persistence.EntityManager;

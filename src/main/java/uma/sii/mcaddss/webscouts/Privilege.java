@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author zolastro
  */
 @Entity
-@Table(name = "PRIVILEGES")
+@Table(name = "SCOUT_PRIVILEGES")
 public class Privilege implements Serializable, Expirable {
 
     private static final long serialVersionUID = 1L;
