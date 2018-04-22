@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  * @author zolastro
  */
 @Entity
-@Table(name = "Roles_scout")
+@Table(name = "ROLES_SCOUT")
 public class Role_Scout implements Serializable {
 
     private static final long serialVersionUID = 1L;

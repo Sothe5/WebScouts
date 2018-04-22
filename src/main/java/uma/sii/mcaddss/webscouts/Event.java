@@ -30,7 +30,7 @@ import javax.persistence.TemporalType;
  * @author Alvaro
  */
 @Entity
-@Table(name = "Events")
+@Table(name = "EVENTS")
 public class Event implements Serializable, Grantable {
 
     private static final long serialVersionUID = 1L;

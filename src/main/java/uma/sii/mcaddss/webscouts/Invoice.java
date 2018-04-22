@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "Invoices")
+@Table(name = "INVOICES")
 @PrimaryKeyJoinColumn(referencedColumnName="id")
 public class Invoice extends Document implements Serializable {
     

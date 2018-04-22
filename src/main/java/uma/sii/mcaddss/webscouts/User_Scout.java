@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "USERS")
 public class User_Scout implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,7 +50,7 @@ public class User_Scout implements Serializable {
     private Multimedia photo;
     @OneToMany(mappedBy = "owner")
     private List<Document> documents;
-    @ManyToMany(mappedBy="attendants")
+    @ManyToMany(mappedBy = "attendants")
     private List<Event> events;
 
     public Long getId() {

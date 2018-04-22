@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alvaro
  */
 @Entity
+@Table(name = "FEES")
 public class Fee implements Serializable {
 
     private static final long serialVersionUID = 1L;

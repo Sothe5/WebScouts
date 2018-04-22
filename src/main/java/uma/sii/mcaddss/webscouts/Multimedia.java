@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  * @author Nexel
  */
 @Entity
-@Table(name = "Multimedia")
+@Table(name = "MULTIMEDIA")
 public class Multimedia implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="type")
-@Table(name="Documents")
+@Table(name="DOCUMENTS")
 public class Document implements Serializable {
 
     private static final long serialVersionUID = 1L;
