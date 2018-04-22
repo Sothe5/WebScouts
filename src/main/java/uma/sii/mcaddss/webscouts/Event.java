@@ -17,6 +17,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
@@ -51,6 +53,9 @@ public class Event implements Serializable, Grantable {
     @OneToMany(mappedBy = "event",
             cascade = CascadeType.ALL)
     private List<EventAttendance> attendees;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="GROUP_ID", nullable = false)
+    private Group_Scout groupscout;
 
     public Event() {
         
