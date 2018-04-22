@@ -12,6 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/*
+This entity represents the roles of the users in the database.
+These roles has some privileges associated with them and implements some methods
+to grant or revoke those privileges.
+It has associated many users, but just one role can be assigned to each user.
+*/
 /**
  * @author zolastro
  */
