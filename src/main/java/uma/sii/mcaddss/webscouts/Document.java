@@ -7,6 +7,7 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,12 +41,17 @@ public class Document implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
+    @Column(nullable=false)
+    private String filename;
     private String name;
     private String type;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false)
     private Date upload_date;
+    @Column(nullable=false)
     private Long file_size;
     private String status;
+    @Column(nullable=false)
     @ManyToOne
     @JoinColumn(name="OWNER_ID")
     private User_Scout owner;
@@ -68,6 +74,20 @@ public class Document implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the filename
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * @param filename the filename to set
+     */
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     /**
