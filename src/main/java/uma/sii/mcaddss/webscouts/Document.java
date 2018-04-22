@@ -41,8 +41,8 @@ public class Document implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    @Column(nullable=false)
-    private String filename;
+    @Column(nullable=false, unique = true)
+    private String filepath;
     private String name;
     private String type;
     @Temporal(TemporalType.TIMESTAMP)
@@ -79,15 +79,15 @@ public class Document implements Serializable {
     /**
      * @return the filename
      */
-    public String getFilename() {
-        return filename;
+    public String getFilepath() {
+        return filepath;
     }
 
     /**
-     * @param filename the filename to set
+     * @param filepath the filename to set
      */
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 
     /**
