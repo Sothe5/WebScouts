@@ -21,6 +21,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/*
+It represent all the users of the database.
+It has associated a role, which provides it with the proper privileges.
+Also, it has a Group to which it belongs, as well as the events the belongs to
+and the documents and the photo it has associated.
+*/
 /**
  *
  * @author Nexel

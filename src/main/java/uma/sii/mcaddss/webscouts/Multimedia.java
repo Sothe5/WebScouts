@@ -11,6 +11,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+/*
+Represents a multimedia file of the database.
+It has associated a file path where the element is, a name and an extension
+It also is associated with the entity Events throw an one direction one-to-many 
+relation from the Event to it.
+*/
 /**
  *
  * @author Nexel
