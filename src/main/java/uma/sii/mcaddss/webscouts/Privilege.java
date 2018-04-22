@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
@@ -14,14 +9,18 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * Represents a privilege over a specific resource.
+ * This entity tries to establish which resources can be accessed by which users
+ * or roles. The class includes the name of the resoure aswell as the way the 
+ * privilege grants interaction with the resource.
+ * This entity implements the interface Expirable.
+ * 
  * @author zolastro
  */
 @Entity

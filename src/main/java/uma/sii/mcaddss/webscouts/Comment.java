@@ -16,6 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
+ * This entity represents a specific comment made by a user on an event.
+ * A comment has been made by a specific user over a specific event. A comment
+ * can be a response of another comment in the same event.
  * 
  * @author Carles Bordas
  */
