@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.Table;
 
 /**
  *
  * @author kiwinut
  */
 @Entity
+@Table(name="EVENT_ATTENDANCE")
 public class EventAttendance implements Serializable {
 
     @EmbeddedId
@@ -40,6 +42,7 @@ public class EventAttendance implements Serializable {
     private EventAttendance(Event event, User_Scout user, Boolean paid) {
         this.event = event;
         this.user = user;
+        this.id = new EventAttendanceId(event.getId(), user.getId());
         this.paid = paid;
     }
     
