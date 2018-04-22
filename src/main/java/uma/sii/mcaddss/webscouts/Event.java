@@ -24,7 +24,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * Represents a meet-up event.
+ * Provides a basis for the Event System and the following requirements:
+ * > Registrarse en un evento
+ * > CRUD Eventos
+ * > Gestión de eventos
+ * > Generar Excel de asistencia a eventos
  * @author Alvaro
  */
 @Entity

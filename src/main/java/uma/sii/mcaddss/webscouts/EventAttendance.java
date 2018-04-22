@@ -15,7 +15,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
- *
+ * Represents the attendance of a user to a specific event.
+ * Fulfills the requirement: "Gestión de pagos de inscripciones de eventos"
  * @author kiwinut
  */
 @Entity

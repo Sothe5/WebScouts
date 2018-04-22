@@ -21,8 +21,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author cloud
+ * Represents a document uploaded by a user.
+ * It's the basis for the Document Management System and the following requirements:
+ * > Gestión documental (General)
+ * > Gestión documental para Scouters
+ * > Consultar estado de documentación
+ * > Cambiar estado de documento
+ * > Subir documento
+ * @author kiwinut
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

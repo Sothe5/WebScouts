@@ -10,7 +10,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 
 /**
- *
+ * Embeddable class for the EventAttendance composite ID.
  * @author kiwinut
  */
 @Embeddable
