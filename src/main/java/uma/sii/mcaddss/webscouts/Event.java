@@ -44,6 +44,7 @@ public class Event implements Serializable {
     private Date date;
     private Double cost;
     private String category;
+    private String description;
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
     @OneToMany(mappedBy = "event",
@@ -173,6 +174,62 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "webscouts.Events[ id=" + id + "Event(" + name + ", " + category + ", " + date + ", " + cost + ") ]";
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the groupscout
+     */
+    public Group_Scout getGroupscout() {
+        return groupscout;
+    }
+
+    /**
+     * @param groupscout the groupscout to set
+     */
+    public void setGroupscout(Group_Scout groupscout) {
+        this.groupscout = groupscout;
+    }
+
+    /**
+     * @return the multimedia
+     */
+    public List<Multimedia> getMultimedia() {
+        return multimedia;
+    }
+
+    /**
+     * @param multimedia the multimedia to set
+     */
+    public void setMultimedia(List<Multimedia> multimedia) {
+        this.multimedia = multimedia;
+    }
+
+    /**
+     * @return the documents
+     */
+    public List<Document> getDocuments() {
+        return documents;
+    }
+
+    /**
+     * @param documents the documents to set
+     */
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 
 }
