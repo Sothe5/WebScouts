@@ -78,28 +78,12 @@ public class User_Scout implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return getUser_name();
-    }
-
-    public void setUsername(String user_name) {
-        this.setUser_name(user_name);
-    }
-
     public String getSurname() {
         return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getLastName() {
-        return getLast_name();
-    }
-
-    public void setLastName(String last_name) {
-        this.setLast_name(last_name);
     }
 
     public String getPassword() {
@@ -126,24 +110,12 @@ public class User_Scout implements Serializable {
         this.email = email;
     }
 
-    public String getCivilStatus() {
-        return getCivil_status();
-    }
-
-    public void setCivilStatus(String civil_status) {
-        this.setCivil_status(civil_status);
-    }
-
     public Date getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
-    }
-
-    public Role_Scout getRoles() {
-        return getRole();
     }
 
     public void setRole(Role_Scout role) {
