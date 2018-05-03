@@ -29,6 +29,8 @@ public class EventAttendance implements Serializable {
     @MapsId("user_id")
     private User_Scout user;
     
+    private boolean paid;
+    
     public EventAttendance() {
         
     }
@@ -73,6 +75,20 @@ public class EventAttendance implements Serializable {
      */
     public void setUser(User_Scout user) {
         this.user = user;
+    }
+
+    /**
+     * @return the paid
+     */
+    public boolean isPaid() {
+        return paid;
+    }
+
+    /**
+     * @param paid the paid to set
+     */
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     @Override
