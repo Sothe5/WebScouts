@@ -28,18 +28,15 @@ public class EventAttendance implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("user_id")
     private User_Scout user;
-
-    private boolean paid;
     
     public EventAttendance() {
         
     }
     
-    private EventAttendance(Event event, User_Scout user, Boolean paid) {
+    private EventAttendance(Event event, User_Scout user) {
         this.event = event;
         this.user = user;
         this.id = new EventAttendanceId(event.getId(), user.getId());
-        this.paid = paid;
     }
     
     public EventAttendanceId getId() {
@@ -76,20 +73,6 @@ public class EventAttendance implements Serializable {
      */
     public void setUser(User_Scout user) {
         this.user = user;
-    }
-
-    /**
-     * @return the paid
-     */
-    public boolean getPaid() {
-        return paid;
-    }
-
-    /**
-     * @param paid the paid to set
-     */
-    public void setPaid(boolean paid) {
-        this.paid = paid;
     }
 
     @Override
