@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
@@ -51,6 +52,10 @@ public class Event implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="GROUP_ID", nullable = false)
     private Group_Scout groupscout;
+    @ManyToMany
+    private List<Multimedia> multimedia;
+    @OneToMany
+    private List<Document> documents;
 
     public Event() {
         
