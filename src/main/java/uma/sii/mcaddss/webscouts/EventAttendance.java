@@ -75,20 +75,6 @@ public class EventAttendance implements Serializable {
         this.user = user;
     }
 
-    /**
-     * @return the paid
-     */
-    public boolean isPaid() {
-        return paid;
-    }
-
-    /**
-     * @param paid the paid to set
-     */
-    public void setPaid(boolean paid) {
-        this.paid = paid;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
