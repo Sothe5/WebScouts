@@ -29,8 +29,6 @@ public class EventAttendance implements Serializable {
     @MapsId("user_id")
     private User_Scout user;
     
-    private boolean paid;
-    
     public EventAttendance() {
         
     }
