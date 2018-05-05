@@ -42,7 +42,6 @@ public class Event implements Serializable {
     private String name;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    private Double cost;
     private String category;
     private String description;
     @OneToMany(mappedBy = "event")
@@ -65,7 +64,6 @@ public class Event implements Serializable {
     private Event(String name, Date date, Double cost, String category) {
         this.name = name;
         this.date = date;
-        this.cost = cost;
         this.category = category;
     }
 
@@ -91,14 +89,6 @@ public class Event implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
     }
 
     public String getCategory() {
@@ -173,7 +163,7 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "webscouts.Events[ id=" + id + "Event(" + name + ", " + category + ", " + date + ", " + cost + ") ]";
+        return "webscouts.Events[ id=" + id + "Event(" + name + ", " + category + ", " + date + ") ]";
     }
 
     /**
