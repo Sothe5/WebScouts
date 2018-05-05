@@ -1,4 +1,4 @@
-package uma.sii.mcaddss.webscouts;
+package uma.sii.mcaddss.webscouts.entities;
 
 import java.util.Date;
 import javax.persistence.Table;

@@ -1,4 +1,4 @@
-package uma.sii.mcaddss.webscouts;
+package uma.sii.mcaddss.webscouts.entities;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
