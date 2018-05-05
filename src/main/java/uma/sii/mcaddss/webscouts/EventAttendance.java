@@ -2,6 +2,7 @@ package uma.sii.mcaddss.webscouts;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +29,9 @@ public class EventAttendance implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("user_id")
     private User_Scout user;
+    
+    @Column(nullable = false, length = 16)
+    private String attendance_status; // yes, no, no_answer
     
     public EventAttendance() {
         
@@ -73,6 +77,20 @@ public class EventAttendance implements Serializable {
      */
     public void setUser(User_Scout user) {
         this.user = user;
+    }
+
+    /**
+     * @return the attendance_status
+     */
+    public String getAttendanceStatus() {
+        return attendance_status;
+    }
+
+    /**
+     * @param attendance_status the attendance_status to set
+     */
+    public void setAttendanceStatus(String attendance_status) {
+        this.attendance_status = attendance_status;
     }
 
     @Override
