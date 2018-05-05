@@ -67,6 +67,8 @@ public class User_Scout implements Serializable {
             cascade = CascadeType.ALL)
     @ElementCollection
     private List<EventAttendance> events;
+    @ManyToOne
+    private Fee fee;
 
     public Long getId() {
         return id;
@@ -76,28 +78,12 @@ public class User_Scout implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return user_name;
-    }
-
-    public void setUsername(String user_name) {
-        this.user_name = user_name;
-    }
-
     public String getSurname() {
         return surname;
     }
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getLastName() {
-        return last_name;
-    }
-
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
     }
 
     public String getPassword() {
@@ -124,24 +110,12 @@ public class User_Scout implements Serializable {
         this.email = email;
     }
 
-    public String getCivilStatus() {
-        return civil_status;
-    }
-
-    public void setCivilStatus(String civil_status) {
-        this.civil_status = civil_status;
-    }
-
     public Date getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
-    }
-
-    public Role_Scout getRoles() {
-        return role;
     }
 
     public void setRole(Role_Scout role) {
@@ -218,6 +192,83 @@ public class User_Scout implements Serializable {
 
     @Override
     public String toString() {
-        return "webscouts.Usuario[" + user_name + " identificado por número de id " + id +" (" + surname + " " + last_name +")]";
+        return "webscouts.Usuario[" + getUser_name() + " identificado por número de id " + id +" (" + surname + " " + getLast_name() +")]";
+    }
+
+    /**
+     * @return the user_name
+     */
+    public String getUser_name() {
+        return user_name;
+    }
+
+    /**
+     * @param user_name the user_name to set
+     */
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    /**
+     * @return the last_name
+     */
+    public String getLast_name() {
+        return last_name;
+    }
+
+    /**
+     * @param last_name the last_name to set
+     */
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    /**
+     * @return the civil_status
+     */
+    public String getCivil_status() {
+        return civil_status;
+    }
+
+    /**
+     * @param civil_status the civil_status to set
+     */
+    public void setCivil_status(String civil_status) {
+        this.civil_status = civil_status;
+    }
+
+    /**
+     * @return the groupscout
+     */
+    public Group_Scout getGroupscout() {
+        return groupscout;
+    }
+
+    /**
+     * @param groupscout the groupscout to set
+     */
+    public void setGroupscout(Group_Scout groupscout) {
+        this.groupscout = groupscout;
+    }
+
+    /**
+     * @return the role
+     */
+    public Role_Scout getRole() {
+        return role;
+    }
+
+    /**
+     * @return the fee
+     */
+    public Fee getFee() {
+        return fee;
+    }
+
+    /**
+     * @param fee the fee to set
+     */
+    public void setFee(Fee fee) {
+        this.fee = fee;
     }
 }
