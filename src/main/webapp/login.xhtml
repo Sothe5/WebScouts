@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      
+    <h:head>
+        <meta http-equiv="Content-Type"/>
+        <meta content="text/html"/> 
+        <meta charset="UTF-8"/>
+        <title>User Login</title>
+        
+        <!--Styles -->
+        <link rel="stylesheet" type="text/css" href="./resources/css/one.css"/>
+        
+    </h:head>
+      
+    <h:body>
+        <div id="menu" class="menu">
+            <h:commandLink action="#{privilegesControl.home()}" value="Home"/>
+        </div>
+        <div id="rootContainer" class="container">
+            <div style="margin: 5px auto;"></div>
+            <div class="md">
+                <div class="tittle-wrapper">
+                    <div class="title">Login</div>
+                </div> 
+                <hr/>
+                <h:form style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label for="name">Username</label>
+                        <h:inputText id="name" class="form-control" value="#{login.username}" required="true"/>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <label for="pwd">Password</label>
+                        <h:inputSecret id="pass" class="form-control" value="#{login.password}" required="true"/>
+                    </div>
+                    <div class="form-group" style="margin-top:10px;">
+                        <h:commandButton class="login-button" action="#{login.authenticate()}"/>
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <div>Don't have an account? <h:commandLink action="pagina_formulario.xhtml"><b>Click here.</b></h:commandLink></div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+      
+</html>
