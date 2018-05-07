@@ -14,6 +14,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import uma.sii.mcaddss.webscouts.entities.PermissionType;
+import static uma.sii.mcaddss.webscouts.entities.PermissionType.*;
+import uma.sii.mcaddss.webscouts.entities.Privilege;
+import uma.sii.mcaddss.webscouts.entities.Resource;
+import static uma.sii.mcaddss.webscouts.entities.Resource.*;
+import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 
 /**
  *
@@ -35,14 +41,33 @@ public class Login {
         User_Scout us = new User_Scout();
         us.setUser_name("unscouter");
         us.setPassword("pwscouter");
-        //us.setRole(new Role(..));     but Role_Scout doesnt have String role_name, otherwise we dont know what role they have
+        Role_Scout r = new Role_Scout();
+        us.setRole(r);
+        
         User_Scout us1 = new User_Scout();
         us.setUser_name("uneducando");
         us.setPassword("pweducando");
+        Role_Scout r1 = new Role_Scout();
+        // Grant all privileges except grant ones
+        for (PermissionType perm : PermissionType.values()) {
+            if (perm.equals(GRANT)) continue;
+            for (Resource res : Resource.values()) {
+                r1.grantPrivilege(new Privilege(res, perm));
+            }
+        }
+        us.setRole(r1);
         
         User_Scout us2 = new User_Scout();
         us2.setUser_name("unadmin");
         us2.setPassword("pwadmin");
+        Role_Scout r2 = new Role_Scout();
+        // Grant all privileges
+        for (PermissionType perm : PermissionType.values()) {
+            for (Resource res : Resource.values()) {
+                r2.grantPrivilege(new Privilege(res, perm));
+            }
+        }
+        us.setRole(r2);
         
         users.add(us);
         users.add(us1);
