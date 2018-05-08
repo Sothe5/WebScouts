@@ -61,8 +61,9 @@ public class Event implements Serializable {
         
     }
     
-    private Event(String name, Date date, Double cost, String category) {
+    public Event(String name, String description, Date date, String category) {
         this.name = name;
+        this.description = description;
         this.date = date;
         this.category = category;
     }
@@ -125,20 +126,6 @@ public class Event implements Serializable {
      */
     public void setAttendees(List<EventAttendance> attendees) {
         this.attendees = attendees;
-    }
-
-    public void createEvent(String nom, Date fe, Double co, String cat) throws Exception {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("eventData");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-
-        Event event = new Event(nom, fe, co, cat);
-
-        tx.begin();
-        em.persist(event);
-        tx.commit();
-        em.close();
-
     }
 
     @Override
