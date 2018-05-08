@@ -12,7 +12,6 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>omega</param-value>
         </context-param>
-
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
