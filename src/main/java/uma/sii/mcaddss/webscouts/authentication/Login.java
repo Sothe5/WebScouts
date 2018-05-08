@@ -18,7 +18,6 @@ import uma.sii.mcaddss.webscouts.entities.PermissionType;
 import static uma.sii.mcaddss.webscouts.entities.PermissionType.*;
 import uma.sii.mcaddss.webscouts.entities.Privilege;
 import uma.sii.mcaddss.webscouts.entities.Resource;
-import static uma.sii.mcaddss.webscouts.entities.Resource.*;
 import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 
 /**
