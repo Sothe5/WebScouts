@@ -40,6 +40,8 @@ public class Document implements Serializable {
     private String filepath;
     private String name;
     private String type;
+    @Column(nullable=false, unique=false)
+    private boolean status;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable=false)
     private Date upload_date;
