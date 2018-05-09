@@ -27,7 +27,7 @@ public class Invoice extends Document implements Serializable {
     private Date invoiceDate;
     private String invoicingAddress;
     
-    public Invoice (String name, Long size, String status, String type, int ivnum, Date ivdate, String ivaddress) {
+    public Invoice (String name, Long size, Status status, String type, int ivnum, Date ivdate, String ivaddress) {
         super(name, size, status, type);  
         this.invoiceNum = ivnum;
         this.invoiceDate = ivdate;

@@ -41,13 +41,12 @@ public class Document implements Serializable {
     private String name;
     private String type;
     @Column(nullable=false, unique=false)
-    private boolean status;
+    private Status status;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable=false)
     private Date upload_date;
     @Column(nullable=false)
     private Long file_size;
-    private String status;
     @ManyToOne
     @JoinColumn(name="OWNER_ID", nullable=false)
     private User_Scout owner;
@@ -56,7 +55,7 @@ public class Document implements Serializable {
         
     }
     
-    public Document(String name, Long file_size, String status, String type) {
+    public Document(String name, Long file_size, Status status, String type) {
         this.name = name;
         this.file_size = file_size;
         this.status = status;
@@ -145,14 +144,14 @@ public class Document implements Serializable {
     /**
      * @return the status
      */
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
