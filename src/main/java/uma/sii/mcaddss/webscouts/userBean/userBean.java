@@ -23,8 +23,9 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @Dependent
 public class userBean {
     
-    @PersistenceContext(unitName = "webScoutsPU")
-    private EntityManager em;
+//    Currently mocked      
+//    @PersistenceContext(unitName = "webScoutsPU")
+//    private EntityManager em;
     
     /**
      * Creates a new instance of userBean
@@ -33,9 +34,11 @@ public class userBean {
     }
 
     public List<User_Scout> getUsers(){
-        String qlString = "select u from USERS";
-        Query users_query = em.createQuery(qlString);
-        return users_query.getResultList();
+//        String qlString = "select u from USERS";
+//        Query users_query = em.createQuery(qlString);
+//        return users_query.getResultList();
+          List<User_Scout> mockedList = new ArrayList<>();
+          return mockedList;
     }
     
 }
