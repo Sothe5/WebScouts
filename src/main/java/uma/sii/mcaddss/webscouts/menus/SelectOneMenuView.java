@@ -10,10 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
  
-import org.primefaces.showcase.domain.Theme;
-        
-import org.primefaces.showcase.service.ThemeService;
- 
 @ManagedBean
 public class SelectOneMenuView {
  
@@ -25,14 +21,8 @@ public class SelectOneMenuView {
     private String city;
     private Map<String,String> cities = new HashMap<String, String>();
  
-    private Theme theme;
-    private List<Theme> themes;
- 
     private String option;
     private List<String> options;
- 
-    @ManagedProperty("#{themeService}")
-    private ThemeService service;
  
     @PostConstruct
     public void init() {
@@ -55,9 +45,6 @@ public class SelectOneMenuView {
         cities.put("Barcelona","Barcelona");
         cities.put("Istanbul","Istanbul");
         cities.put("Berlin","Berlin");
- 
-        //themes
-        themes = service.getThemes();
  
         //options
         options = new ArrayList<String>();
@@ -90,28 +77,12 @@ public class SelectOneMenuView {
         this.city = city;
     }
  
-    public Theme getTheme() {
-        return theme;
-    }
- 
-    public void setTheme(Theme theme) {
-        this.theme = theme;
-    }
- 
     public List<SelectItem> getCars() {
         return cars;
     }
  
     public Map<String, String> getCities() {
         return cities;
-    }
- 
-    public List<Theme> getThemes() {
-        return themes;
-    }
- 
-    public void setService(ThemeService service) {
-        this.service = service;
     }
  
     public String getOption() {
