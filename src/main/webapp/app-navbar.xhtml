@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
     <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
     </h:head>
@@ -24,14 +25,31 @@
                     <p:menuitem value="Clan" url="#"/>
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
-
-                <p:submenu label="Administración" icon="ui-icon-gear">
-                    <p:menuitem value="Ver usuarios" url="#" />
-                    <p:menuitem value="Configuración" url="#" />
-                </p:submenu>
                 
+                
+                <c:choose>
+                    <c:when test="#{privilegesControl.user_role == 'ADMIN'}">
+                        <p:submenu label="Administración" icon="ui-icon-gear">
+                            <p:menuitem value="Ver usuarios" url="#" />
+                            <p:menuitem value="Configuración" url="#" />
+                        </p:submenu>
+                    </c:when>
+                </c:choose>
+
+                 
                 <f:facet name="options">
-                    <p:commandButton type="button" value="Login"/>
+                    <c:choose>
+                        <c:when test="#{empty privilegesControl.user}">
+                            <p:commandButton type="button" value="Login"/>
+                        </c:when>
+                    </c:choose>
+                    <c:otherwise>
+                        <h:selectOneMenu value="#{privilegesControl.getUserScoutName()}">
+                            <f:selectItem itemValue="user_profile.xhtml"/>
+                            <hr/>
+                            <f:selectItem value="Logout" itemValue="#{login.logout()}"
+                        </h:selectOneMenu>
+                    </c:otherwise>
                 </f:facet>
             </p:menubar>
         </h:form>
