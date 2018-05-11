@@ -21,15 +21,17 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @SessionScoped
 public class PrivilegesControl implements Serializable{
     private User_Scout userscout;
+    private String user_role;
     
     
     public String home(){
-        if (userscout == null) return "login.xhtml";
-        
-        //TODO: We need to get the userscout's role so we can redirect to the proper page
-        //
-        
-        return null;
+        if (userscout == null) 
+        {
+            return "login.xhtml";
+        } else {
+            user_role = userscout.getRole().getRoleName();
+            return "index.xhtml";
+        }
     }
     
     /**
@@ -68,5 +70,13 @@ public class PrivilegesControl implements Serializable{
     
     public void setUserScout(User_Scout u){
         this.userscout = u;
+    }
+    
+    public String getUserScoutName(){
+        return this.userscout.getUser_name();
+    }
+    
+    public String getRole(){
+        return this.user_role;
     }
 }

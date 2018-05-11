@@ -7,15 +7,18 @@ package uma.sii.mcaddss.webscouts.authentication;
 
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 //import uma.sii.mcaddss.webscouts.entities.Role_Scout
+import static uma.sii.mcaddss.webscouts.entities.PermissionType.*;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import uma.sii.mcaddss.webscouts.entities.PermissionType;
-import static uma.sii.mcaddss.webscouts.entities.PermissionType.*;
 import uma.sii.mcaddss.webscouts.entities.Privilege;
 import uma.sii.mcaddss.webscouts.entities.Resource;
 import uma.sii.mcaddss.webscouts.entities.Role_Scout;
@@ -24,8 +27,9 @@ import uma.sii.mcaddss.webscouts.entities.Role_Scout;
  *
  * @author dan147
  */
+@ManagedBean 
 @RequestScoped
-public class Login {
+public class Login implements Serializable {
     //We are just using hardcoded users here, but the idea is to authenticate the user by database querying
     private String username;
     private String password;
@@ -41,12 +45,14 @@ public class Login {
         us.setUser_name("unscouter");
         us.setPassword("pwscouter");
         Role_Scout r = new Role_Scout();
+        r.setRoleName("SCOUTER");
         us.setRole(r);
         
         User_Scout us1 = new User_Scout();
         us.setUser_name("uneducando");
         us.setPassword("pweducando");
         Role_Scout r1 = new Role_Scout();
+        r1.setRoleName("EDUCANDO");
         // Grant all privileges except grant ones
         for (PermissionType perm : PermissionType.values()) {
             if (perm.equals(GRANT)) continue;
@@ -55,11 +61,12 @@ public class Login {
             }
         }
         us.setRole(r1);
-        
+     
         User_Scout us2 = new User_Scout();
         us2.setUser_name("unadmin");
         us2.setPassword("pwadmin");
         Role_Scout r2 = new Role_Scout();
+        r1.setRoleName("ADMIN");
         // Grant all privileges
         for (PermissionType perm : PermissionType.values()) {
             for (Resource res : Resource.values()) {
@@ -96,18 +103,32 @@ public class Login {
             {
                 if (!u.getPassword().equals(password))
                 {
-                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Password", 
-                "Invalid Password"));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                        "Invalid Password", "Invalid Password"));
                     return null;
-                } else {
+                } else 
+                {
                    ctrl.setUserScout(u); 
                    return ctrl.home(); 
                 } 
             }
         }
         
-        ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User doesn't exist", "User doesn't exist"));
+        ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                "User does not exist", "User does not exist"));
              
         return null;
     }
+     
+    public void logout() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ctx.getExternalContext().invalidateSession();
+        
+        try 
+        {
+            ctx.getExternalContext().redirect("index.xhtml");
+        } 
+        catch (IOException e) {e.printStackTrace();} 
+        
+     }
 }

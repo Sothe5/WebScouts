@@ -29,6 +29,7 @@ public class Role_Scout implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String role_name;
     @OneToMany(mappedBy = "role")
     private Set<Privilege> privileges;
     @Temporal(TemporalType.TIMESTAMP)
@@ -86,6 +87,17 @@ public class Role_Scout implements Serializable {
        
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public String getRoleName(){
+        return role_name;
+    }
+    
+    public void setRoleName(String rname){
+        if (rname.equalsIgnoreCase("ADMIN") || rname.equalsIgnoreCase("SCOUTER") || rname.equalsIgnoreCase("EDUCANDO"))
+        {
+           this.role_name = rname; 
+        }
     }
 
     @Override
