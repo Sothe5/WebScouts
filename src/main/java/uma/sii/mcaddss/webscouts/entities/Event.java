@@ -1,6 +1,7 @@
 package uma.sii.mcaddss.webscouts.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -58,10 +59,13 @@ public class Event implements Serializable {
     private List<Document> documents;
 
     public Event() {
-        
+        this.attendees = new ArrayList();
+        this.multimedia = new ArrayList();
+        this.documents = new ArrayList();
     }
     
     public Event(String name, String description, Date date, String category) {
+        this();
         this.name = name;
         this.description = description;
         this.date = date;
