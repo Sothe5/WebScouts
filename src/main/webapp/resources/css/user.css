@@ -1,0 +1,101 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12-May-2018, 04:08:26
+    Author     : dan147
+*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    padding-top: 55px;
+    width: 100%;
+    margin: 0 auto;
+}
+ 
+html, body {
+    width: 100%;
+    height: 100%;
+}
+ 
+.container {
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+ 
+.panel-wrapper {
+    margin: 0 auto;
+    padding-bottom: 20px;
+    max-width: 550px;
+    border: 1px solid #76a6c6;
+    border-radius: 4px;
+}
+ 
+.panel-tittle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    background-color: #76a6c6;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+ 
+.panel-top {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    height: 210px;
+}
+ 
+.panel-bottom {
+    height: auto;
+}
+ 
+.user-avatar {
+    float: left;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 5px solid #878787;
+    border-radius: 50%;
+}
+ 
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+}
+ 
+.user-name {
+    padding-top: 80px;
+    padding-left: 250px;
+    font-size: 24px;
+}
+ 
+.user-info {
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+ 
+.button {
+    font-family: 'Open Sans',sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background-color: #11245e;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 25px;
+    width: 30%;
+    margin: 0 auto;
+}

@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import uma.sii.mcaddss.webscouts.entities.PermissionType;
 import uma.sii.mcaddss.webscouts.entities.Privilege;
 import uma.sii.mcaddss.webscouts.entities.Resource;
@@ -27,7 +27,7 @@ import uma.sii.mcaddss.webscouts.entities.Role_Scout;
  *
  * @author dan147
  */
-@ManagedBean 
+@Named(value = "login") 
 @RequestScoped
 public class Login implements Serializable {
     //We are just using hardcoded users here, but the idea is to authenticate the user by database querying
@@ -54,12 +54,14 @@ public class Login implements Serializable {
         Role_Scout r1 = new Role_Scout();
         r1.setRoleName("EDUCANDO");
         // Grant all privileges except grant ones
+        /*
         for (PermissionType perm : PermissionType.values()) {
             if (perm.equals(GRANT)) continue;
             for (Resource res : Resource.values()) {
                 r1.grantPrivilege(new Privilege(res, perm));
             }
         }
+        */
         us.setRole(r1);
      
         User_Scout us2 = new User_Scout();
@@ -68,11 +70,13 @@ public class Login implements Serializable {
         Role_Scout r2 = new Role_Scout();
         r1.setRoleName("ADMIN");
         // Grant all privileges
+        /*
         for (PermissionType perm : PermissionType.values()) {
             for (Resource res : Resource.values()) {
                 r2.grantPrivilege(new Privilege(res, perm));
             }
         }
+        */
         us.setRole(r2);
         
         users.add(us);

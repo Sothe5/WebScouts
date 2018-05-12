@@ -6,7 +6,10 @@ and open the template in the editor.
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
       
     <h:head>
         <meta http-equiv="Content-Type"/>
@@ -20,9 +23,7 @@ and open the template in the editor.
     </h:head>
       
     <h:body>
-        <div id="menu" class="menu">
-            <h:commandLink action="#{privilegesControl.home()}" value="Home"/>
-        </div>
+        <ui:include src="./app-navbar.xhtml"/>
         <div id="rootContainer" class="container">
             <div style="margin: 5px auto;"></div>
             <div class="md">
@@ -40,7 +41,7 @@ and open the template in the editor.
                         <h:inputSecret id="pass" class="form-control" value="#{login.password}" required="true"/>
                     </div>
                     <div class="form-group" style="margin-top:10px;">
-                        <h:commandButton class="login-button" action="#{login.authenticate()}"/>
+                        <h:commandButton class="login-button" value="LOGIN" action="#{login.authenticate()}"/>
                     </div>
                     <div class="form-group" style="text-align: center;">
                         <div>Don't have an account? <h:commandLink action="pagina_formulario.xhtml"><b>Click here.</b></h:commandLink></div>
@@ -48,11 +49,11 @@ and open the template in the editor.
                 </h:form>
                 <br/><h4>Available Users to Logging In</h4><hr/>
                 <p style="color: gray; font-size: 14px;">
-                    Username: uneducando Password: pweducando Role: EDUCANDO</br>
-                    </br>
-                    Username: unscouter  Password: pwscouter  Role: SCOUTER</br>
-                    </br>
-                    Username: unadmin    Password: pwadmin    Role: ADMIN</br>
+                    Username: uneducando Password: pweducando Role: EDUCANDO<br/>
+                    <br/>
+                    Username: unscouter  Password: pwscouter  Role: SCOUTER<br/>
+                    <br/>
+                    Username: unadmin    Password: pwadmin    Role: ADMIN<br/>
                  
                 </p>
                 

@@ -39,17 +39,16 @@
                  
                 <f:facet name="options">
                     <c:choose>
-                        <c:when test="#{empty privilegesControl.user}">
-                            <p:commandButton type="button" value="Login"/>
+                        <c:when test="#{empty privilegesControl.userscout}">
+                            <p:commandButton value="Login" action="login.xhtml" />
                         </c:when>
+                        <c:otherwise>
+                            <p:submenu label="Suprise madafaka">
+                                <p:menuitem value="My Profile" action="user_profile.xhtml" />
+                                <p:menuitem value="Logout" action="#{login.logout()}" />
+                            </p:submenu>
+                        </c:otherwise>
                     </c:choose>
-                    <c:otherwise>
-                        <h:selectOneMenu value="#{privilegesControl.getUserScoutName()}">
-                            <f:selectItem itemValue="user_profile.xhtml"/>
-                            <hr/>
-                            <f:selectItem value="Logout" itemValue="#{login.logout()}"/>
-                        </h:selectOneMenu>
-                    </c:otherwise>
                 </f:facet>
             </p:menubar>
         </h:form>

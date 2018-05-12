@@ -10,6 +10,7 @@ and open the template in the editor.
 
 body {
     width: 75%;
+    height: auto;
     border: 1px solid #ccc;
     background-color: #eee;
     border-radius: 5px;
