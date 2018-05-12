@@ -41,7 +41,7 @@ public class Role_Scout implements Serializable {
     }
     
     public Role_Scout(String role){
-        this.setRoleName(role);
+        this.setRole_name(role);
     }
     
     public Long getId() {
@@ -95,12 +95,24 @@ public class Role_Scout implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public Set<Privilege> getPrivileges() {
+        return privileges;
+    }
+
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
+    }
     
     public String getRoleName(){
         return role_name;
     }
     
-    public void setRoleName(String rname){
+    public void setRole_name(String rname){
         if (rname.equalsIgnoreCase("ADMIN") || rname.equalsIgnoreCase("SCOUTER") || rname.equalsIgnoreCase("EDUCANDO"))
         {
            this.role_name = rname; 

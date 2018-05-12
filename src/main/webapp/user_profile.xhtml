@@ -25,7 +25,7 @@
                 <div class="panel-top">
                     <div class="user-avatar">
                         <c:choose>
-                            <c:when test="#{empty privilegesControl.userscout.photo}">
+                            <c:when test="#{empty privilegesControl.userScout.photo}">
                                 <img src="./images/user.png" />
                             </c:when>
                             <c:otherwise>
@@ -34,7 +34,7 @@
                         </c:choose>
                     </div>
                     <div class="user-name">
-                        <h:outputText value="#{privilegesControl.getUserScoutName()}" />
+                        <h:outputText value="#{privilegesControl.userScoutName}" />
                     </div>
                 </div>
                 <div class="panel-bottom">
@@ -44,11 +44,11 @@
                             <tr>
                                 <td>Grupo: </td>
                                 <td><c:choose>
-                                    <c:when test="#{empty privilegesControl.userscout.groupscout}">
+                                    <c:when test="#{empty privilegesControl.userScout.groupscout}">
                                         Sin Grupo
                                     </c:when>
                                     <c:otherwise>
-                                        <h:outputText value="#{privilegesControl.userscout.groupscout}" />
+                                        <h:outputText value="#{privilegesControl.userScout.groupscout.name}" />
                                     </c:otherwise>
                                 </c:choose></td>
                             </tr>
@@ -59,22 +59,22 @@
                             <tr>
                                 <td>Email: </td>
                                 <td><c:choose>
-                                    <c:when test="#{empty privilegesControl.userscout.email}">
+                                    <c:when test="#{empty privilegesControl.userScout.email}">
                                         None
                                     </c:when>
                                     <c:otherwise>
-                                        <h:outputText value="#{privilegesControl.userscout.email}" />
+                                        <h:outputText value="#{privilegesControl.userScout.email}" />
                                     </c:otherwise>
                                 </c:choose></td>
                             </tr>
                             <tr>
                                 <td>Rol: </td>
-                                <td><h:outputText value="#{privilegesControl.userscout.role}" /></td>
+                                <td><h:outputText value="#{privilegesControl.userScout.role.role_name}" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p:dataTable value="#{privilegesControl.userscout.name}" var="user">
+                <p:dataTable value="#{privilegesControl.userScout}" var="user">
                     <p:column colspan="1" headerText="Ver documentación">
                         <p:rowToggler />
                     </p:column>
