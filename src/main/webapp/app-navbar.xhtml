@@ -27,7 +27,7 @@
                 </p:submenu>
                 
                 <c:choose>
-                    <c:when test="#{privilegesControl.userscout.role == 'ADMIN'}">
+                    <c:when test="#{privilegesControl.role eq 'ADMIN'}">
                         <p:submenu label="Administración" icon="ui-icon-gear">
                             <p:menuitem value="Ver usuarios" url="./faces/all_users.xhtml" />
                             <p:menuitem value="Gestión documental" url="./faces/documental_management.xhtml" />
@@ -38,11 +38,11 @@
                  
                 <f:facet name="options">
                     <c:choose>
-                        <c:when test="#{empty privilegesControl.userscout}">
+                        <c:when test="#{empty privilegesControl.userScout}">
                             <p:commandButton value="Login" action="login.xhtml" />
                         </c:when>
                         <c:otherwise>
-                            <p:submenu label="#{privilegesControl.getUserScoutName()}">
+                            <p:submenu label="#{privilegesControl.userScoutName}">
                                 <p:menuitem value="My Profile" action="user_profile.xhtml" />
                                 <p:menuitem value="Logout" action="#{login.logout()}" />
                             </p:submenu>

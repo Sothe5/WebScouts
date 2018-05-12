@@ -12,12 +12,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
 /**
  *
  * @author dan147
  */
+@Named(value = "privilegesControl")
 @SessionScoped
 public class PrivilegesControl implements Serializable{
     private User_Scout userscout;
