@@ -79,7 +79,7 @@ public class EventPage implements Serializable {
 
     public String getEventDateFormatted() {
         SimpleDateFormat formatter;
-        formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm");
+        formatter = new SimpleDateFormat("dd 'de' MMM ' de' yyyy, HH:mm");
         Date eventDate = event.getDate();
         return formatter.format(eventDate);
     }
