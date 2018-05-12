@@ -36,13 +36,18 @@ public class EventPage implements Serializable {
         event.getGroupscout().setName("Manada");
         event.setDate(new Date());
         
-        // Build users for comments:
+        // Build users for event and comments:
         User_Scout pablo = new User_Scout(Long.MIN_VALUE, "pablo", event.getGroupscout(), "pablo", "test@test.com", "test aa", new Date(2002,11,21), new Role_Scout("EDUCANDO"));
         User_Scout manuel = new User_Scout(Long.MIN_VALUE, "manuel", event.getGroupscout(), "manuel", "test2@test.com", "test aa", new Date(2004,10,21), new Role_Scout("EDUCANDO"));
         User_Scout elisa = new User_Scout(Long.MIN_VALUE, "elisa", event.getGroupscout(), "elisa", "test3@test.com", "test aa oo", new Date(2006,9,14), new Role_Scout("EDUCANDO"));
+       
+        // Add attendants
+        event.addAttendee(new EventAttendance(event, pablo, "yes"));
+        event.addAttendee(new EventAttendance(event, elisa, "yes"));
+        event.addAttendee(new EventAttendance(event, manuel, "yes"));
         
         // Build comments
-        Comment comment1 = new Comment(pablo, event, "Hola a todos, yo no podré ir");
+        Comment comment1 = new Comment(pablo, event, "Hola a todos, yo podré ir");
         Comment comment2 = new Comment(manuel, event, "Vale");
         Comment comment3 = new Comment(elisa, event, "Aaaa bieeen");
         comment2.setTarget(comment1);
@@ -56,6 +61,10 @@ public class EventPage implements Serializable {
     
     public Event getEvent() {
         return event;
+    }
+    
+    public String showAttendees() {
+        return "event_attendees.xhtml";
     }
     
     public void setEventId(String eventId) {
