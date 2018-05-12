@@ -1,6 +1,8 @@
 package uma.sii.mcaddss.webscouts.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -59,6 +61,7 @@ public class Comment implements Serializable {
         this.message = message;
         this.postDate = new Date();
         this.lastModify = this.postDate;
+        this.responses = new ArrayList();
     }
     
     /**
@@ -124,6 +127,13 @@ public class Comment implements Serializable {
 
     public void setTarget(Comment target) {
         this.target = target;
+    }
+    
+    public String getCommentDateFormatted() {
+        SimpleDateFormat formatter;
+        formatter = new SimpleDateFormat("dd 'de' MMM ' de' yyyy, HH:mm");
+        Date eventDate = event.getDate();
+        return formatter.format(eventDate);
     }
     
     @Override
