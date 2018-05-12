@@ -34,7 +34,7 @@ and open the template in the editor.
     cursor: pointer;
 }
 
-.date {
+.comment-wrapper .date {
     color: #aaa;
     float: right;
 }
