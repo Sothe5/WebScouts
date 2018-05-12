@@ -70,6 +70,22 @@ public class User_Scout implements Serializable {
     @ManyToOne
     private Fee fee;
 
+    public User_Scout() {
+    }
+
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, List<Document> documents) {
+        this.id = id;
+        this.user_name = user_name;
+        this.groupscout = groupscout;
+        this.password = password;
+        this.email = email;
+        this.address = address;
+        this.birthdate = birthdate;
+        this.documents = documents;
+    }
+
+    
+    
     public Long getId() {
         return id;
     }

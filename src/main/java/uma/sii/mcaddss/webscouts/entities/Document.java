@@ -38,10 +38,12 @@ public class Document implements Serializable {
     protected Long id;
     @Column(nullable=false, unique = true)
     private String filepath;
+    @Column(nullable=false)
     private String name;
+    @Column(nullable=false)
     private String type;
     @Column(nullable=false, unique=false)
-    private Status status;
+    private boolean status;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable=false)
     private Date upload_date;
@@ -55,9 +57,8 @@ public class Document implements Serializable {
         
     }
     
-    public Document(String name, Long file_size, Status status, String type) {
+    public Document(String name, boolean status, String type) {
         this.name = name;
-        this.file_size = file_size;
         this.status = status;
         this.type = type;
         this.upload_date= new Date();
@@ -144,14 +145,14 @@ public class Document implements Serializable {
     /**
      * @return the status
      */
-    public Status getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(Status status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

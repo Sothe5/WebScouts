@@ -41,6 +41,13 @@ public class Group_Scout implements Serializable {
     private Fee fee;
     @OneToMany(mappedBy = "groupscout")
     private Set<Event> events;
+
+    public Group_Scout() {
+    }
+
+    public Group_Scout(String name) {
+        this.name = name;
+    }
     
     public Long getId() {
         return id;

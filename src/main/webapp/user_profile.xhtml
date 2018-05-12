@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type"/>
         <meta content="text/html"/> 
@@ -73,7 +74,22 @@
                         </tbody>
                     </table>
                 </div>
-                <h:button value="View my documentation" outcome="index.xhtml" styleClass="button" />
+                <p:dataTable value="#{user_Scout.name}" var="user">
+                    <p:column colspan="1" headerText="Ver documentación">
+                        <p:rowToggler />
+                    </p:column>
+                    <p:rowExpansion>
+                        <p:dataTable value="#{user.documents}" var="doc" rendered="#{user ne null}">
+                            <p:column colspan="1">
+                                <h:outputText value="#{doc.name}" />
+                            </p:column>
+                            <p:column colspan="1">
+                                <h:outputText value="#{doc.status}" />
+                            </p:column>
+                        </p:dataTable>    
+                    </p:rowExpansion>
+                </p:dataTable>
+                <ui:include src="./drago.xhtml"></ui:include>
             </div>
         </div>
     </h:body>

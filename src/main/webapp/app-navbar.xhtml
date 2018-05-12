@@ -26,16 +26,15 @@
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
                 
-                
                 <c:choose>
                     <c:when test="#{privilegesControl.user_role == 'ADMIN'}">
                         <p:submenu label="Administración" icon="ui-icon-gear">
-                            <p:menuitem value="Ver usuarios" url="#" />
+                            <p:menuitem value="Ver usuarios" url="./faces/all_users.xhtml" />
+                            <p:menuitem value="Gestión documental" url="./faces/documental_management.xhtml" />
                             <p:menuitem value="Configuración" url="#" />
                         </p:submenu>
                     </c:when>
                 </c:choose>
-
                  
                 <f:facet name="options">
                     <c:choose>
