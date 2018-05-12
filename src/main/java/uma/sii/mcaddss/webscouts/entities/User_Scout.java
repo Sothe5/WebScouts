@@ -74,7 +74,7 @@ public class User_Scout implements Serializable {
     public User_Scout() {
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, Role_Scout role) {
         this.id = id;
         this.user_name = user_name;
         this.groupscout = groupscout;
@@ -82,10 +82,11 @@ public class User_Scout implements Serializable {
         this.email = email;
         this.address = address;
         this.birthdate = birthdate;
+        this.role = role;
         this.documents = new ArrayList<>();
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, List<Document> documents) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, Role_Scout role, List<Document> documents) {
         this.id = id;
         this.user_name = user_name;
         this.groupscout = groupscout;
@@ -93,6 +94,7 @@ public class User_Scout implements Serializable {
         this.email = email;
         this.address = address;
         this.birthdate = birthdate;
+        this.role = role;
         this.documents = documents;
     }
     

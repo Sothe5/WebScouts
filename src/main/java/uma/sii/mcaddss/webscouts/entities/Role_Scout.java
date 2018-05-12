@@ -37,6 +37,13 @@ public class Role_Scout implements Serializable {
     @OneToMany(mappedBy="role")
     private Set<User_Scout> users;
     
+    public Role_Scout(){
+    }
+    
+    public Role_Scout(String role){
+        this.setRoleName(role);
+    }
+    
     public Long getId() {
         return id;
     }

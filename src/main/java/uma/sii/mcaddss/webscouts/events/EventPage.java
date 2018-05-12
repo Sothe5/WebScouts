@@ -12,6 +12,7 @@ import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.EventAttendance;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
 /**
@@ -36,9 +37,9 @@ public class EventPage implements Serializable {
         event.setDate(new Date());
         
         // Build users for comments:
-        User_Scout pablo = new User_Scout(Long.MIN_VALUE, "pablo", event.getGroupscout(), "pablo", "test@test.com", "test aa", new Date(2002,11,21));
-        User_Scout manuel = new User_Scout(Long.MIN_VALUE, "manuel", event.getGroupscout(), "manuel", "test2@test.com", "test aa", new Date(2004,10,21));
-        User_Scout elisa = new User_Scout(Long.MIN_VALUE, "elisa", event.getGroupscout(), "elisa", "test3@test.com", "test aa oo", new Date(2006,9,14));
+        User_Scout pablo = new User_Scout(Long.MIN_VALUE, "pablo", event.getGroupscout(), "pablo", "test@test.com", "test aa", new Date(2002,11,21), new Role_Scout("EDUCANDO"));
+        User_Scout manuel = new User_Scout(Long.MIN_VALUE, "manuel", event.getGroupscout(), "manuel", "test2@test.com", "test aa", new Date(2004,10,21), new Role_Scout("EDUCANDO"));
+        User_Scout elisa = new User_Scout(Long.MIN_VALUE, "elisa", event.getGroupscout(), "elisa", "test3@test.com", "test aa oo", new Date(2006,9,14), new Role_Scout("EDUCANDO"));
         
         // Build comments
         Comment comment1 = new Comment(pablo, event, "Hola a todos, yo no podré ir");

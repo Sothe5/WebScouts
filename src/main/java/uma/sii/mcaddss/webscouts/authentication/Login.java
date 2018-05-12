@@ -18,6 +18,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import uma.sii.mcaddss.webscouts.data.Data;
 import uma.sii.mcaddss.webscouts.entities.PermissionType;
 import uma.sii.mcaddss.webscouts.entities.Privilege;
 import uma.sii.mcaddss.webscouts.entities.Resource;
@@ -30,60 +31,17 @@ import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 @Named(value = "login") 
 @RequestScoped
 public class Login implements Serializable {
-    //We are just using hardcoded users here, but the idea is to authenticate the user by database querying
+    
+    private Data data;
+    private List<User_Scout> users;
+    private boolean initialized = false;
+    
     private String username;
     private String password;
-    private List<User_Scout> users;
     
     @Inject 
     private PrivilegesControl ctrl;
-    
-    public Login (){
-        users = new ArrayList<>();
         
-        User_Scout us = new User_Scout();
-        us.setUser_name("unscouter");
-        us.setPassword("pwscouter");
-        Role_Scout r = new Role_Scout();
-        r.setRoleName("SCOUTER");
-        us.setRole(r);
-        
-        User_Scout us1 = new User_Scout();
-        us.setUser_name("uneducando");
-        us.setPassword("pweducando");
-        Role_Scout r1 = new Role_Scout();
-        r1.setRoleName("EDUCANDO");
-        // Grant all privileges except grant ones
-        /*
-        for (PermissionType perm : PermissionType.values()) {
-            if (perm.equals(GRANT)) continue;
-            for (Resource res : Resource.values()) {
-                r1.grantPrivilege(new Privilege(res, perm));
-            }
-        }
-        */
-        us.setRole(r1);
-     
-        User_Scout us2 = new User_Scout();
-        us2.setUser_name("unadmin");
-        us2.setPassword("pwadmin");
-        Role_Scout r2 = new Role_Scout();
-        r1.setRoleName("ADMIN");
-        // Grant all privileges
-        /*
-        for (PermissionType perm : PermissionType.values()) {
-            for (Resource res : Resource.values()) {
-                r2.grantPrivilege(new Privilege(res, perm));
-            }
-        }
-        */
-        us.setRole(r2);
-        
-        users.add(us);
-        users.add(us1);
-        users.add(us2);
-    }
-    
     public String getUsername(){
         return username;
     }
@@ -101,7 +59,14 @@ public class Login implements Serializable {
     }
     
     public String authenticate(){
+        
+        if (!initialized)
+        {
+            init();
+        }
+        
         FacesContext ctx = FacesContext.getCurrentInstance();
+        
         for (User_Scout u : users){
             if (u.getUser_name().equals(username)) 
             {
@@ -134,5 +99,11 @@ public class Login implements Serializable {
         } 
         catch (IOException e) {e.printStackTrace();} 
         
-     }
+    }
+    
+    private void init(){
+        data = new Data();
+        users = new ArrayList(data.getUsuarios());
+        initialized = true;
+    }
 }
