@@ -114,6 +114,10 @@ public class Comment implements Serializable {
         return responses;
     }
     
+    public void addReply(Comment replyComment) {
+        responses.add(replyComment);
+    }
+    
     public Comment getTarget() {
         return target;
     }

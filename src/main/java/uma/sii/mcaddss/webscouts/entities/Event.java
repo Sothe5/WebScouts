@@ -110,6 +110,10 @@ public class Event implements Serializable {
     public List<Comment> getComments() {
         return comments;
     }
+    
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
 
     /**
      * @param comments the comments to set

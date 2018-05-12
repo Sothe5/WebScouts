@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -73,7 +74,7 @@ public class User_Scout implements Serializable {
     public User_Scout() {
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, List<Document> documents) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate) {
         this.id = id;
         this.user_name = user_name;
         this.groupscout = groupscout;
@@ -81,7 +82,7 @@ public class User_Scout implements Serializable {
         this.email = email;
         this.address = address;
         this.birthdate = birthdate;
-        this.documents = documents;
+        this.documents = new ArrayList<>();
     }
 
     
