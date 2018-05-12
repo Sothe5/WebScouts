@@ -14,9 +14,13 @@
         <h:form class="navbar">    
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Perfil" url="./faces/user_profile.xhtml" icon="ui-icon-person"/>
-
-
+                
+                <c:choose>
+                    <c:when test="#{not empty privilegesControl.userScout}">
+                        <p:menuitem value="Ver Mi Perfil" url="./faces/user_profile.xhtml" icon="ui-icon-person"/>
+                    </c:when>
+                </c:choose>
+                
                 <p:submenu label="Grupos" icon="ui-icon-home">
                     <p:menuitem value="Castores" url="#" />
                     <p:menuitem value="Manada" url="#"/>
@@ -48,10 +52,7 @@
                             <p:commandButton value="Login" action="login.xhtml" />
                         </c:when>
                         <c:otherwise>
-                            <p:submenu label="#{privilegesControl.userScoutName}">
-                                <p:menuitem value="My Profile" action="user_profile.xhtml" />
-                                <p:menuitem value="Logout" action="#{login.logout()}" />
-                            </p:submenu>
+                            <p:commandButton value="Logout" action="#{login.logout()}" icon="ui-icon-power" />
                         </c:otherwise>
                     </c:choose>
                 </f:facet>
