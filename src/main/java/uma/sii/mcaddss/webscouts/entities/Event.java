@@ -136,6 +136,10 @@ public class Event implements Serializable {
         this.attendees = attendees;
     }
 
+    public void addAttendee(EventAttendance attendee) {
+        this.attendees.add(attendee);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

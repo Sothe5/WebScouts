@@ -37,9 +37,10 @@ public class EventAttendance implements Serializable {
         
     }
     
-    private EventAttendance(Event event, User_Scout user) {
+    public EventAttendance(Event event, User_Scout user, String attendance_status) {
         this.event = event;
         this.user = user;
+        this.attendance_status = attendance_status;
         this.id = new EventAttendanceId(event.getId(), user.getId());
     }
     
