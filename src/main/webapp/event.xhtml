@@ -42,14 +42,14 @@
                     </div>
                 </div>
                 <div class="row u-botmargin">
+                    <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
                     <div class="seven columns">
-                        <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
                         <h:form>
                             <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
                             <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
-                        </h:form>
-                        </c:if>                         
+                        </h:form>          
                     </div>
+                    </c:if>    
                     <div class="five columns">
                         <div class="container-block">
                             <span>
