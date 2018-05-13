@@ -15,14 +15,14 @@
         <h:form class="navbar">    
             <p:growl id="messages"/>
             <p:menubar>
-                
+                <p:menuitem value="Inicio" url="/faces/index.xhtml" icon="ui-icon-home"/>
                 <c:choose>
                     <c:when test="#{not empty privilegesControl.userScout}">
                         <p:menuitem value="Ver Mi Perfil" url="/faces/user_profile.xhtml" icon="ui-icon-person"/>
                     </c:when>
                 </c:choose>
                 
-                <p:submenu label="Grupos" icon="ui-icon-home">
+                <p:submenu label="Grupos">
                     <p:menuitem value="Castores" url="/faces/group.xhtml" >
                         <f:param name="group" value="Castores"/>
                     </p:menuitem>
