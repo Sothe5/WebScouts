@@ -10,7 +10,7 @@
         <meta content="text/html"/> 
         <meta charset="UTF-8"/>
         
-        <title><h:outputText value="#{privilegesControl.getUserScoutName()}'s Profile" /></title>
+        <title><h:outputText value="Perfil de #{privilegesControl.userScout.user_name}" /></title>
         
         <!--Styles -->
         <link rel="stylesheet" type="text/css" href="./resources/css/user.css"/>
@@ -21,7 +21,7 @@
         <ui:include src="./app-navbar.xhtml"></ui:include>
         <div id="rootContainer" class="container">
             <div class="panel-wrapper">
-                <div class="panel-tittle">User Profile</div>
+                <div class="panel-tittle">Perfil de Usuario</div>
                 <div class="panel-top">
                     <div class="user-avatar">
                         <c:choose>
@@ -29,12 +29,12 @@
                                 <img src="./resources/images/user.png" />
                             </c:when>
                             <c:otherwise>
-                                <img src="#{privilegesControl.userScout.photo.file_path}/#{privilegesControl.userScout.photo.name}" />
+                                <h:graphicImage value="#{privilegesControl.userScout.photo.file_path}/#{privilegesControl.userScout.photo.name}.#{privilegesControl.userScout.photo.extension}" />
                             </c:otherwise>
                         </c:choose>
                     </div>
                     <div class="user-name">
-                        <h:outputText value="#{privilegesControl.userScoutName}" />
+                        <h:outputText value="#{privilegesControl.userScout.user_name}" />
                     </div>
                 </div>
                 <div class="panel-bottom">
@@ -54,13 +54,20 @@
                             </tr>
                             <tr>
                                 <td>Fecha Promesa: </td>
-                                <td>dd/mm/yyyy</td>
+                                <td><c:choose>
+                                        <c:when test="#{empty privilegesControl.userScout.pledgeDate}">
+                                        No realizada
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h:outputText value="#{privilegesControl.userScout.pledgeDateFormatted}" />
+                                    </c:otherwise>
+                                </c:choose></td>
                             </tr>
                             <tr>
                                 <td>Email: </td>
                                 <td><c:choose>
                                     <c:when test="#{empty privilegesControl.userScout.email}">
-                                        None
+                                        No tiene
                                     </c:when>
                                     <c:otherwise>
                                         <h:outputText value="#{privilegesControl.userScout.email}" />
@@ -69,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td>Rol: </td>
-                                <td><h:outputText value="#{privilegesControl.userScout.role.role_name}" /></td>
+                                <td><h:outputText value="#{privilegesControl.userScout.role.roleName}" /></td>
                             </tr>
                         </tbody>
                     </table>

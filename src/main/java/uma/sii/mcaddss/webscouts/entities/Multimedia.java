@@ -47,10 +47,14 @@ public class Multimedia implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date creation_date;
-
-    public Multimedia(String file_path, String name) {
-        this.file_path = file_path;
+    
+    public Multimedia (){
+    }
+    
+    public Multimedia (String filepath, String name, String extension) {
+        this.file_path = filepath;
         this.name = name;
+        this.extension = extension;
     }
 
     public Long getId() {
@@ -116,7 +120,7 @@ public class Multimedia implements Serializable {
     public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

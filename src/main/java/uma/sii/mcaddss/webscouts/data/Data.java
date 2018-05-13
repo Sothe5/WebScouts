@@ -28,11 +28,12 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @Dependent
 public class Data {
     
+    private static final String FILE_PATH = "./resources/images/users";
     private Event event;
     private ArrayList<User_Scout> usuarios = new ArrayList<>
-        (Arrays.asList(new User_Scout(new Long(1),"Manolo",new Group_Scout("Manada"),"manolo","manolo@gmail.com","Calle manolos", new Date(1997, 1, 2), new Role_Scout("EDUCANDO"),new ArrayList<>(Arrays.asList(new Document("Manolo_doc1",true,"Formulario"),new Document("Manolo_doc2", false,"Formulario"))))
-                , new User_Scout(new Long(2),"Pepe",new Group_Scout("Castor"),"pepe","pepe@gmail.com","Calle pepes", new Date(1997, 1, 1), new Role_Scout("EDUCANDO"),new ArrayList<>(Arrays.asList(new Document("Pepe_doc",false,"Formulario"))))
-                , new User_Scout(new Long(5), "unscouter",new Group_Scout("Castor"),"wan", "wan@gmail.com", "Wan Street", new Date(1999, 9, 9), new Role_Scout("SCOUTER"))
+        (Arrays.asList(new User_Scout(new Long(1),"Manolo",new Group_Scout("Tropa de Kim"),"manolo", new Date(2017, 9, 14),"manolo@gmail.com","Calle manolos", new Date(1997, 1, 2), new Role_Scout("EDUCANDO"),new ArrayList<>(Arrays.asList(new Document("Manolo_doc1",true,"Formulario"),new Document("Manolo_doc2", false,"Formulario"))))
+                , new User_Scout(new Long(2),"Pepe",new Group_Scout("Unidad Esculta Siryu"),"pepe", new Date(2017, 9, 15), "pepe@gmail.com","Calle pepes", new Date(1997, 1, 1), new Multimedia(FILE_PATH, "bob", "jpg"), new Role_Scout("EDUCANDO"),new ArrayList<>(Arrays.asList(new Document("Pepe_doc",false,"Formulario"))))
+                , new User_Scout(new Long(5), "unscouter",new Group_Scout("Unidad Esculta Siryu"),"wan", "wan@gmail.com", "Wan Street", new Date(1999, 9, 9), new Role_Scout("SCOUTER"))
                 , new User_Scout(new Long(7),"soiadmin",null,"soi", "soi@gmail.com", "Calle de los admin", new Date(1995, 5, 5), new Role_Scout("ADMIN"))));
 
     /**

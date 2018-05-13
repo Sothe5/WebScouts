@@ -1,12 +1,15 @@
 package uma.sii.mcaddss.webscouts.entities;
 
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -49,6 +52,7 @@ public class User_Scout implements Serializable {
     private String last_name;
     @Column(nullable = false)
     private String password;
+    private Date pledge_date;
     private String address;
     private String email;
     private String civil_status;
@@ -86,16 +90,22 @@ public class User_Scout implements Serializable {
         this.documents = new ArrayList<>();
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, Role_Scout role, List<Document> documents) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, Date pledge_date, String email, String address, Date birthdate, Role_Scout role, List<Document> documents) {
         this.id = id;
         this.user_name = user_name;
         this.groupscout = groupscout;
         this.password = password;
+        this.pledge_date = pledge_date;
         this.email = email;
         this.address = address;
         this.birthdate = birthdate;
         this.role = role;
         this.documents = documents;
+    }
+    
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, Date pledge_date, String email, String address, Date birthdate, Multimedia photo, Role_Scout role, List<Document> documents) {
+        this(id, user_name, groupscout, password, pledge_date, email, address, birthdate, role, documents);
+        this.photo = photo;
     }
     
     public Long getId() {
@@ -120,6 +130,14 @@ public class User_Scout implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public Date getPledgeDate(){
+        return pledge_date;
+    }
+    
+    public void setPledgeDate(Date pledge_date){
+        this.pledge_date = pledge_date;
     }
 
     public String getAddress() {
@@ -221,6 +239,12 @@ public class User_Scout implements Serializable {
     @Override
     public String toString() {
         return "webscouts.Usuario[" + getUser_name() + " identificado por número de id " + id +" (" + surname + " " + getLast_name() +")]";
+    }
+    
+    public String getPledgeDateFormatted() {
+        Format formatter = new SimpleDateFormat("dd-MM-yyyy");
+        
+        return formatter.format(pledge_date);
     }
 
     /**
