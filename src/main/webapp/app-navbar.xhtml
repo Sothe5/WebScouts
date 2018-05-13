@@ -18,30 +18,30 @@
                 
                 <c:choose>
                     <c:when test="#{not empty privilegesControl.userScout}">
-                        <p:menuitem value="Ver Mi Perfil" url="./faces/user_profile.xhtml" icon="ui-icon-person"/>
+                        <p:menuitem value="Ver Mi Perfil" url="/faces/user_profile.xhtml" icon="ui-icon-person"/>
                     </c:when>
                 </c:choose>
                 
                 <p:submenu label="Grupos" icon="ui-icon-home">
-                    <p:menuitem value="Castores" url="./group.xhtml" />
-                    <p:menuitem value="Manada" url="./group.xhtml"/>
-                    <p:menuitem value="Tropa" url="./group.xhtml"/>
-                    <p:menuitem value="Unidad" url="./group.xhtml"/>
-                    <p:menuitem value="Clan" url="./group.xhtml"/>
+                    <p:menuitem value="Castores" url="/group.xhtml" />
+                    <p:menuitem value="Manada" url="/group.xhtml"/>
+                    <p:menuitem value="Tropa" url="/group.xhtml"/>
+                    <p:menuitem value="Unidad" url="/group.xhtml"/>
+                    <p:menuitem value="Clan" url="/group.xhtml"/>
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
                 
                 <c:choose>
                     <c:when test="#{privilegesControl.role eq 'SCOUTER'}">
                         <p:submenu label="Administración" icon="ui-icon-gear">
-                            <p:menuitem value="Ver usuarios" url="./faces/all_users.xhtml" />
-                            <p:menuitem value="Gestión documental" url="./faces/documental_management.xhtml" />
+                            <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
+                            <p:menuitem value="Gestión documental" url="/faces/documental_management.xhtml" />
                         </p:submenu>
                     </c:when>
                     <c:when test="#{privilegesControl.role eq 'ADMIN'}">
                         <p:submenu label="Administración" icon="ui-icon-gear">
-                            <p:menuitem value="Ver usuarios" url="./faces/all_users.xhtml" />
-                            <p:menuitem value="Gestión documental" url="./faces/documental_management.xhtml" />
+                            <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
+                            <p:menuitem value="Gestión documental" url="/faces/documental_management.xhtml" />
                             <p:menuitem value="Configuración" url="#" />
                         </p:submenu>
                     </c:when>
