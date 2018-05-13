@@ -128,6 +128,10 @@ public class Event implements Serializable {
     public List<EventAttendance> getAttendees() {
         return attendees;
     }
+    
+    public int getAttendeesCount() {
+        return this.getAttendees().size();
+    }
 
     /**
      * @param attendees the attendees to set
