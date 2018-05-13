@@ -48,6 +48,11 @@ public class Multimedia implements Serializable {
     @Column(nullable = false)
     private Date creation_date;
 
+    public Multimedia(String file_path, String name) {
+        this.file_path = file_path;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

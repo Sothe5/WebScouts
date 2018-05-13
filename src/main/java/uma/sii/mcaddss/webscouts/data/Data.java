@@ -16,6 +16,7 @@ import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.EventAttendance;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Multimedia;
 import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
