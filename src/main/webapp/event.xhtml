@@ -23,7 +23,6 @@
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"/>
-        <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
             <div class="container">
                 <div class="center">
                     <h1>Evento: <h:outputText value="#{eventPage.eventName}"/></h1>
@@ -44,23 +43,27 @@
                 </div>
                 <div class="row u-botmargin">
                     <div class="seven columns">
+                        <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
                         <h:form>
                             <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
                             <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
                         </h:form>
+                        </c:if>                         
                     </div>
                     <div class="five columns">
                         <div class="container-block">
                             <span>
-                                <c:if test="${eventPage.event.attendeesCount == 0}">
-                                    <h:outputText value="Nadie se ha apuntado todavía"/>
-                                </c:if>
-                                <c:if test="${eventPage.event.attendeesCount == 1}">
-                                    <h:outputText value="1 persona se han apuntado"/>
-                                </c:if>                           
-                                <c:otherwise>
-                                    <h:outputText value="#{eventPage.event.attendeesCount} personas se han apuntado"/>
-                                </c:otherwise>
+                                <c:choose>
+                                    <c:when test="${eventPage.event.attendeesCount == 0}">
+                                        <h:outputText value="Nadie se ha apuntado todavía"/>
+                                    </c:when>
+                                    <c:when test="${eventPage.event.attendeesCount == 1}">
+                                        <h:outputText value="1 persona se han apuntado"/>
+                                    </c:when>                           
+                                    <c:otherwise>
+                                        <h:outputText value="#{eventPage.event.attendeesCount} personas se han apuntado"/>
+                                    </c:otherwise>
+                                </c:choose>
                            </span><br/>
                            <h:button value="Ver participantes" class="button-primary" outcome="event_attendees.xhtml"/>
                         </div>
@@ -69,15 +72,6 @@
                 <hr class="small"/>
                 <ui:include src="./comment.xhtml"/>
             </div>
-        </c:if>
-        <c:otherwise>
-            <div class="container">
-                <div class="center">
-                    <h3>Error</h3>
-                    No tienes acceso a esta evento por no pertenecer al grupo apropiado.
-                </div>
-            </div>
-        </c:otherwise>
     </h:body>
 </html>
 
