@@ -54,7 +54,8 @@ label {
     margin-bottom: 15px;
 }
 
-.form-control {
+.form-control, .calendar input {
+    box-sizing: border-box;
     font-family: 'Open Sans',sans-serif;
     font-size: 16px;
     background-color: #FBFBFB;
