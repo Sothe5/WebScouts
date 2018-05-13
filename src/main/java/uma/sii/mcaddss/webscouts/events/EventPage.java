@@ -76,10 +76,6 @@ public class EventPage implements Serializable {
         return event.getAttendees();
     }
     
-    public int getAtendeesCount() {
-        return event.getAttendees().size();
-    }
-    
     public void markAssistence() {
         EventAttendance ea = new EventAttendance();
         ea.setAttendanceStatus("YES");
