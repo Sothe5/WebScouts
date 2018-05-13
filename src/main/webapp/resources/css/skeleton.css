@@ -306,25 +306,25 @@ input[type="button"].button-primary:focus {
   padding: 0 13px;
 }
 
-.button-yes {
+form .ui-button.button-yes {
   color: #fff;
   background-color: #63ca59;
   border-color: #63ca59;
 }
 
-.button-yes:hover, .button-yes:focus {
+form .ui-button.button-yes:hover, form .button-yes:focus {
   color: #fff;
   background-color: #1dc20e;
   border-color: #1dc20e;
 }
 
-.button-no {
+form .ui-button.button-no {
   color: #fff;
   background-color: #ca5959;
   border-color: #ca5959;
 }
 
-.button-no:hover, .button-no:focus {
+form .ui-button.button-no:hover, form .ui-button.button-no:focus {
   color: #fff;
   background-color: #c20e0e;
   border-color: #c20e0e;

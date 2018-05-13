@@ -42,8 +42,10 @@
             </div>
             <div class="row u-botmargin">
                 <div class="seven columns">
-                    <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
-                    <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
+                    <h:form>
+                        <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
+                        <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
+                    </h:form>
                 </div>
                 <div class="five columns">
                     <div class="container-block">
