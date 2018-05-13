@@ -48,22 +48,24 @@ public class Data {
         event.setDate(new Date());
         
         // Build users for event and comments:
-        User_Scout pablo = new User_Scout(Long.MIN_VALUE, "pablo", getEvent().getGroupscout(), "pablo", "test@test.com", "test aa", new Date(2002,11,21), new Role_Scout("EDUCANDO"));
-        User_Scout manuel = new User_Scout(Long.MIN_VALUE, "manuel", getEvent().getGroupscout(), "manuel", "test2@test.com", "test aa", new Date(2004,10,21), new Role_Scout("EDUCANDO"));
-        User_Scout elisa = new User_Scout(Long.MIN_VALUE, "elisa", getEvent().getGroupscout(), "elisa", "test3@test.com", "test aa oo", new Date(2006,9,14), new Role_Scout("EDUCANDO"));
+        User_Scout pablo = new User_Scout(new Long(9), "pablo", event.getGroupscout(), "pablo", "test@test.com", "test aa", new Date(2002,11,21), new Role_Scout("EDUCANDO"));
+        User_Scout manuel = new User_Scout(new Long(14), "manuel", event.getGroupscout(), "manuel", "test2@test.com", "test aa", new Date(2004,10,21), new Role_Scout("EDUCANDO"));
+        User_Scout rosa = new User_Scout(new Long(14), "rosa", event.getGroupscout(), "rosa", "test7@test.com", "test aa", new Date(2001,6,21), new Role_Scout("EDUCANDO"));
+        User_Scout elisa = new User_Scout(new Long(55), "elisa", event.getGroupscout(), "elisa", "test3@test.com", "test aa oo", new Date(2006,9,14), new Role_Scout("EDUCANDO"));
         usuarios.add(elisa);
         usuarios.add(manuel);
         usuarios.add(pablo);
+        usuarios.add(rosa);
        
         // Add attendants
-        event.addAttendee(new EventAttendance(getEvent(), pablo, "yes"));
-        event.addAttendee(new EventAttendance(getEvent(), elisa, "yes"));
-        event.addAttendee(new EventAttendance(getEvent(), manuel, "yes"));
+        event.addAttendee(new EventAttendance(event, pablo, "yes"));
+        event.addAttendee(new EventAttendance(event, elisa, "yes"));
+        event.addAttendee(new EventAttendance(event, manuel, "yes"));
         
         // Build comments
-        Comment comment1 = new Comment(pablo, getEvent(), "Hola a todos, yo podré ir");
-        Comment comment2 = new Comment(manuel, getEvent(), "Vale");
-        Comment comment3 = new Comment(elisa, getEvent(), "Aaaa bieeen");
+        Comment comment1 = new Comment(pablo, event, "Hola a todos, yo podré ir");
+        Comment comment2 = new Comment(manuel, event, "Vale");
+        Comment comment3 = new Comment(elisa, event, "Aaaa bieeen");
         comment2.setTarget(comment1);
         comment1.addReply(comment2);
         List<Comment> commentList = new ArrayList<>();
