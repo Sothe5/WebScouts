@@ -29,7 +29,7 @@
                                 <img src="./resources/images/user.png" />
                             </c:when>
                             <c:otherwise>
-                                <img src="#{user_Scout.photo}" />
+                                <img src="#{privilegesControl.userScout.photo.file_path}/#{privilegesControl.userScout.photo.name}" />
                             </c:otherwise>
                         </c:choose>
                     </div>
