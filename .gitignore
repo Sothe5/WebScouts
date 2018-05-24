@@ -1,2 +1,6 @@
 /target/
 /*.ddl
+/target - copia/
+/WebScoutsEE-ear/target/
+/WebScoutsEE-ejb/target/
+/WebScoutsEE-web/target/
