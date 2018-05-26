@@ -40,7 +40,7 @@ public class Group_Scout implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private Fee fee;
     @OneToMany(mappedBy = "groupscout")
-    private Set<Event> events;
+    private List<Event> events;
 
     public Group_Scout() {
     }
@@ -211,14 +211,14 @@ public class Group_Scout implements Serializable {
     /**
      * @return the events
      */
-    public Set<Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 
     /**
      * @param events the events to set
      */
-    public void setEvents(Set<Event> events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
     
