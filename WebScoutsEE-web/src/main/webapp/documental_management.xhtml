@@ -12,7 +12,7 @@
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
-        <p:dataTable id="users" var="user" value="#{data.usuarios}">
+        <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
 
             <p:column colspan="1" headerText="Nombre">
                 <h:outputText value="#{user.user_name}"></h:outputText>

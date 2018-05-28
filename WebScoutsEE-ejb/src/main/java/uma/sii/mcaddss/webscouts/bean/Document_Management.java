@@ -56,6 +56,19 @@ public class Document_Management implements Document_ManagementLocal {
         return query.getResultList();
     }
 
+    public int getNumberDocuments(User_Scout user, String status){
+        Query query;
+        if(status.equals("Todos")){
+            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser");
+            query.setParameter("fuser", user);
+        }else{
+            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser AND d.status = :fstatus");
+            query.setParameter("fuser", user);
+            query.setParameter("fstatus", status);
+        }
+        int num_docs = query.getFirstResult();
+        return num_docs;
+    }
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }

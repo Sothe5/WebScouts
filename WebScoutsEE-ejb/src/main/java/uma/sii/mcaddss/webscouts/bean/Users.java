@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
 /**
@@ -43,6 +44,13 @@ public class Users implements UsersLocal {
     public List<User_Scout> getAllUsersGroup(Group_Scout group) {
         Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", Document.class);
         query.setParameter("fgroup", group);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<User_Scout> getAllUsersRole(Role_Scout role) {
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", Document.class);
+        query.setParameter("frole", role);
         return query.getResultList();
     }
 

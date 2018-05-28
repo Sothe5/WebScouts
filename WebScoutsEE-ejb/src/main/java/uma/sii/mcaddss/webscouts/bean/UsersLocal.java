@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
 /**
@@ -21,5 +22,6 @@ public interface UsersLocal {
     public List<User_Scout> getAllUsers();
     public List<User_Scout> getAllUsersEvent(Event event);
     public List<User_Scout> getAllUsersGroup(Group_Scout group);
+    public List<User_Scout> getAllUsersRole(Role_Scout role);
     public void addUser(User_Scout user);
 }

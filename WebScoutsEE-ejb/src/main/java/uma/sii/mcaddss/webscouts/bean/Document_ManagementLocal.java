@@ -21,4 +21,5 @@ public interface Document_ManagementLocal {
     public List<Document> getAllDocuments();
     public List<Document> getDocuments(User_Scout user, boolean status);
     public List<Document> getAllDocumentsUser(User_Scout user);
+    public int getNumberDocuments(User_Scout user, String status);
 }

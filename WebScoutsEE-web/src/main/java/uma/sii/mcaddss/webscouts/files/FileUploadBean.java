@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import org.primefaces.event.FileUploadEvent;
  
 import org.primefaces.model.UploadedFile;
@@ -25,7 +24,7 @@ public class FileUploadBean implements Serializable{
         
         private PrivilegesControl ctr;
         
-        @Inject
+        @EJB
         private Document_ManagementLocal document_manager;
     
     public UploadedFile getFile() {  
@@ -46,8 +45,8 @@ public class FileUploadBean implements Serializable{
   
     public void handleFileUpload(FileUploadEvent event) { 
         Document doc = new Document(file.getFileName(),false,file.getContentType());
-        document_manager.addDocument(doc);
         doc.setOwner(ctr.getUserScout());
+        document_manager.addDocument(doc);
         FacesMessage msg = new FacesMessage("Ok", "Fichero " + event.getFile().getFileName() + " subido correctamente.");  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }    

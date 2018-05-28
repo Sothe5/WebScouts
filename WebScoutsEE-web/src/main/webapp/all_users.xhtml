@@ -5,7 +5,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Todos los usuarios</title>
         <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
@@ -17,31 +18,80 @@
             <p:panel id="basic" header="" style="margin-bottom:20px">
                 <h:panelGrid columns="2" cellpadding="10">
                     <p:outputLabel for="filtro" value="Filtrar por:" />
-                    <p:selectOneMenu id="filtro" style="width:125px">
+                    <p:selectOneMenu id="filtro" style="width:125px" value="#{filterView.selection}">
+                        <f:selectItem itemLabel="#{null}" itemValue="#{null}" />
                         <f:selectItem itemLabel="Grupo" itemValue="Grupo" />
                         <f:selectItem itemLabel="Rol" itemValue="Rol" />
+                        <f:ajax event="change" immediate="true" execute="@this" render="@form:items"></f:ajax>
                     </p:selectOneMenu>
                     <p:outputLabel for="buscador" value="Buscar por nombre:" />
-                    <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..."/>
+                    <p:selectOneMenu id="items" style="width:125px" value="#{filterView.search}">
+                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}" rendered="#{filterView.selection eq 'Grupo'}">
+                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}" rendered="#{filterView.selection eq 'Rol'}">    
+                    </p:selectOneMenu>
+                    <!--
+                    <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..." value="{filterView.search}"/>
+                    -->
                 </h:panelGrid>
             </p:panel>
         </h:form>
-        <p:dataTable var="user" value="#{data.usuarios}">
-            <p:column headerText="Nombre">
-                <h:outputText value="#{user.user_name}" />
-            </p:column>
- 
-            <p:column headerText="Grupo">
-                <h:outputText value="#{user.groupscout.name}" />
-            </p:column>
- 
-            <p:column headerText="Email">
-                <h:outputText value="#{user.email}" />
-            </p:column>
- 
-            <p:column headerText="Dirección">
-                <h:outputText value="#{user.address}" />
-            </p:column>
-        </p:dataTable>
+        <c:choose>
+            <c:when test="#{selectOneMenuView_Filter.selection eq 'Rol'}">
+                <p:dataTable var="user" value="#{user_Manager.getUsuariosRol(filterView.search)}">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{user.user_name}" />
+                    </p:column>
+
+                    <p:column headerText="Grupo">
+                        <h:outputText value="#{user.groupscout.name}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{user.email}" />
+                    </p:column>
+                    <p:column headerText="Dirección">
+                        <h:outputText value="#{user.address}" />
+                    </p:column>
+                </p:dataTable>
+            </c:when>
+            <c:when test="#{selectOneMenuView_Filter.selection eq 'Grupo'}">
+                <p:dataTable var="user" value="#{user_Manager.getUsuariosGrupo(filterView.search)}">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{user.user_name}" />
+                    </p:column>
+                    
+                    <p:column headerText="Grupo">
+                        <h:outputText value="#{user.groupscout.name}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{user.email}" />
+                    </p:column>
+                    <p:column headerText="Dirección">
+                        <h:outputText value="#{user.address}" />
+                    </p:column>
+                </p:dataTable>
+            </c:when>
+            <c:otherwise>
+                <p:dataTable var="user" value="#{user_Manager.usuarios}">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{user.user_name}" />
+                    </p:column>
+
+                    <p:column headerText="Grupo">
+                        <h:outputText value="#{user.groupscout.name}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{user.email}" />
+                    </p:column>
+
+                    <p:column headerText="Dirección">
+                        <h:outputText value="#{user.address}" />
+                    </p:column>
+                </p:dataTable>
+            </c:otherwise>
+        </c:choose>
+        
     </h:body>
 </html>

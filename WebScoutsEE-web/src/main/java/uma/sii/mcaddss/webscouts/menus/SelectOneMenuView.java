@@ -1,35 +1,24 @@
+package uma.sii.mcaddss.webscouts.menus;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Objects;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
-import org.primefaces.event.ToggleEvent;
-import uma.sii.mcaddss.webscouts.entities.Document;
+import javax.faces.bean.ViewScoped;
+import uma.sii.mcaddss.webscouts.bean.Document_ManagementLocal;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
  
 @ManagedBean(name = "selectOneMenuView")
+@ViewScoped
 public class SelectOneMenuView {
+    
+    @EJB
+    private Document_ManagementLocal doc_manager;
     
     private String status = "Todos";
 
     public int getNumberDocuments(User_Scout user) {
-        List<String> documents = new ArrayList<>();
-        List<Document> documents_user = user.getDocuments();
-        for(Document doc : documents_user){
-            if(status != null){
-                if(status.equals("Todos")){
-                    documents.add(doc.getName());  
-                }else{
-                    if(status.equals(doc.getStatus() ? "Validado" : "Pendiente")){
-                        documents.add(doc.getName());
-                    }   
-                }
-            }
-        }
-        return documents.size();
+        return doc_manager.getNumberDocuments(user, status);
     }
 
     public String getStatus() {

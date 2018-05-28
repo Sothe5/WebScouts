@@ -5,15 +5,15 @@
  */
 package uma.sii.mcaddss.webscouts.user;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
-import uma.sii.mcaddss.webscouts.bean.Users;
+import uma.sii.mcaddss.webscouts.bean.UsersLocal;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 
 /**
  *
@@ -24,7 +24,7 @@ import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 public class User_Manager {
     
     @EJB
-    private Users user_bean;
+    private UsersLocal user_bean;
 
     /**
      * Creates a new instance of User_Manager
@@ -33,16 +33,23 @@ public class User_Manager {
     }
     
     public List<User_Scout> getUsuarios() {
-        return user_bean.getAllUsers();
+        List<User_Scout> users = user_bean.getAllUsers();
+        return users;
     }
     
     public List<User_Scout> getUsuariosGrupo(Group_Scout group) {
-        return user_bean.getAllUsersGroup(group);
+        List<User_Scout> users_group = user_bean.getAllUsersGroup(group);
+        return users_group;
     }
     
     public List<User_Scout> getUsuariosEvento(Event event) {
-        List<User_Scout> user_events = user_bean.getAllUsersEvent(event);
-        return user_events;
+        List<User_Scout> users_event = user_bean.getAllUsersEvent(event);
+        return users_event;
+    }
+    
+    public List<User_Scout> getUsuariosRol(Role_Scout role) {
+        List<User_Scout> users_role = user_bean.getAllUsersRole(role);
+        return users_role;
     }
     
 }
