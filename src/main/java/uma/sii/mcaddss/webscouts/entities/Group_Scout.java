@@ -30,6 +30,8 @@ public class Group_Scout implements Serializable {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    private String description;
+    @Column(nullable = false)
     private int maxAge;
     @Column(nullable = false)
     private int minAge;
@@ -115,7 +117,21 @@ public class Group_Scout implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+    
+    /**
+     * @param description the name to set
+     */
+     public void setDescription(String description) {
+        this.description = description;
+    }
+    
     /**
      * @return the maxAge
      */
