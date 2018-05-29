@@ -26,8 +26,8 @@
                     </p:selectOneMenu>
                     <p:outputLabel for="buscador" value="Buscar por nombre:" />
                     <p:selectOneMenu id="items" style="width:125px" value="#{filterView.search}">
-                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}" rendered="#{filterView.selection eq 'Grupo'}">
-                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}" rendered="#{filterView.selection eq 'Rol'}">    
+                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}" rendered="#{filterView.selection eq 'Grupo'}"></f:selectItems>
+                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}" rendered="#{filterView.selection eq 'Rol'}"></f:selectItems>   
                     </p:selectOneMenu>
                     <!--
                     <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..." value="{filterView.search}"/>

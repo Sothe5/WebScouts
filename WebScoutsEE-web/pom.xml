@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
     <artifactId>WebScoutsEE</artifactId>
-    <groupId>com.mycompany</groupId>
+    <groupId>uma.sii.mcaddss.webscouts</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-    <groupId>com.mycompany</groupId>
+    <groupId>uma.sii.mcaddss.webscouts</groupId>
     <artifactId>WebScoutsEE-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
