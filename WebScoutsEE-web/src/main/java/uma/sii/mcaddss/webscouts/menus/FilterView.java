@@ -28,7 +28,7 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @Dependent
 public class FilterView {
     
-    private String selection;
+    private String selection = null;
     private String search;
     
     @EJB
