@@ -41,12 +41,12 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>com.webscouts</groupId>
             <artifactId>WebScoutsEE-ejb</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.webscouts</groupId>
             <artifactId>WebScoutsEE-web</artifactId>
