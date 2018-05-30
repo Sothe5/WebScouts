@@ -86,7 +86,7 @@
                         <p:rowToggler />
                     </p:column>
                     <p:rowExpansion>
-                        <p:dataTable value="#{user.documents}" var="doc" rendered="#{user ne null}">
+                        <p:dataTable value="#{user_Manager.documentsUserLoged}" var="doc" rendered="#{user ne null}">
                             <p:column colspan="1">
                                 <h:outputText value="#{doc.name}" />
                             </p:column>

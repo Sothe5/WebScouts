@@ -20,6 +20,10 @@ public class SelectOneMenuView {
     public int getNumberDocuments(User_Scout user) {
         return doc_manager.getNumberDocuments(user, status);
     }
+    
+    public int getNumberAllDocuments(User_Scout user) {
+        return doc_manager.getNumberDocuments(user, "Todos");
+    }
 
     public String getStatus() {
         return status;

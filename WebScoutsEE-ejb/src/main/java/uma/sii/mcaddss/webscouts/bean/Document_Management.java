@@ -56,6 +56,7 @@ public class Document_Management implements Document_ManagementLocal {
         return query.getResultList();
     }
 
+    @Override
     public int getNumberDocuments(User_Scout user, String status){
         Query query;
         if(status.equals("Todos")){

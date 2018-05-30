@@ -32,13 +32,13 @@
                 <h:outputText id="number_docs_type" value="#{selectOneMenuView.getNumberDocuments(user)}"></h:outputText>
             </p:column>
             <p:column colspan="1" headerText="Total de documentos">
-                <h:outputText value="#{user.documents.size()}"></h:outputText>
+                <h:outputText value="#{selectOneMenuView.getNumberAllDocuments(user)}"></h:outputText>
             </p:column>
             <p:column colspan="1" style="width: 16px">
                 <p:rowToggler />
             </p:column>   
             <p:rowExpansion>
-                <p:dataTable var="doc" value="#{user.documents}">
+                <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
                     <p:column>
                         <h:outputText value="#{doc.name}" />
                     </p:column> 
