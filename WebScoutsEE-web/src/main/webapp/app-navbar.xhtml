@@ -23,19 +23,20 @@
                 </c:choose>
                 
                 <p:submenu label="Grupos">
-                    <p:menuitem value="Castores" url="/faces/group.xhtml" >
+                    <p:menuitem value="Castores" action="#{groups.chooseGroup('Castores')}">
                         <f:param name="group" value="Castores"/>
                     </p:menuitem>
-                    <p:menuitem value="Manada" url="/faces/group.xhtml">
+                    <p:menuitem value="Manada" action="#{groups.chooseGroup('Manada')}">
+                        <p:menuitem value="Manada" url="/faces/group.xhtml" />
                         <f:param name="group" value="Manada"/>
                     </p:menuitem>
-                    <p:menuitem value="Tropa" url="/faces/group.xhtml">
+                    <p:menuitem value="Tropa" action="#{groups.chooseGroup('Tropa')}">
                         <f:param name="group" value="Tropa"/>
                     </p:menuitem>
-                    <p:menuitem value="Unidad" url="/faces/group.xhtml">
+                    <p:menuitem value="Unidad" action="#{groups.chooseGroup('Unidad')}">
                         <f:param name="group" value="Unidad"/>
                     </p:menuitem>
-                    <p:menuitem value="Clan" url="/faces/group.xhtml">
+                   <p:menuitem value="Clan" action="#{groups.chooseGroup('Clan')}">
                         <f:param name="group" value="Clan"/>
                     </p:menuitem>
                     <p:menuitem value="Scouters"/>
