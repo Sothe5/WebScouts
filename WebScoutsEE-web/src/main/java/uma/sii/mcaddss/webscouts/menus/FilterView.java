@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ViewScoped;
 import uma.sii.mcaddss.webscouts.bean.Group_Manager;
 import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
 import uma.sii.mcaddss.webscouts.bean.Role_Manager;
@@ -25,10 +26,10 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
  * @author Nexel
  */
 @Named(value = "filterView")
-@Dependent
+@ViewScoped
 public class FilterView {
     
-    private String selection = null;
+    private String selection = "Grupo";
     private String search;
     
     @EJB

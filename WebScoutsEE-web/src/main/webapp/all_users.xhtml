@@ -22,16 +22,16 @@
                         <f:selectItem itemLabel="#{null}" itemValue="#{null}" />
                         <f:selectItem itemLabel="Grupo" itemValue="Grupo" />
                         <f:selectItem itemLabel="Rol" itemValue="Rol" />
-                        <f:ajax event="change" immediate="true" execute="@this" render=":buscador:groups :buscador:roles"></f:ajax>
+                        <f:ajax event="change" execute="@this" render=":groups :roles"></f:ajax>
                     </p:selectOneMenu>
+                    <p:selectOneMenu id="groups" style="width:125px" value="#{filterView.search}" rendered="#{filterView.selection eq 'Grupo'}">
+                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}"></f:selectItems>  
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="roles" style="width:125px" value="#{filterView.search}" rendered="#{filterView.selection eq 'Rol'}">
+                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}"></f:selectItems>                     </p:selectOneMenu>
                     <p:outputLabel for="buscador" value="Buscar por nombre:" />
-                    <p:selectOneMenu id="buscador" style="width:125px" value="#{filterView.search}">
-                        <f:selectItems id="groups" value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}" rendered="#{filterView.selection eq 'Grupo'}"></f:selectItems>
-                        <f:selectItems id="roles" value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}" rendered="#{filterView.selection eq 'Rol'}"></f:selectItems>   
-                    </p:selectOneMenu>
-                    <!--
-                    <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..." value="{filterView.search}"/>
-                    -->
+                    <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..." value="#{filterView.selection}"/>
+                    <p:commandButton type="submit" value="Buscar" process="@form" update="@form:groups @form:roles"></p:commandButton>
                 </h:panelGrid>
             </p:panel>
         </h:form>
