@@ -66,11 +66,9 @@ public class User_Scout implements Serializable {
     @OneToOne
     private Multimedia photo;
     @OneToMany(mappedBy = "owner")
-    @ElementCollection
     private List<Document> documents;
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
-    @ElementCollection
     private List<EventAttendance> events;
     @ManyToOne
     private Fee fee;
