@@ -38,6 +38,7 @@
                 <p:rowToggler />
             </p:column>   
             <p:rowExpansion>
+                <h3>#{user.surname}</h3>
                 <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
                     <p:column>
                         <h:outputText value="#{doc.name}" />

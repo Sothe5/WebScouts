@@ -29,27 +29,27 @@ public class Users implements UsersLocal {
 
     @Override
     public List<User_Scout> getAllUsers() {
-        Query query = em.createQuery("SELECT u FROM User_Scout u", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u", User_Scout.class);
         return query.getResultList();
     }
 
     @Override
     public List<User_Scout> getAllUsersEvent(Event event) {
-        Query query = em.createQuery("SELECT ev.user FROM EventAttendance ev WHERE ev.event = :fevent AND ev.attendance_status = 'yes'", Document.class);
+        Query query = em.createQuery("SELECT ev.user FROM EventAttendance ev WHERE ev.event = :fevent AND ev.attendance_status = 'yes'", User_Scout.class);
         query.setParameter("fevent", event);
         return query.getResultList();    
     }
 
     @Override
     public List<User_Scout> getAllUsersGroup(Group_Scout group) {
-        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", User_Scout.class);
         query.setParameter("fgroup", group);
         return query.getResultList();
     }
     
     @Override
     public List<User_Scout> getAllUsersRole(Role_Scout role) {
-        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", User_Scout.class);
         query.setParameter("frole", role);
         return query.getResultList();
     }
