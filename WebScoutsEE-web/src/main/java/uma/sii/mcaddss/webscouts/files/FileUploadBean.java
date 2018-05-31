@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
  
 import org.primefaces.model.UploadedFile;
@@ -14,7 +15,7 @@ import uma.sii.mcaddss.webscouts.bean.Document_ManagementLocal;
 import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.authentication.PrivilegesControl;
  
-@ManagedBean
+@Named(value = "fsileUploadBean")
 @ViewScoped
 public class FileUploadBean implements Serializable{
 	
