@@ -7,17 +7,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,24 +42,29 @@ public class Event implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private String category;
+    @Column
+    @Lob
     private String description;
-    @OneToMany(mappedBy = "event")
-    private List<Comment> comments;
     @OneToMany(mappedBy = "event",
             cascade = CascadeType.ALL)
-    private List<EventAttendance> attendees;
-    @ManyToOne(cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList();
+    @OneToMany(mappedBy = "event",
+            cascade = CascadeType.ALL)
+    private List<EventAttendance> attendees = new ArrayList();
+    @ManyToOne
     @JoinColumn(name="GROUP_ID", nullable = false)
     private Group_Scout groupscout;
     @ManyToMany
-    private List<Multimedia> multimedia;
-    @OneToMany
-    private List<Document> documents;
+    @JoinTable(name = "event_multimedia",
+            joinColumns = @JoinColumn(name="event_fk"),
+            inverseJoinColumns = @JoinColumn(name="multimedia_fk"))
+    private List<Multimedia> multimedia = new ArrayList();
+    @OneToMany(mappedBy = "event",
+            cascade = CascadeType.PERSIST)
+    private List<Document> documents = new ArrayList();
 
     public Event() {
-        this.attendees = new ArrayList();
-        this.multimedia = new ArrayList();
-        this.documents = new ArrayList();
+        
     }
     
     public Event(String name, String description, Date date, String category) {

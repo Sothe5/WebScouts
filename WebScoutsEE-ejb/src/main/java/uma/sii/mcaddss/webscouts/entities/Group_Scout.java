@@ -35,7 +35,7 @@ public class Group_Scout implements Serializable {
     private int maxAge;
     @Column(nullable = false)
     private int minAge;
-    @OneToMany
+    @OneToMany(mappedBy = "groupscout")
     private Set<User_Scout> members;
     @OneToMany(mappedBy = "group_Scout")
     private List<Multimedia> multimediaContents;
@@ -49,6 +49,13 @@ public class Group_Scout implements Serializable {
 
     public Group_Scout(String name) {
         this.name = name;
+    }
+    
+    public Group_Scout(String name, String description, int minAge, int maxAge) {
+        this.name = name;
+        this.description = description;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
     }
     
     public Long getId() {

@@ -52,6 +52,7 @@ public class User_Scout implements Serializable {
     private String last_name;
     @Column(nullable = false)
     private String password;
+    @Temporal(TemporalType.DATE)
     private Date pledge_date;
     private String address;
     private String email;
@@ -59,16 +60,14 @@ public class User_Scout implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date birthdate;
-    @ManyToOne
     private Group_Scout groupscout;
-    @ManyToOne
     private Role_Scout role; 
-    @OneToOne
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.PERSIST)
     private Multimedia photo;
     @OneToMany(mappedBy = "owner")
-    private List<Document> documents;
+    private List<Document> documents = new ArrayList<Document>();
     @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.PERSIST)
     private List<EventAttendance> events;
     @ManyToOne
     private Fee fee;
@@ -76,21 +75,24 @@ public class User_Scout implements Serializable {
     public User_Scout() {
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String email, String address, Date birthdate, Role_Scout role) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String first_name, String last_name, String email, String address, Date birthdate, Role_Scout role) {
         this.id = id;
         this.user_name = user_name;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.groupscout = groupscout;
         this.password = password;
         this.email = email;
         this.address = address;
         this.birthdate = birthdate;
         this.role = role;
-        this.documents = new ArrayList<>();
     }
 
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, Date pledge_date, String email, String address, Date birthdate, Role_Scout role, List<Document> documents) {
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, String first_name, String last_name, Date pledge_date, String email, String address, Date birthdate, Role_Scout role) {
         this.id = id;
         this.user_name = user_name;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.groupscout = groupscout;
         this.password = password;
         this.pledge_date = pledge_date;
@@ -98,11 +100,10 @@ public class User_Scout implements Serializable {
         this.address = address;
         this.birthdate = birthdate;
         this.role = role;
-        this.documents = documents;
     }
     
-    public User_Scout(Long id, String user_name, Group_Scout groupscout, String password, Date pledge_date, String email, String address, Date birthdate, Multimedia photo, Role_Scout role, List<Document> documents) {
-        this(id, user_name, groupscout, password, pledge_date, email, address, birthdate, role, documents);
+    public User_Scout(Long id, String user_name, Group_Scout groupscout, String first_name, String last_name, String password, Date pledge_date, String email, String address, Date birthdate, Multimedia photo, Role_Scout role) {
+        this(id, user_name, groupscout, password, first_name, last_name, pledge_date, email, address, birthdate, role);
         this.photo = photo;
     }
     
@@ -320,5 +321,9 @@ public class User_Scout implements Serializable {
      */
     public void setFee(Fee fee) {
         this.fee = fee;
+    }
+    
+    public void addDocument(Document document){
+        documents.add(document);
     }
 }

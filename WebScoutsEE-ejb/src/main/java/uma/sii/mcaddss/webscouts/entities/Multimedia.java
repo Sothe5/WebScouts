@@ -2,12 +2,17 @@ package uma.sii.mcaddss.webscouts.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,16 +42,19 @@ public class Multimedia implements Serializable {
     private Long id;
     @Column(nullable = false)
     private String file_path;
+    @OneToOne
+    @JoinColumn(name = "owner_fk")
+    private User_Scout owner;
     @Column(nullable = false)
     private String name;
     private String extension;
     private String type;
     private Long file_size;
-    @Column(nullable = false)
-    private Long duration;
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date creation_date;
+    @ManyToMany(mappedBy = "multimedia")
+    private List<Event> events;
     
     public Multimedia (){
     }
@@ -55,6 +63,7 @@ public class Multimedia implements Serializable {
         this.file_path = filepath;
         this.name = name;
         this.extension = extension;
+        this.creation_date = new Date();
     }
 
     public Long getId() {
@@ -71,6 +80,20 @@ public class Multimedia implements Serializable {
 
     public void setFile_path(String file_path) {
         this.file_path = file_path;
+    }
+
+    /**
+     * @return the owner
+     */
+    public User_Scout getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User_Scout owner) {
+        this.owner = owner;
     }
 
     public String getName() {
@@ -105,14 +128,6 @@ public class Multimedia implements Serializable {
         this.file_size = file_size;
     }
 
-    public Long getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Long duration) {
-        this.duration = duration;
-    }
-
     public Date getCreation_date() {
         return creation_date;
     }
@@ -120,7 +135,21 @@ public class Multimedia implements Serializable {
     public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
     }
-    
+
+    /**
+     * @return the events
+     */
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    /**
+     * @param events the events to set
+     */
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+ 
     @Override
     public int hashCode() {
         int hash = 0;

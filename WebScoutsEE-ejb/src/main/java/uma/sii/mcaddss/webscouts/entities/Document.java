@@ -52,6 +52,8 @@ public class Document implements Serializable {
     @ManyToOne
     @JoinColumn(name="OWNER_ID", nullable=false)
     private User_Scout owner;
+    @ManyToOne
+    private Event event;
 
     public Document() {
         
@@ -62,6 +64,25 @@ public class Document implements Serializable {
         this.status = status;
         this.doc_type = type;
         this.upload_date= new Date();
+    }
+    
+    public Document(String name, boolean status, String type, Event event) {
+        this.name = name;
+        this.status = status;
+        this.doc_type = type;
+        this.upload_date = new Date();
+        this.event = event;
+    }
+    
+    public Document(String filepath, String name, boolean status, String type, Long file_size, User_Scout owner, Event event) {
+        this.filepath = filepath;
+        this.name = name;
+        this.status = status;
+        this.doc_type = type;
+        this.file_size = file_size;
+        this.upload_date = new Date();
+        this.owner = owner;
+        this.event = event;
     }
     
     public Long getId() {
@@ -150,6 +171,20 @@ public class Document implements Serializable {
      */
     public void setOwner(User_Scout owner) {
         this.owner = owner;
+    }
+
+    /**
+     * @return the event
+     */
+    public Event getEvent() {
+        return event;
+    }
+
+    /**
+     * @param event the event to set
+     */
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     @Override
