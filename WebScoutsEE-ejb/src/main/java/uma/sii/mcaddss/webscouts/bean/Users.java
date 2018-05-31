@@ -87,4 +87,11 @@ public class Users implements UsersLocal {
     public void addUser(User_Scout user) {
         em.persist(user);
     }
+    
+    @Override
+    public void addUsers(List<User_Scout> users) {
+        for (User_Scout user : users) {
+            em.persist(user);
+        }            
+    }
 }

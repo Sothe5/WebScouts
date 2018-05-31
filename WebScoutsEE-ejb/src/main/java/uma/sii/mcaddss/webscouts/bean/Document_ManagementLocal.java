@@ -17,6 +17,7 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @Local
 public interface Document_ManagementLocal {
     public void addDocument(Document doc);
+    public void addDocuments(List<Document> doc);
     public void changeDocumentStatus(Document doc);
     public List<Document> getAllDocuments();
     public List<Document> getDocuments(User_Scout user, boolean status);

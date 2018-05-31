@@ -28,6 +28,13 @@ public class Document_Management implements Document_ManagementLocal {
     public void addDocument(Document doc) {
         em.persist(doc);
     }
+    
+    @Override
+    public void addDocuments(List<Document> docs) {
+        for (Document doc : docs) {
+            em.persist(doc);
+        }
+    }
 
     @Override
     public void changeDocumentStatus(Document doc) {

@@ -16,5 +16,6 @@ import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 @Local
 public interface Role_ManagerLocal {
     public void createRole(Role_Scout role);
+    public void createRoles(List<Role_Scout> roles);
     public List<Role_Scout> getAllRoles();
 }

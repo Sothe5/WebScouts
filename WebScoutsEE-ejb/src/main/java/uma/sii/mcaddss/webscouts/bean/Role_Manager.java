@@ -28,6 +28,14 @@ public class Role_Manager implements Role_ManagerLocal {
     public void createRole(Role_Scout role){
         em.persist(role);
     }
+    
+    @Override
+    public void createRoles(List<Role_Scout> roles) {
+        for (Role_Scout role : roles) {
+            em.persist(role);
+        }
+    }
+    
     @Override
     public List<Role_Scout> getAllRoles(){
         Query query = em.createQuery("SELECT r FROM Role_Scout r");

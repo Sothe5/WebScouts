@@ -7,15 +7,17 @@ package uma.sii.mcaddss.webscouts.bean;
 
 import java.util.List;
 import javax.ejb.Local;
-import uma.sii.mcaddss.webscouts.entities.Group_Scout;
+import uma.sii.mcaddss.webscouts.entities.Comment;
 
 /**
  *
- * @author Nexel
+ * @author cloud
  */
 @Local
-public interface Group_ManagerLocal {
-    public void createGroup(Group_Scout group);
-    public List<Group_Scout> getAllGroups();
-    public void createGroups(List<Group_Scout> group);
+public interface CommentLocal {
+
+    void addComment(Comment comment);
+
+    void addComments(List<Comment> comments);
+    
 }

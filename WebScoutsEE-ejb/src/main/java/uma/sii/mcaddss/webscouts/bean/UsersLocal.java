@@ -27,4 +27,5 @@ public interface UsersLocal {
     public List<User_Scout> getAllUsersRole(String role_id);
     public List<User_Scout> getAllUsersGroupRole(String group_id,String role_id);
     public void addUser(User_Scout user);
+    public void addUsers(List<User_Scout> user);
 }
