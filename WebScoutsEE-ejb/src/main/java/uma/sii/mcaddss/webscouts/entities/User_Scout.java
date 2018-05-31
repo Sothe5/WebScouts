@@ -47,7 +47,7 @@ public class User_Scout implements Serializable {
     @Column(unique = true,nullable = false)
     private String user_name;
     @Column(nullable = false)
-    private String surname;
+    private String first_name;
     @Column(nullable = false)
     private String last_name;
     @Column(nullable = false)
@@ -114,12 +114,12 @@ public class User_Scout implements Serializable {
         this.id = id;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirst_name(String surname) {
+        this.first_name = surname;
     }
 
     public String getPassword() {
@@ -236,7 +236,7 @@ public class User_Scout implements Serializable {
 
     @Override
     public String toString() {
-        return "webscouts.Usuario[" + getUser_name() + " identificado por número de id " + id +" (" + surname + " " + getLast_name() +")]";
+        return "webscouts.Usuario[" + getUser_name() + " identificado por número de id " + id +" (" + first_name + " " + getLast_name() +")]";
     }
     
     public String getPledgeDateFormatted() {
