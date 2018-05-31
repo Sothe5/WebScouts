@@ -13,7 +13,7 @@
         <h:form id="basicUpload">				
             <p:messages id="messages" showDetail="true"/>  
 
-                <p:fileUpload fileUploadListener="#{fileUploadBean.handleFileUpload}"  
+            <p:fileUpload value="#{fileUploadBean.file}" fileUploadListener="#{fileUploadBean.handleFileUpload}"  
                 mode="advanced"  
                 update="messages"   
                 multiple="true"  

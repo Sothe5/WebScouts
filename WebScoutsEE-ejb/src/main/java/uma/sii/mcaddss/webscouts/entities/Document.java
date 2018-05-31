@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="type")
+@DiscriminatorColumn(name="doc_type")
 @Table(name="DOCUMENTS")
 public class Document implements Serializable {
 
@@ -41,7 +41,7 @@ public class Document implements Serializable {
     @Column(nullable=false)
     private String name;
     @Column(nullable=false)
-    private String type;
+    private String doc_type;
     @Column(nullable=false, unique=false)
     private boolean status;
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,7 +60,7 @@ public class Document implements Serializable {
     public Document(String name, boolean status, String type) {
         this.name = name;
         this.status = status;
-        this.type = type;
+        this.doc_type = type;
         this.upload_date= new Date();
     }
     
@@ -100,48 +100,30 @@ public class Document implements Serializable {
         this.name = name;
     }
 
-    /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
+    public String getDoc_type() {
+        return doc_type;
     }
 
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type) {
-        this.type = type;
+    public void setDoc_type(String doc_type) {
+        this.doc_type = doc_type;
     }
-    
-    /**
-     * @return the upload_date
-     */
-    public Date getUploadDate() {
+
+    public Date getUpload_date() {
         return upload_date;
     }
 
-    /**
-     * @param upload_date the upload_date to set
-     */
-    public void setUploadDate(Date upload_date) {
+    public void setUpload_date(Date upload_date) {
         this.upload_date = upload_date;
     }
 
-    /**
-     * @return the file_size
-     */
-    public Long getFileSize() {
+    public Long getFile_size() {
         return file_size;
     }
 
-    /**
-     * @param file_size the file_size to set
-     */
-    public void setFileSize(Long file_size) {
+    public void setFile_size(Long file_size) {
         this.file_size = file_size;
     }
-
+    
     /**
      * @return the status
      */
@@ -192,7 +174,7 @@ public class Document implements Serializable {
 
     @Override
     public String toString() {
-        return "Documento con identificador " + id + " de tipo " + getType();
+        return "Documento con identificador " + id + " de tipo " + getDoc_type();
     }
     
 }

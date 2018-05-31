@@ -101,4 +101,8 @@ public class User_Manager {
     public List<Document> getDocumentsUser(User_Scout user){
         return document_manager.getAllDocumentsUser(user);
     }
+    
+    public void changeDocumentStatus(Document doc){
+        document_manager.changeDocumentStatus(doc);
+    }
 }

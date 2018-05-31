@@ -51,8 +51,9 @@ public class Document_Management implements Document_ManagementLocal {
 
     @Override
     public List<Document> getAllDocumentsUser(User_Scout user) {
+        User_Scout ac_user = em.find(User_Scout.class, user.getId());
         Query query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser", Document.class);
-        query.setParameter("fuser", user);
+        query.setParameter("fuser", ac_user);
         return query.getResultList();
     }
 
@@ -60,14 +61,14 @@ public class Document_Management implements Document_ManagementLocal {
     public int getNumberDocuments(User_Scout user, String status){
         Query query;
         if(status.equals("Todos")){
-            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser");
+            query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser");
             query.setParameter("fuser", user);
         }else{
-            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser AND d.status = :fstatus");
+            query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser AND d.status = :fstatus");
             query.setParameter("fuser", user);
             query.setParameter("fstatus", status);
         }
-        int num_docs = query.getFirstResult();
+        int num_docs = query.getResultList().size();
         return num_docs;
     }
     // Add business logic below. (Right-click in editor and choose
