@@ -16,81 +16,37 @@
         <ui:include src="./app-navbar.xhtml"></ui:include>
         <h:form>
             <p:panel id="basic" header="" style="margin-bottom:20px">
-                <h:panelGrid columns="2" cellpadding="10">
-                    <p:outputLabel for="filtro" value="Filtrar por:" />
-                    <p:selectOneMenu id="filtro" style="width:125px" value="#{filterView.selection}">
-                        <f:selectItem itemLabel="#{null}" itemValue="#{null}" />
-                        <f:selectItem itemLabel="Grupo" itemValue="Grupo" />
-                        <f:selectItem itemLabel="Rol" itemValue="Rol" />
-                        <f:ajax event="change" immediate="true" execute="@form" render=":groups :roles"></f:ajax>
+                <h:panelGrid columns="5" cellpadding="30">
+                    <p:outputLabel for="groups" value="Grupo:" />
+                    <p:selectOneMenu id="groups" style="width:125px" value="#{filterView.selection_group}">
+                        <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
+                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}"></f:selectItems>  
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="groups" style="width:125px" value="#{filterView.search}" rendered="#{filterView.selection eq 'Grupo'}">
-                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.name}"></f:selectItems>  
+                    <p:outputLabel for="roles" value="Rol:" />
+                    <p:selectOneMenu id="roles" style="width:125px" value="#{filterView.selection_role}">
+                        <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
+                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.id}"></f:selectItems>                     
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="roles" style="width:125px" value="#{filterView.search}" rendered="#{filterView.selection eq 'Rol'}">
-                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.roleName}"></f:selectItems>                     </p:selectOneMenu>
-                    <p:outputLabel for="buscador" value="Buscar por nombre:" />
-                    <p:inputText id="buscador" style="margin-right:10px" placeholder="Nombre..." value="{filterView.search}"/>
+                    <p:commandButton onclick="submit" value="Filtrar"></p:commandButton>
                 </h:panelGrid>
             </p:panel>
         </h:form>
-        <c:choose>
-            <c:when test="#{selectOneMenuView_Filter.selection eq 'Rol'}">
-                <p:dataTable var="user" value="#{user_Manager.getUsuariosRol(filterView.search)}">
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{user.user_name}" />
-                    </p:column>
+        <p:dataTable var="user" value="#{user_Manager.filterUsers(filterView.selection_group, filterView.selection_role)}">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{user.user_name}" />
+            </p:column>
 
-                    <p:column headerText="Grupo">
-                        <h:outputText value="#{user.groupscout.name}" />
-                    </p:column>
+            <p:column headerText="Grupo">
+                <h:outputText value="#{user.groupscout.name}" />
+            </p:column>
 
-                    <p:column headerText="Email">
-                        <h:outputText value="#{user.email}" />
-                    </p:column>
-                    <p:column headerText="Dirección">
-                        <h:outputText value="#{user.address}" />
-                    </p:column>
-                </p:dataTable>
-            </c:when>
-            <c:when test="#{selectOneMenuView_Filter.selection eq 'Grupo'}">
-                <p:dataTable var="user" value="#{user_Manager.getUsuariosGrupo(filterView.search)}">
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{user.user_name}" />
-                    </p:column>
-                    
-                    <p:column headerText="Grupo">
-                        <h:outputText value="#{user.groupscout.name}" />
-                    </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{user.email}" />
+            </p:column>
 
-                    <p:column headerText="Email">
-                        <h:outputText value="#{user.email}" />
-                    </p:column>
-                    <p:column headerText="Dirección">
-                        <h:outputText value="#{user.address}" />
-                    </p:column>
-                </p:dataTable>
-            </c:when>
-            <c:otherwise>
-                <p:dataTable var="user" value="#{user_Manager.usuarios}">
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{user.user_name}" />
-                    </p:column>
-
-                    <p:column headerText="Grupo">
-                        <h:outputText value="#{user.groupscout.name}" />
-                    </p:column>
-
-                    <p:column headerText="Email">
-                        <h:outputText value="#{user.email}" />
-                    </p:column>
-
-                    <p:column headerText="Dirección">
-                        <h:outputText value="#{user.address}" />
-                    </p:column>
-                </p:dataTable>
-            </c:otherwise>
-        </c:choose>
-        
+            <p:column headerText="Dirección">
+                <h:outputText value="#{user.address}" />
+            </p:column>
+        </p:dataTable>
     </h:body>
 </html>

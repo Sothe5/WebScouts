@@ -48,9 +48,35 @@ public class Users implements UsersLocal {
     }
     
     @Override
+    public List<User_Scout> getAllUsersGroup(String group_id) {
+        Group_Scout ac_group = em.find(Group_Scout.class, Long.parseLong(group_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", User_Scout.class);
+        query.setParameter("fgroup", ac_group);
+        return query.getResultList();
+    }
+    
+    @Override
     public List<User_Scout> getAllUsersRole(Role_Scout role) {
         Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", User_Scout.class);
         query.setParameter("frole", role);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<User_Scout> getAllUsersRole(String role_id) {
+        Role_Scout ac_role = em.find(Role_Scout.class,Long.parseLong(role_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", User_Scout.class);
+        query.setParameter("frole", ac_role);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<User_Scout> getAllUsersGroupRole(String group_id,String role_id){
+        Group_Scout ac_group = em.find(Group_Scout.class, Long.parseLong(group_id));
+        Role_Scout ac_role = em.find(Role_Scout.class,Long.parseLong(role_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup AND u.role = :frole", User_Scout.class);
+        query.setParameter("fgroup", ac_group);
+        query.setParameter("frole", ac_role);
         return query.getResultList();
     }
 
