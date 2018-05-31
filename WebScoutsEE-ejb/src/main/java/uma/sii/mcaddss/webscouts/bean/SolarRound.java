@@ -5,17 +5,42 @@
  */
 package uma.sii.mcaddss.webscouts.bean;
 
+import java.util.Date;
 import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import static uma.sii.mcaddss.webscouts.entities.Comment_.message;
 
 /**
  *
- * @author blub
+ * @author zolastro
  */
 @Stateless
-@LocalBean
-public class SolarRound {
+public class SolarRound implements SolarRoundLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    private Date date;
+    @PersistenceContext(unitName = "WebScoutsEEPU")
+    private EntityManager em;
+    /**
+     * @return the date
+     */
+    @Override
+    public Date getDate() {        
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    @Override
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    @Override
+    public void saveDate(){
+     //em.persist(date);
+    }
 }
