@@ -29,7 +29,8 @@ public class Users implements UsersLocal {
     
     @Override
     public User_Scout getUser(String user_name){
-        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.user_name = :user_name");
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.user_name = :username");
+        query.setParameter("username", user_name);
         return (User_Scout)query.getSingleResult();
     }
 
