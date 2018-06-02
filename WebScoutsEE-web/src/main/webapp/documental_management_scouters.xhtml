@@ -32,7 +32,7 @@
                                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                         <h:outputText value="Estado: " />
                                     <h:form>
-                                        <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="#{user_Manager.changeDocumentStatus(doc)}" >
+                                        <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="submit()" valueChangeListener="#{user_Manager.changeDocumentStatus(doc)}" >
 
                                         </p:inputSwitch>
                                     </h:form>
