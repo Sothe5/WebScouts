@@ -5,15 +5,14 @@
  */
 package uma.sii.mcaddss.webscouts.data;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import uma.sii.mcaddss.webscouts.entities.Comment;
 import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.entities.Event;
@@ -34,20 +33,20 @@ import uma.sii.mcaddss.webscouts.bean.UsersLocal;
  * @author Nexel
  */
 @Named(value = "data")
-@Dependent
+@RequestScoped
 public class Data {
     
-    @Inject
+    @EJB
     private CommentLocal commentB;
-    @Inject
+    @EJB
     private UsersLocal userB;
-    @Inject
+    @EJB
     private Group_ManagerLocal groupB;
-    @Inject
+    @EJB
     private EventLocal eventB;
-    @Inject
+    @EJB
     private Role_ManagerLocal roleB;
-    @Inject
+    @EJB
     private Document_ManagementLocal docB;
     
     private static final String FILE_PATH = "./resources/images/users";
@@ -55,7 +54,6 @@ public class Data {
     private List<Event> events = new ArrayList<>();
     private List<Comment> commentList = new ArrayList<>();
     private List<Document> documents = new ArrayList<>();
-    private List<Role_Scout> roles = new ArrayList<>();
     private List<Group_Scout> groups = new ArrayList<>();    
     private ArrayList<User_Scout> usuarios = new ArrayList<>();
     
@@ -63,7 +61,11 @@ public class Data {
      * Creates a new instance of Data
      */
     public Data() {
-         // Build groups
+        
+    }
+
+    public void initData() {
+        // Build groups
         Group_Scout tropa = new Group_Scout("Tropa de Kim","Tropa de Kim",13,15);
         Group_Scout esculta = new Group_Scout("Unidad Esculta Siryu","Unidad Esculta Siryu",10,13);
         Group_Scout otro = new Group_Scout("Otro Grupo", "Otro Grupo",18,21);    
@@ -74,18 +76,14 @@ public class Data {
         groups.add(manada);
         
         // Build roles
-        Role_Scout scouter = new Role_Scout("SCOUTER");
-        Role_Scout admin = new Role_Scout("ADMIN");
-        Role_Scout educando = new Role_Scout("EDUCANDO");
-        roles.add(scouter);
-        roles.add(admin);
-        roles.add(educando);
+        Role_Scout admin = roleB.getRoleById(1L);
+        Role_Scout scouter = roleB.getRoleById(2L);
+        Role_Scout educando = roleB.getRoleById(3L);
         
         // Build users for event and comments:
         User_Scout manolo = new User_Scout(new Long(1),"Manolo",tropa,"manolo", "manolo", "gonzalez", new Date(2017, 9, 14),"manolo@gmail.com","Calle manolos", new Date(1997, 1, 2), educando);
         User_Scout pepe = new User_Scout(new Long(2),"Pepe",esculta,"pepe", "pepe", "gutierres", new Date(2017, 9, 15), "pepe@gmail.com","Calle pepes", new Date(1997, 1, 1), new Multimedia(FILE_PATH, "bob", "jpg"), educando);
         User_Scout unscouter = new User_Scout(new Long(5), "unscouter",otro,"wan", "wan", "li", "wan@gmail.com", "Wan Street", new Date(1999, 9, 9), scouter);
-        User_Scout soiadmin = new User_Scout(new Long(7),"soiadmin",null,"soi", "soi", "admin", "soi@gmail.com", "Calle de los admin", new Date(1995, 5, 5), admin);
         User_Scout pablo = new User_Scout(new Long(9), "pablo", manada, "pablo", "pablo", "piedra", "test@test.com", "test aa", new Date(2002,11,21), educando);
         User_Scout manuel = new User_Scout(new Long(14), "manuel", manada, "manuel", "manuel", "roca", "test2@test.com", "test aa", new Date(2004,10,21), educando);
         User_Scout rosa = new User_Scout(new Long(17), "rosa", manada, "rosa", "rosa", "carrion", "test7@test.com", "test aa", new Date(2001,6,21), educando);
@@ -93,7 +91,6 @@ public class Data {
         usuarios.add(manolo);
         usuarios.add(pepe);
         usuarios.add(unscouter);
-        usuarios.add(soiadmin);
         usuarios.add(elisa);
         usuarios.add(manuel);
         usuarios.add(pablo);
@@ -133,7 +130,7 @@ public class Data {
         documents.add(doc2);
         documents.add(doc3);
     }
-
+    
     public ArrayList<User_Scout> getUsuarios() {
         return usuarios;
     }
@@ -165,7 +162,7 @@ public class Data {
     
     public void persistData() {
         try {
-            roleB.createRoles(roles);
+            initData();
             groupB.createGroups(groups);
             userB.addUsers(usuarios);
             eventB.addEvents(events);
