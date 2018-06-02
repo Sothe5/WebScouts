@@ -75,7 +75,7 @@ html, body {
 .user-name {
     padding-top: 80px;
     padding-left: 250px;
-    font-size: 24px;
+    font-size: 30px;
 }
  
 .user-info {
@@ -85,17 +85,30 @@ html, body {
     padding-left: 20px;
     padding-bottom: 20px;
 }
- 
+
+.edit-profile {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    display: table;
+    margin: 0 auto;
+}
+
+.options {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
 .button {
     font-family: 'Open Sans',sans-serif;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
     text-align: center;
-    background-color: #11245e;
+    background: #2399e5;
     border-radius: 3px;
+    border: 1px solid #1f89ce;
     cursor: pointer;
     height: 25px;
-    width: 30%;
-    margin: 0 auto;
+    margin: 0 auto;    
 }
+

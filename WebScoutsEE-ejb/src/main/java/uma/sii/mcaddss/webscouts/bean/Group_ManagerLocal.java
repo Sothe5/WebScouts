@@ -16,5 +16,7 @@ import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 @Local
 public interface Group_ManagerLocal {
     public void createGroup(Group_Scout group);
+    public void createGroups(List<Group_Scout> group);
+    public Group_Scout getGroupScoutById(Long id);
     public List<Group_Scout> getAllGroups();
 }

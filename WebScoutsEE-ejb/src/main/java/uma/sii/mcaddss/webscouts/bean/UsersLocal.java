@@ -19,9 +19,16 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
  */
 @Local
 public interface UsersLocal {
+    public User_Scout getUser(String user_name);
     public List<User_Scout> getAllUsers();
     public List<User_Scout> getAllUsersEvent(Event event);
     public List<User_Scout> getAllUsersGroup(Group_Scout group);
+    public List<User_Scout> getAllUsersGroup(String group_id);
     public List<User_Scout> getAllUsersRole(Role_Scout role);
+    public List<User_Scout> getAllUsersRole(String role_id);
+    public List<User_Scout> getAllUsersGroupRole(String group_id,String role_id);
     public void addUser(User_Scout user);
+    public void addUsers(List<User_Scout> user);
+    public void editUser(User_Scout user);
+    public Long getLastUserId();
 }

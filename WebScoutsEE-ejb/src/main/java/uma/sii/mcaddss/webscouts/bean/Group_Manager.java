@@ -24,10 +24,24 @@ public class Group_Manager implements Group_ManagerLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    @Override
     public void createGroup(Group_Scout group){
         em.persist(group);
     }
     
+    @Override
+    public void createGroups(List<Group_Scout> groups){
+        for (Group_Scout group : groups) {
+            em.persist(group);
+        }
+    }
+    
+    @Override
+    public Group_Scout getGroupScoutById(Long id){
+        return em.find(Group_Scout.class, id);
+    }
+    
+    @Override
     public List<Group_Scout> getAllGroups(){
         Query query = em.createQuery("SELECT g FROM Group_Scout g");
         List<Group_Scout> groups = query.getResultList();

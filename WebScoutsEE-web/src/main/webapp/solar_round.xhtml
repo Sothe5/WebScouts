@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
         <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
@@ -11,11 +12,19 @@
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
-        <h1>Seleccionar fecha de finalización de la ronda solar</h1>
-        <h:form class="solar-form" id="form">
-                <p:calendar class="calendar" id="inline" value="#{rondaSolar.date}" mode="inline" />
-                <p:commandButton class="submit-button" value="Submit" icon="ui-icon-check" />
-        </h:form>       
+         <c:choose>
+             <c:when test="#{privilegesControl.role == 'ADMIN' || privilegesControl.role == 'SCOUTER' }">
+                <p:growl id="growl" sticky="true" /> 
+                <h1>Seleccionar fecha de finalización de la ronda solar</h1>
+                <h:form class="solar-form" id="form">
+                    <p:calendar class="calendar" id="inline" value="#{solarRoundManager.date}" mode="inline" />
+                    <p:commandButton class="submit-button" actionListener="#{solarRoundManager.saveDate}" value="Submit" icon="ui-icon-check" update="growl"/>
+                </h:form>               
+             </c:when>
+            <c:otherwise>
+                <h2>No tienes privilegios para ver esta página</h2>
+            </c:otherwise>
+        </c:choose>    
     </h:body>
 </html>
 

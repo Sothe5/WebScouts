@@ -9,6 +9,7 @@ import java.security.acl.Group;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import uma.sii.mcaddss.webscouts.entities.Document;
@@ -26,31 +27,64 @@ public class Users implements UsersLocal {
     
     @PersistenceContext(unitName = "WebScoutsEEPU")
     private EntityManager em;
-
+    
+    @Override
+    public User_Scout getUser(String user_name) throws NoResultException{
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.user_name = :username");
+        query.setParameter("username", user_name);
+        return (User_Scout)query.getSingleResult();
+    }
+   
     @Override
     public List<User_Scout> getAllUsers() {
-        Query query = em.createQuery("SELECT u FROM User_Scout u", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u", User_Scout.class);
         return query.getResultList();
     }
 
     @Override
     public List<User_Scout> getAllUsersEvent(Event event) {
-        Query query = em.createQuery("SELECT ev.user FROM EventAttendance ev WHERE ev.event = :fevent AND ev.attendance_status = 'yes'", Document.class);
+        Query query = em.createQuery("SELECT ev.user FROM EventAttendance ev WHERE ev.event = :fevent AND ev.attendance_status = 'yes'", User_Scout.class);
         query.setParameter("fevent", event);
         return query.getResultList();    
     }
 
     @Override
     public List<User_Scout> getAllUsersGroup(Group_Scout group) {
-        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", User_Scout.class);
         query.setParameter("fgroup", group);
         return query.getResultList();
     }
     
     @Override
+    public List<User_Scout> getAllUsersGroup(String group_id) {
+        Group_Scout ac_group = em.find(Group_Scout.class, Long.parseLong(group_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup", User_Scout.class);
+        query.setParameter("fgroup", ac_group);
+        return query.getResultList();
+    }
+    
+    @Override
     public List<User_Scout> getAllUsersRole(Role_Scout role) {
-        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", Document.class);
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", User_Scout.class);
         query.setParameter("frole", role);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<User_Scout> getAllUsersRole(String role_id) {
+        Role_Scout ac_role = em.find(Role_Scout.class,Long.parseLong(role_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.role = :frole", User_Scout.class);
+        query.setParameter("frole", ac_role);
+        return query.getResultList();
+    }
+    
+    @Override
+    public List<User_Scout> getAllUsersGroupRole(String group_id,String role_id){
+        Group_Scout ac_group = em.find(Group_Scout.class, Long.parseLong(group_id));
+        Role_Scout ac_role = em.find(Role_Scout.class,Long.parseLong(role_id));
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.groupscout = :fgroup AND u.role = :frole", User_Scout.class);
+        query.setParameter("fgroup", ac_group);
+        query.setParameter("frole", ac_role);
         return query.getResultList();
     }
 
@@ -60,5 +94,22 @@ public class Users implements UsersLocal {
     @Override
     public void addUser(User_Scout user) {
         em.persist(user);
+    }
+    
+    @Override
+    public void addUsers(List<User_Scout> users) {
+        for (User_Scout user : users) {
+            em.persist(user);
+        }            
+    }
+    
+    @Override
+    public void editUser(User_Scout user) {
+        em.merge(user);
+    }
+    
+    @Override 
+    public Long getLastUserId() {
+        return em.createQuery("SELECT MAX(u.id) from User_Scouts u", Long.class).getSingleResult();
     }
 }

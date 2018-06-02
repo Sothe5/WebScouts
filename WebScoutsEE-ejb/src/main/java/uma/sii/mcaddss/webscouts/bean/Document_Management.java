@@ -28,6 +28,13 @@ public class Document_Management implements Document_ManagementLocal {
     public void addDocument(Document doc) {
         em.persist(doc);
     }
+    
+    @Override
+    public void addDocuments(List<Document> docs) {
+        for (Document doc : docs) {
+            em.persist(doc);
+        }
+    }
 
     @Override
     public void changeDocumentStatus(Document doc) {
@@ -61,14 +68,14 @@ public class Document_Management implements Document_ManagementLocal {
     public int getNumberDocuments(User_Scout user, String status){
         Query query;
         if(status.equals("Todos")){
-            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser");
+            query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser");
             query.setParameter("fuser", user);
         }else{
-            query = em.createQuery("SELECT COUNT(d) FROM Document d WHERE d.owner = :fuser AND d.status = :fstatus");
+            query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser AND d.status = :fstatus");
             query.setParameter("fuser", user);
             query.setParameter("fstatus", status);
         }
-        int num_docs = query.getFirstResult();
+        int num_docs = query.getResultList().size();
         return num_docs;
     }
     // Add business logic below. (Right-click in editor and choose

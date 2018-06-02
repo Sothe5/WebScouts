@@ -11,6 +11,8 @@ import java.util.Objects;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import uma.sii.mcaddss.webscouts.bean.Group_Manager;
 import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
 import uma.sii.mcaddss.webscouts.bean.Role_Manager;
@@ -24,12 +26,12 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
  *
  * @author Nexel
  */
-@Named(value = "filterView")
-@Dependent
+@ManagedBean(name = "filterView")
+@SessionScoped
 public class FilterView {
     
-    private String selection = null;
-    private String search;
+    private String selection_group;
+    private String selection_role;
     
     @EJB
     private Role_ManagerLocal role_manager;
@@ -42,20 +44,20 @@ public class FilterView {
     public FilterView() {
     }
 
-    public String getSelection() {
-        return selection;
+    public String getSelection_group() {
+        return selection_group;
     }
 
-    public void setSelection(String selection) {
-        this.selection = selection;
+    public void setSelection_group(String selection_group) {
+        this.selection_group = selection_group;
     }
 
-    public String getSearch() {
-        return search;
+    public String getSelection_role() {
+        return selection_role;
     }
 
-    public void setSearch(String search) {
-        this.search = search;
+    public void setSelection_role(String selection_role) {
+        this.selection_role = selection_role;
     }
     
     public List<Role_Scout> getAllRoles(){
@@ -69,7 +71,8 @@ public class FilterView {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.selection);
+        hash = 17 * hash + Objects.hashCode(this.role_manager);
+        hash = 17 * hash + Objects.hashCode(this.group_manager);
         return hash;
     }
 
@@ -85,11 +88,13 @@ public class FilterView {
             return false;
         }
         final FilterView other = (FilterView) obj;
-        if (!Objects.equals(this.selection, other.selection)) {
+        if (!Objects.equals(this.role_manager, other.role_manager)) {
+            return false;
+        }
+        if (!Objects.equals(this.group_manager, other.group_manager)) {
             return false;
         }
         return true;
     }
-
     
 }
