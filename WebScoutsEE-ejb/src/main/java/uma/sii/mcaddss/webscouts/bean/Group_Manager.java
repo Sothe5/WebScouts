@@ -37,6 +37,11 @@ public class Group_Manager implements Group_ManagerLocal {
     }
     
     @Override
+    public Group_Scout getGroupScoutById(Long id){
+        return em.find(Group_Scout.class, id);
+    }
+    
+    @Override
     public List<Group_Scout> getAllGroups(){
         Query query = em.createQuery("SELECT g FROM Group_Scout g");
         List<Group_Scout> groups = query.getResultList();

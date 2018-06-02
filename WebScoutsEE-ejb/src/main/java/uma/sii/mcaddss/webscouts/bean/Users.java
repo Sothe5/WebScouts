@@ -26,6 +26,12 @@ public class Users implements UsersLocal {
     
     @PersistenceContext(unitName = "WebScoutsEEPU")
     private EntityManager em;
+    
+    @Override
+    public User_Scout getUser(String user_name){
+        Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.user_name = :user_name");
+        return (User_Scout)query.getSingleResult();
+    }
 
     @Override
     public List<User_Scout> getAllUsers() {
@@ -93,5 +99,15 @@ public class Users implements UsersLocal {
         for (User_Scout user : users) {
             em.persist(user);
         }            
+    }
+    
+    @Override
+    public void editUser(User_Scout user) {
+        em.merge(user);
+    }
+    
+    @Override 
+    public Long getLastUserId() {
+        return em.createQuery("SELECT MAX(u.id) from User_Scouts u", Long.class).getSingleResult();
     }
 }

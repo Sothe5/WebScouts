@@ -39,49 +39,33 @@ and open the template in the editor.
                 <h:form id="pef" style="margin-top: 15px;">
                     <div class="form-group">
                         <label for="name">Nombre de Usuario</label>
-                        <h:inputText id="name" class="form-control" value="#{signup.username}" required="true"/>
+                        <h:inputText id="name" class="form-control" value="#{userEdit.newUsername}" required="false"/>
                     </div>
                     <div class="form-group" style="margin-top:10px;">
                         <label for="pwd">Contrasenia</label>
-                        <h:inputSecret id="pass" class="form-control" value="#{signup.password}" required="true"/>
+                        <h:inputSecret id="pass" class="form-control" value="#{userEdit.newPassword}" required="false"/>
                     </div>
                     <div class="form-group" style="margin-top:10px;">
                         <label for="pwd1">Repita Contrasenia</label>
-                        <h:inputSecret id="pass1" class="form-control" value="#{signup.passwordConfirm}" required="true"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Grupo Scout</label>
-                        <h:selectOneMenu id="group" class="form-control" value="#{signup.group}" required="true">
-                            <f:selectItems value="#{signup.groups}" />
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <h:inputText id="last_name" class="form-control" value="#{signup.lastName}" required="true"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Apellidos</label>
-                        <h:inputText id="first_name" class="form-control" value="#{signup.firstName}" required="true"/>
+                        <h:inputSecret id="pass1" class="form-control" value="#{userEdit.newPassword1}" required="false"/>
                     </div>
                     <div class="form-group">
                         <label for="name">Email</label>
-                        <h:inputText id="email" class="form-control" value="#{signup.email}" required="true"/>
+                        <h:inputText id="email" class="form-control" value="#{userEdit.newEmail}" required="false"/>
                     </div>
+                    <!--div class="form-group">
+                        <label for="name">Imagen</label>
+                        TODO later
+                    </div-->
                     <div class="form-group" style="margin-top:10px;">
-                        <label for="birthdate">Fecha de nacimiento</label><br/>
-                        <p:calendar id="birthdate" class="calendar" value="#{signup.birthdate}" required="true"/>
+                        <div class="options">
+                            <h:commandButton class="button" value="Guardar" onclick="return validateChanges();" action="#{userEdit.confirmChanges()}"/>
+                            <h:button class="button" outcome="user_profile.xhtml" value="Cancelar"/>
+                        </div>
                     </div>
-                    <div class="form-group" style="margin-top:10px;">
-                        <label for="address">Direccion</label>
-                        <h:inputText id="address" class="form-control" value="#{signup.address}" required="true"/>
-                    </div>
-                    <div class="form-group" style="margin-top:10px;">
-                        <h:commandButton class="login-button" value="Registrarse" onclick="return validateChanges();" 
-                                         action="#{signup.register()}"/>
-                    </div>
-                </h:form>        
+                </h:form>
+                
             </div>
         </div>
     </h:body>
 </html>
-

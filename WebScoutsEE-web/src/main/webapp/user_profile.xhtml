@@ -81,6 +81,10 @@
                         </tbody>
                     </table>
                 </div>
+                <hr/>
+                <div class="edit-profile">
+                    <h:button class="button" outcome="edit_profile.xhtml" value="Modificar mi perfil"/>
+                </div>
                 <p:dataTable value="#{privilegesControl.userScout}" var="user">
                     <p:column colspan="1" headerText="Ver documentación">
                         <p:rowToggler />
