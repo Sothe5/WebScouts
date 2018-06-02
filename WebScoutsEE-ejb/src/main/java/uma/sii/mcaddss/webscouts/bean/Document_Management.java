@@ -51,7 +51,8 @@ public class Document_Management implements Document_ManagementLocal {
 
     @Override
     public List<Document> getAllDocumentsUser(User_Scout user) {
-        Query query = em.createQuery("SELECT d FROM Document d WHERE d.owner = :fuser", Document.class);
+        User_Scout ac_user = em.find(User_Scout.class, user.getId());
+        Query query = em.createQuery("SELECT d FROM Document d WHERE d = :fuser", Document.class);
         query.setParameter("fuser", user);
         return query.getResultList();
     }
