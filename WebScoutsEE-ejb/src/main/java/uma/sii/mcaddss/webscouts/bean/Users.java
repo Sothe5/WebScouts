@@ -9,6 +9,7 @@ import java.security.acl.Group;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import uma.sii.mcaddss.webscouts.entities.Document;
@@ -28,12 +29,12 @@ public class Users implements UsersLocal {
     private EntityManager em;
     
     @Override
-    public User_Scout getUser(String user_name){
+    public User_Scout getUser(String user_name) throws NoResultException{
         Query query = em.createQuery("SELECT u FROM User_Scout u WHERE u.user_name = :username");
         query.setParameter("username", user_name);
         return (User_Scout)query.getSingleResult();
     }
-
+   
     @Override
     public List<User_Scout> getAllUsers() {
         Query query = em.createQuery("SELECT u FROM User_Scout u", User_Scout.class);
