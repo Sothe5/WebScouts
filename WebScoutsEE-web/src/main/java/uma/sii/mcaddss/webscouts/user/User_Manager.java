@@ -11,6 +11,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import uma.sii.mcaddss.webscouts.authentication.PrivilegesControl;
 import uma.sii.mcaddss.webscouts.bean.Document_Management;
@@ -27,7 +28,7 @@ import uma.sii.mcaddss.webscouts.entities.Role_Scout;
  * @author Nexel
  */
 @Named(value = "user_Manager")
-@Dependent
+@RequestScoped
 public class User_Manager {
     
     @Inject
