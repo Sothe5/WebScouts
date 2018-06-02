@@ -7,14 +7,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Gestión documental admin</title>
+        <title>Gestión documental Scouters</title>
         <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
         <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
     </h:head>
-    <h:body>
+    <body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
-                <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
-
+                <p:dataTable id="users2" var="user" value="#{user_Manager.getUsuariosGrupo(privilegesControl.getUserScout().groupscout)}">
                     <p:column colspan="1" headerText="Nombre">
                         <h:outputText value="#{user.user_name}"></h:outputText>
                     </p:column>
@@ -42,6 +41,5 @@
                         </p:dataTable>
                     </p:rowExpansion>
                 </p:dataTable>
-    </h:body>
+    </body>
 </html>
-
