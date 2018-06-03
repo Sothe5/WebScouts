@@ -110,6 +110,6 @@ public class Users implements UsersLocal {
     
     @Override 
     public Long getLastUserId() {
-        return em.createQuery("SELECT MAX(u.id) from User_Scouts u", Long.class).getSingleResult();
+        return em.createQuery("SELECT MAX(u.id) from User_Scout u", Long.class).getSingleResult();
     }
 }
