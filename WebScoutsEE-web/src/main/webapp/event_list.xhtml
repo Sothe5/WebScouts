@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Todos los eventos</title>
+        <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
+    </h:head>
+    <h:body>
+        <ui:include src="./app-navbar.xhtml"></ui:include>
+        <p:dataTable var="event" value="#{eventManager.events}">
+            <p:column headerText="Evento">
+                <h:form>
+                    <h:commandLink value="#{event.name}" action="#{eventPage.renderPage(event)}"/>
+                </h:form>
+            </p:column>
+
+            <p:column headerText="Fecha">
+                <h:outputText value="#{event.formattedDate}" />
+            </p:column>
+
+            <p:column headerText="Asistentes">
+                <h:outputText value="#{event.attendeesCount}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>

@@ -4,10 +4,11 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta charset="utf-8"/>
-        <title>Asistentes de <h:outputText value="#{eventPage.eventName}"/></title>
+        <title>Asistentes de <h:outputText value="#{eventPage.event.name}"/></title>
         <h:outputStylesheet library="css" name="common.css"/>
         <h:outputStylesheet library="css" name="skeleton.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -15,29 +16,36 @@
         <link rel="icon" type="image/png" href="./images/favicon.png"/>
     </h:head>
     <h:body>
-        <ui:include src="./app-navbar.xhtml"/>
-        <div class="container">
-            <div class="center">
-                <h2>Participantes en el evento <h:outputText value="#{eventPage.eventName}"/></h2>
-            </div>
-            <hr/>
-            <table class="u-full-width">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ui:repeat value="#{eventPage.event.attendees}" var="attendee">
-                        <tr>
-                            <th><h:graphicImage library="images" name="default-avatar.png" style="width: 100px;"/></th>
-                            <th><h:outputText value="#{attendee.user.user_name}"/></th>
-                        </tr>                            
-                    </ui:repeat>
-                </tbody>
-            </table>
-            <h:button value="Volver al evento" outcome="event.xhtml"/>
-        </div>
+        <ui:include src="./app-navbar.xhtml"></ui:include>
+        <c:choose>
+            <c:when test="#{not empty eventPage.event}">
+                <div class="container">
+                    <div class="center">
+                        <h2>Participantes en el evento <h:outputText value="#{eventPage.event.name}"/></h2>
+                    </div>
+                    <hr/>
+                    <table class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat value="#{eventPage.event.attendees}" var="attendee">
+                                <tr>
+                                    <th><h:graphicImage library="images" name="default-avatar.png" style="width: 100px;"/></th>
+                                    <th><h:outputText value="#{attendee.user.user_name}"/></th>
+                                </tr>                            
+                            </ui:repeat>
+                        </tbody>
+                    </table>
+                    <h:button value="Volver al evento" outcome="event.xhtml"/>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="center">Error: no se ha seleccionado ningún evento.</div>
+            </c:otherwise>
+        </c:choose>
     </h:body>
 </html>

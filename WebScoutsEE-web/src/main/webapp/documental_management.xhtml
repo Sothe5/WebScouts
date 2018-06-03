@@ -13,34 +13,37 @@
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
-        <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
-            <p:column colspan="1" headerText="Nombre">
-                <h:outputText value="#{user.user_name}"></h:outputText>
-            </p:column>
-            <p:column colspan="1" headerText="Total de documentos">
-                <h:outputText value="#{selectOneMenuView.getNumberAllDocuments(user)}"></h:outputText>
-            </p:column>
-            <p:column colspan="1" style="width: 16px">
-                <p:rowToggler />
-            </p:column>   
-            <p:rowExpansion>
-                <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
-                    <p:column>
-                        <h:outputText value="#{doc.name}" />
-                    </p:column> 
-                    <p:column>
-                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                <h:outputText value="Estado: " />
-                            <h:form>
-                                <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="submit()" valueChangeListener="#{user_Manager.changeDocumentStatus(doc)}" >
-
-                                </p:inputSwitch>
-                            </h:form>
-                        </h:panelGrid>
-                    </p:column>
-                </p:dataTable>
-            </p:rowExpansion>
-        </p:dataTable>
+        <c:choose>
+            <c:when test="#{privilegesControl.role eq 'ADMIN'}">
+            <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
+                <p:column colspan="1" headerText="Nombre">
+                    <h:outputText value="#{user.user_name}"></h:outputText>
+                </p:column>
+                <p:column colspan="1" headerText="Total de documentos">
+                    <h:outputText value="#{selectOneMenuView.getNumberAllDocuments(user)}"></h:outputText>
+                </p:column>
+                <p:column colspan="1" style="width: 16px">
+                    <p:rowToggler />
+                </p:column>   
+                <p:rowExpansion>
+                    <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
+                        <p:column>
+                            <h:outputText value="#{doc.name}" />
+                        </p:column> 
+                        <p:column>
+                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                    <h:outputText value="Estado: " />
+                                <h:form>
+                                    <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="submit()" valueChangeListener="#{user_Manager.changeDocumentStatus(doc)}" >
+                                    </p:inputSwitch>
+                                </h:form>
+                            </h:panelGrid>
+                        </p:column>
+                    </p:dataTable>
+                </p:rowExpansion>
+            </p:dataTable>
+            </c:when>
+        </c:choose>
     </h:body>
 </html>
 

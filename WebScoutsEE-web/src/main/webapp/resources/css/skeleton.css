@@ -444,9 +444,9 @@ td:last-child {
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-button,
+/*button,
 .button {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; }*/
 input,
 textarea,
 select,
