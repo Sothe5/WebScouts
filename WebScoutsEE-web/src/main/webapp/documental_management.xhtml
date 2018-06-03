@@ -7,7 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Gestión documental</title>
+        <title>Gestión documental admin</title>
         <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
         <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
     </h:head>
@@ -15,28 +15,26 @@
         <ui:include src="./app-navbar.xhtml"></ui:include>
         <c:choose>
             <c:when test="#{privilegesControl.role eq 'ADMIN'}">
-            <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
-
-                <p:column colspan="1" headerText="Nombre">
-                    <h:outputText value="#{user.user_name}"></h:outputText>
-                </p:column>
-                <p:column colspan="1" headerText="Total de documentos">
-                    <h:outputText value="#{selectOneMenuView.getNumberAllDocuments(user)}"></h:outputText>
-                </p:column>
-                <p:column colspan="1" style="width: 16px">
-                    <p:rowToggler />
-                </p:column>   
-                <p:rowExpansion>
-                    <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
-                        <p:column>
-                            <h:outputText value="#{doc.name}" />
-                        </p:column> 
-                        <p:column>
-                            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                                    <h:outputText value="Estado: " />
-                                <h:form>
-                                    <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="#{user_Manager.changeDocumentStatus(doc)}" >
-
+        <p:dataTable id="users" var="user" value="#{user_Manager.usuarios}">
+            <p:column colspan="1" headerText="Nombre">
+                <h:outputText value="#{user.user_name}"></h:outputText>
+            </p:column>
+            <p:column colspan="1" headerText="Total de documentos">
+                <h:outputText value="#{selectOneMenuView.getNumberAllDocuments(user)}"></h:outputText>
+            </p:column>
+            <p:column colspan="1" style="width: 16px">
+                <p:rowToggler />
+            </p:column>   
+            <p:rowExpansion>
+                <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
+                    <p:column>
+                        <h:outputText value="#{doc.name}" />
+                    </p:column> 
+                    <p:column>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                                <h:outputText value="Estado: " />
+                            <h:form>
+                                <p:inputSwitch id="jaja" onLabel="Validado" offLabel="Pendiente" value="#{doc.status}" onchange="submit()" valueChangeListener="#{user_Manager.changeDocumentStatus(doc)}" >
                                     </p:inputSwitch>
                                 </h:form>
                             </h:panelGrid>

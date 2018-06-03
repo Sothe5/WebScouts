@@ -1,6 +1,11 @@
 package uma.sii.mcaddss.webscouts.files;
 
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.ejb.EJB;
  
 import javax.faces.application.FacesMessage;
@@ -45,8 +50,18 @@ public class FileUploadBean implements Serializable{
         Document doc = new Document(file.getFileName(),false,"Document");
         doc.setOwner(ctr.getUserScout());
         doc.setFile_size(file.getSize());
-        doc.setFilepath("\\resources");
-        file.write("\\resources");
+        doc.setFilepath("/resources");
+        Path folder = Paths.get("/resources");
+        String filename = file.getFileName(); 
+        Path filePath = Files.createTempFile(folder, filename, "");
+        
+        try (InputStream input = file.getInputstream()) {
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        
+        System.out.println("Uploaded file successfully saved in " + filePath);
+
         document_manager.addDocument(doc);
         FacesMessage msg = new FacesMessage("Ok", "Fichero " + file.getFileName() + " subido correctamente.");
     	FacesContext.getCurrentInstance().addMessage(null, msg);

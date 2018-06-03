@@ -38,6 +38,7 @@ public class Document_Management implements Document_ManagementLocal {
 
     @Override
     public void changeDocumentStatus(Document doc) {
+        System.out.println(doc.getId());
         doc.setStatus(!doc.getStatus());
         em.merge(doc);
     }
