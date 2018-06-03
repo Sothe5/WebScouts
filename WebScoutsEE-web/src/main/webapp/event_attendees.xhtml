@@ -6,12 +6,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <f:metadata>
-        <f:viewParam name="id" value="#{eventPage.event.id}" />
-    </f:metadata>
     <h:head>
         <meta charset="utf-8"/>
-        <title>Asistentes de <h:outputText value="#{eventPage.eventById.name}"/></title>
+        <title>Asistentes de <h:outputText value="#{eventPage.event.name}"/></title>
         <h:outputStylesheet library="css" name="common.css"/>
         <h:outputStylesheet library="css" name="skeleton.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -21,10 +18,10 @@
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
         <c:choose>
-            <c:when test="#{not empty event}">
+            <c:when test="#{not empty eventPage.event}">
                 <div class="container">
                     <div class="center">
-                        <h2>Participantes en el evento <h:outputText value="#{eventPage.eventById.name}"/></h2>
+                        <h2>Participantes en el evento <h:outputText value="#{eventPage.event.name}"/></h2>
                     </div>
                     <hr/>
                     <table class="u-full-width">
@@ -35,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <ui:repeat value="#{eventPage.eventById.attendees}" var="attendee">
+                            <ui:repeat value="#{eventPage.event.attendees}" var="attendee">
                                 <tr>
                                     <th><h:graphicImage library="images" name="default-avatar.png" style="width: 100px;"/></th>
                                     <th><h:outputText value="#{attendee.user.user_name}"/></th>

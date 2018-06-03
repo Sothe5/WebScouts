@@ -29,7 +29,7 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
  * @author Carles Bordas
  */
 @Named(value = "eventPage")
-@RequestScoped
+@SessionScoped
 public class EventPage implements Serializable {
     
     @EJB
@@ -56,7 +56,7 @@ public class EventPage implements Serializable {
     }
     
     public String showAttendees() {
-        return "event_attendees.xhtml?faces-redirect=true&includeViewParams=true";
+        return "event_attendees.xhtml";
     }
     
     public String renderPage(Event e) {

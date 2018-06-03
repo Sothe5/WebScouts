@@ -74,7 +74,8 @@
                                     </c:choose>
                                </span><br/>
                                <h:form>
-                                   <h:button outcome="event_attendees.xhtml" value ="Ver participantes" class="button-primary" includeViewParams="true"/>
+                                   <h:button outcome="event_attendees.xhtml" value ="Ver participantes" class="button-primary"/>
+                                   <!--<h:commandButton value ="Ver participantes" class="button-primary" action="#{eventPage.showAttendees()}"/>-->
                                </h:form>
                             </div>
                         </div>
