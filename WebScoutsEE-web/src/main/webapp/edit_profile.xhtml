@@ -51,7 +51,9 @@ and open the template in the editor.
                     </div>
                     <div class="form-group">
                         <label for="name">Email</label>
-                        <h:inputText id="email" class="form-control" value="#{userEdit.newEmail}" required="false"/>
+                        <h:inputText id="email" class="form-control" value="#{userEdit.newEmail}" required="false">
+                            <f:validateRegex pattern="[0-9a-zA-Z._-]+@[0-9a-zA-Z._-]+(\.[0-9a-zA-Z._-]+)+"/>
+                        </h:inputText>
                     </div>
                     <!--div class="form-group">
                         <label for="name">Imagen</label>

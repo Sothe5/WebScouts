@@ -20,12 +20,16 @@
       
     <h:body>
         <ui:include src="./app-navbar.xhtml"/>
-        Con este botón se añadirán todos los datos que haya en el bean Data en la base de datos.
-        <h:form style="margin-top: 15px;">
-            <div class="form-group" style="margin-top:10px;">
-                <h:commandButton class="login-button" value="Insertar Datos" action="#{data.persistData()}"/>
-            </div>
-        </h:form>
-        <h:messages infoStyle="color:blue" warnStyle="color:orange" errorStyle="color:red"/>
+        <c:choose>
+            <c:when test="#{privilegesControl.role eq 'ADMIN'}">
+            Con este botón se añadirán todos los datos que haya en el bean Data en la base de datos.
+            <h:form style="margin-top: 15px;">
+                <div class="form-group" style="margin-top:10px;">
+                    <h:commandButton class="login-button" value="Insertar Datos" action="#{data.persistData()}"/>
+                </div>
+            </h:form>
+            <h:messages infoStyle="color:blue" warnStyle="color:orange" errorStyle="color:red"/>
+            </c:when>
+        </c:choose>
     </h:body>
 </html>

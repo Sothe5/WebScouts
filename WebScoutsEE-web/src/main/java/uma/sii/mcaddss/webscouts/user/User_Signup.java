@@ -5,11 +5,15 @@
  */
 package uma.sii.mcaddss.webscouts.user;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
 import uma.sii.mcaddss.webscouts.bean.Role_ManagerLocal;
@@ -162,18 +166,24 @@ public class User_Signup {
     }
     
     public void register() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        
         if (!validatePassword())
         {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "Passwords don't match", "Passwords don't match"));
             return;
         }
         
-        init();
+        int age = getAge(birthdate);
+        group = groupByAge(age);
         
         Long id = user_bean.getLastUserId() + 1;
         Role_Scout role = role_bean.getRoleById((long)0);
         
         User_Scout user = new User_Scout(id, username, group, password, 
                 firstName, lastName, email, address, birthdate, role);
+        
         user_bean.addUser(user);
     }
     
@@ -181,8 +191,26 @@ public class User_Signup {
         return password.equals(passwordConfirm);
     }
     
-    @PostConstruct
-    public void init(){
-        groups = group_bean.getAllGroups();
+    private int getAge(Date date){
+        
+        //TODO add throws.. if birthdate is null
+        LocalDate birthdate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate currentDate = LocalDate.now(); 
+        
+        return Period.between(birthdate, currentDate).getYears();    
     }
+    
+    private Group_Scout groupByAge(int age){
+        groups = group_bean.getAllGroups();
+        
+        for (Group_Scout g : groups){
+            if (g.getMinAge() < age && age < g.getMaxAge())
+            {
+                return g;
+            }     
+        }
+
+        return null;
+    }
+    
 }
