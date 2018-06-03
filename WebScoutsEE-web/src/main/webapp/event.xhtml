@@ -13,7 +13,7 @@
             </f:metadata>
         </f:view>
         <meta charset="utf-8"/>
-        <title><h:outputText value="#{eventPage.eventName}"/></title>
+        <title><h:outputText value="#{eventPage.event.name}"/></title>
         <h:outputStylesheet library="css" name="common.css"/>
         <h:outputStylesheet library="css" name="skeleton.css"/>
         <h:outputStylesheet library="css" name="comment.css"/>
@@ -22,56 +22,65 @@
         <link rel="icon" type="image/png" href="./images/favicon.png"/>
     </h:head>
     <h:body>
-        <ui:include src="./app-navbar.xhtml"/>
-            <div class="container">
-                <div class="center">
-                    <h1>Evento: <h:outputText value="#{eventPage.eventName}"/></h1>
-                </div>
-                <hr class="title"/>
-                <div class="date-block">
-                    <i class="fa fa-calendar"/>
-                    <h:outputText class="date" value="#{eventPage.eventDateFormatted}"/>
-                    <h:outputText class="button button-tag" value="#{eventPage.eventGroup.name}"/>
-                </div>
-                <div class="row u-botmargin">
-                    <div class="seven columns">
-                        <h:outputFormat value="#{eventPage.eventDescription}"/>
+        <ui:include src="./app-navbar.xhtml"></ui:include>
+        <c:choose>
+            <c:when test="#{not empty eventPage.event}">
+                <div class="container">
+                    <div class="center">
+                        <h1>Evento: <h:outputText value="#{eventPage.event.name}"/></h1>
                     </div>
-                    <div class="five columns">
-                        <img src="./resources/images/Placeholder.png" class="event-img"/>
+                    <hr class="title"/>
+                    <div class="date-block">
+                        <i class="fa fa-calendar"/>
+                        <h:outputText class="date" value="#{eventPage.event.formattedDate}"/>
+                        <h:outputText class="button button-tag" value="#{eventPage.event.groupscout.name}"/>
                     </div>
-                </div>
-                <div class="row u-botmargin">
-                    <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
-                    <div class="seven columns">
-                        <h:form>
-                            <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
-                            <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
-                        </h:form>          
-                    </div>
-                    </c:if>    
-                    <div class="five columns">
-                        <div class="container-block">
-                            <span>
-                                <c:choose>
-                                    <c:when test="${eventPage.event.attendeesCount == 0}">
-                                        <h:outputText value="Nadie se ha apuntado todavía"/>
-                                    </c:when>
-                                    <c:when test="${eventPage.event.attendeesCount == 1}">
-                                        <h:outputText value="1 persona se han apuntado"/>
-                                    </c:when>                           
-                                    <c:otherwise>
-                                        <h:outputText value="#{eventPage.event.attendeesCount} personas se han apuntado"/>
-                                    </c:otherwise>
-                                </c:choose>
-                           </span><br/>
-                           <h:button value="Ver participantes" class="button-primary" outcome="event_attendees.xhtml"/>
+                    <div class="row u-botmargin">
+                        <div class="seven columns">
+                            <h:outputFormat value="#{eventPage.event.description}"/>
+                        </div>
+                        <div class="five columns">
+                            <img src="./resources/images/Placeholder.png" class="event-img"/>
                         </div>
                     </div>
+                    <div class="row u-botmargin">
+                        <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
+                        <div class="seven columns">
+                            <h:form>
+                                <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.markAssistence}"/>
+                                <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.markNoAssistence}"/>
+                            </h:form>          
+                        </div>
+                        </c:if>    
+                        <div class="five columns">
+                            <div class="container-block">
+                                <span>
+                                    <c:choose>
+                                        <c:when test="${eventPage.event.attendeesCount == 0}">
+                                            <h:outputText value="Nadie se ha apuntado todavía"/>
+                                        </c:when>
+                                        <c:when test="${eventPage.event.attendeesCount == 1}">
+                                            <h:outputText value="1 persona se han apuntado"/>
+                                        </c:when>                           
+                                        <c:otherwise>
+                                            <h:outputText value="#{eventPage.event.attendeesCount} personas se han apuntado"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                               </span><br/>
+                               <h:form>
+                                   <h:commandButton value ="Ver participantes" class="button-primary" action="#{eventPage.showAttendees(event)}"/>
+                               </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="small"/>
+                    <ui:include src="./comment.xhtml"/>
                 </div>
-                <hr class="small"/>
-                <ui:include src="./comment.xhtml"/>
-            </div>
+            </c:when>
+            <c:otherwise>
+                <div class="center">Error: no se ha seleccionado ningún evento.</div>
+            </c:otherwise>
+        </c:choose>
     </h:body>
 </html>
 

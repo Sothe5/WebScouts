@@ -22,7 +22,7 @@
                     </c:when>
                 </c:choose>
                 
-                <p:submenu label="Grupos">
+                <p:submenu label="Grupos" icon="ui-icon-flag">
                     <p:menuitem value="Castores" action="#{groups.chooseGroup('Castores')}">
                         <f:param name="group" value="Castores"/>
                     </p:menuitem>
@@ -41,6 +41,8 @@
                     </p:menuitem>
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
+                
+                <p:menuitem value="Eventos" url="/faces/event_list.xhtml" icon="ui-icon-copy"/>
                 
                 <c:choose>
                     <c:when test="#{privilegesControl.role eq 'SCOUTER'}">
