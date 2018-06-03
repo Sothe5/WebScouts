@@ -11,7 +11,8 @@ and open the template in the editor.
     padding: 10px;
     margin: 5px;
     border: 1px solid #ccc;
-        border-radius: 7px;
+    border-radius: 7px;
+    background: white;
 
 }
 .avatar {
