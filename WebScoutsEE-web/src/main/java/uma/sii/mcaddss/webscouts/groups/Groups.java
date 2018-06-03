@@ -11,11 +11,13 @@ package uma.sii.mcaddss.webscouts.groups;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 
@@ -26,7 +28,8 @@ import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 @Named(value = "groups")
 @RequestScoped
 public class Groups {
-
+    @EJB
+    private Group_ManagerLocal group_manager;
     private Group_Scout group;
     /**
      * Creates a new instance of Groups
@@ -63,89 +66,42 @@ public class Groups {
     
     private Group_Scout choose(String name){
         Group_Scout gr = new Group_Scout();
-        List<Event> a = new ArrayList<>();
-        Event b = new Event();
-        Event c = new Event();
+
         switch (name){
             case "Castores":
                 gr.setName("Castores");
-                gr.setDescription("This is a great group.");
-                
-                
-                b.setName("Acampada");
-                b.setDate(new Date());
-                b.setDescription("Vamos al monte a pasar la noche");
-
-                c.setName("Acuario");
-                c.setDate(new Date());
-                c.setDescription("Vamos a descubrir el mundo marino");
-                a.add(b);
-                a.add(c);
-                gr.setEvents(a);
+                gr.setDescription(group_manager.getDescription(name)); 
+                gr.setEvents(group_manager.getEvents(name));
+            
                 break;
             case "Manada":
                 gr.setName("Manada");
-                gr.setDescription("Not too bad as a group");
-
-                b.setName("Parque");
-                b.setDate(new Date());
-                b.setDescription("Vamos al parque");
-                
-                a.add(b);
-                gr.setEvents(a);
+                gr.setDescription(group_manager.getDescription(name)); 
+                gr.setEvents(group_manager.getEvents(name));
                 break;
             case "Tropa":
                  gr.setName("Tropa");
-                gr.setDescription("un, dos, tres, cuatro.");
+                 gr.setDescription(group_manager.getDescription(name)); 
                 
-                b.setName("Acampada");
-                b.setDate(new Date());
-                b.setDescription("Vamos al monte a pasar la noche");
-
-                c.setName("Acuario");
-                c.setDate(new Date());
-                c.setDescription("Vamos a descubrir el mundo marino");
-                a.add(b);
-                a.add(c);
-                gr.setEvents(a);
+                gr.setEvents(group_manager.getEvents(name));
                 break;
             case "Unidad":
                 gr.setName("Unidad");
-                gr.setDescription("Scouters unidos jamas seran vencidos");
+                gr.setDescription(group_manager.getDescription(name)); 
 
-                b.setName("Parque");
-                b.setDate(new Date());
-                b.setDescription("Vamos al parque");
-                
-                a.add(b);
-                gr.setEvents(a);
+               gr.setEvents(group_manager.getEvents(name));
                 break;
             case "Clan":
                 gr.setName("Clan");
-                gr.setDescription("Tenemos un canal de TV");
+                gr.setDescription(group_manager.getDescription(name)); 
 
-                b.setName("Parque");
-                b.setDate(new Date());
-                b.setDescription("Vamos al parque");
-                
-                a.add(b);
-                gr.setEvents(a);
+              gr.setEvents(group_manager.getEvents(name));
                 break;
             default:
                 gr.setName("Er");
-                gr.setDescription("This is a great group.");
+                gr.setDescription(group_manager.getDescription(name)); 
                 
-                
-                b.setName("Acampada");
-                b.setDate(new Date());
-                b.setDescription("Vamos al monte a pasar la noche");
-
-                c.setName("Acuario");
-                c.setDate(new Date());
-                c.setDescription("Vamos a descubrir el mundo marino");
-                a.add(b);
-                a.add(c);
-                gr.setEvents(a);
+              gr.setEvents(group_manager.getEvents(name));
                 break;
             } 
         return gr;
