@@ -8,9 +8,11 @@ package uma.sii.mcaddss.webscouts.bean;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import uma.sii.mcaddss.webscouts.entities.Event;
+import uma.sii.mcaddss.webscouts.entities.EventAttendance;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
@@ -57,4 +59,26 @@ public class EventBusiness implements EventLocal {
         em.merge(event);
     }
     
+    @Override
+    public void addAttendance(EventAttendance ea) {
+        em.persist(ea);
+    }
+    
+    @Override
+    public EventAttendance findAttendance(User_Scout u, Event e) {
+        try {
+            Query query = em.createQuery("SELECT e FROM EventAttendance e WHERE e.user = :user AND e.event = :event", EventAttendance.class);
+            query.setParameter("user", u);
+            query.setParameter("event", e);
+            return (EventAttendance) query.getSingleResult();
+        }
+        catch (NoResultException ex) {
+            return null;
+        }
+    }
+    
+    @Override
+    public Event getEventById(Long id) {
+        return em.find(Event.class, id);
+    }
 }

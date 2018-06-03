@@ -37,6 +37,8 @@
                     </p:menuitem>
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
+                
+                <p:menuitem value="Eventos" url="/faces/event_list.xhtml" icon="ui-icon-copy"/>
 
                 <p:submenu label="Administración" icon="ui-icon-gear" rendered="#{privilegesControl.role eq 'SCOUTER'}">
                     <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />

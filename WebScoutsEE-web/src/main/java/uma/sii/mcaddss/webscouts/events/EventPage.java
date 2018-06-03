@@ -1,5 +1,6 @@
 package uma.sii.mcaddss.webscouts.events;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,7 +8,12 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+import uma.sii.mcaddss.webscouts.authentication.PrivilegesControl;
 import uma.sii.mcaddss.webscouts.bean.EventLocal;
 import uma.sii.mcaddss.webscouts.data.Data;
 import uma.sii.mcaddss.webscouts.entities.Comment;
@@ -27,7 +33,9 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 public class EventPage implements Serializable {
     
     @EJB
-    private EventLocal eventB;    
+    private EventLocal eventB;
+    @Inject
+    private PrivilegesControl ctrl;
     
     private Event event;
 
@@ -43,9 +51,12 @@ public class EventPage implements Serializable {
         this.event = e;
     }
     
-    public String showAttendees(Event e) {
-        setEvent(e);
-        return "event_attendees.xhtml";
+    public Event getEventById(Long l) {
+        return eventB.getEventById(l);
+    }
+    
+    public String showAttendees() {
+        return "event_attendees.xhtml?faces-redirect=true&includeViewParams=true";
     }
     
     public String renderPage(Event e) {
@@ -53,22 +64,19 @@ public class EventPage implements Serializable {
         return "event.xhtml";
     }
     
-    public void markAssistence() {
-        EventAttendance ea = new EventAttendance();
-        ea.setAttendanceStatus("YES");
-        ea.setEvent(event);
-        //ea.setUser(user); // Get current user
-        event.getAttendees().add(ea);
-        eventB.modifyEvent(event);
+    public EventAttendance getAttendance() {
+        return eventB.findAttendance(ctrl.getUserScout(), event);
     }
     
-    public void markNoAssistence() {
+    public void setAttendance(String attendanceStatus) throws IOException {
         EventAttendance ea = new EventAttendance();
-        ea.setAttendanceStatus("NO");
+        User_Scout user = ctrl.getUserScout();
+        ea.setAttendanceStatus(attendanceStatus);
         ea.setEvent(event);
-        //ea.setUser(user); // Get current user
-        event.getAttendees().add(ea);
-        eventB.modifyEvent(event);
+        ea.setUser(user);
+        eventB.addAttendance(ea);
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(ec.getRequestContextPath() + "/faces/event.xhtml");
     }
 
     public boolean isEnroled() {

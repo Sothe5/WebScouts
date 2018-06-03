@@ -8,6 +8,7 @@ package uma.sii.mcaddss.webscouts.bean;
 import java.util.List;
 import javax.ejb.Local;
 import uma.sii.mcaddss.webscouts.entities.Event;
+import uma.sii.mcaddss.webscouts.entities.EventAttendance;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
 
@@ -23,5 +24,8 @@ public interface EventLocal {
     List<Event> getGroupEvents(Group_Scout g);
     public List<Event> getAllEvents();
     void modifyEvent(Event event);
+    public void addAttendance(EventAttendance ea);
+    public EventAttendance findAttendance(User_Scout u, Event e);
+    public Event getEventById(Long id);
     
 }
