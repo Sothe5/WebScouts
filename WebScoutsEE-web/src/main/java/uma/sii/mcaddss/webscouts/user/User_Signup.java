@@ -15,7 +15,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.UploadedFile;
 import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
@@ -24,7 +23,6 @@ import uma.sii.mcaddss.webscouts.bean.UsersLocal;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 import uma.sii.mcaddss.webscouts.entities.Role_Scout;
 import uma.sii.mcaddss.webscouts.entities.User_Scout;
-import uma.sii.mcaddss.webscouts.files.FileUploadBean;
 
 /**
  *
@@ -33,11 +31,6 @@ import uma.sii.mcaddss.webscouts.files.FileUploadBean;
 @Named(value = "signup") 
 @RequestScoped
 public class User_Signup {
-    
-    private static final String USERS = "users";
-    
-    //@Inject
-    //private FileUploadBean fu;
     
     @EJB
     private UsersLocal user_bean;
@@ -183,14 +176,14 @@ public class User_Signup {
         this.photo = photo;
     }
     
-    public void register() {
+    public String register() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         
         if (!validatePassword())
         {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
                     "Passwords don't match", "Passwords don't match"));
-            return;
+            return null;
         }
         
         int age = getAge(birthdate);
@@ -203,9 +196,9 @@ public class User_Signup {
         User_Scout user = new User_Scout(id, username, group, password, 
                 firstName, lastName, email, address, birthdate, role);
         
-        user_bean.addUser(user);
+        user_bean.addUser(user); 
         
-        //fu.imageUpload(photo, USERS);          
+        return "index.xhtml";
     }
     
     public Boolean validatePassword() {
