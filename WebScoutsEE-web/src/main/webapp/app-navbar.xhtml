@@ -16,13 +16,9 @@
             <p:growl id="messages"/>
             <p:menubar>
                 <p:menuitem value="Inicio" url="/faces/index.xhtml" icon="ui-icon-home"/>
-                <c:choose>
-                    <c:when test="#{not empty privilegesControl.userScout}">
-                        <p:menuitem value="Ver Mi Perfil" url="/faces/user_profile.xhtml" icon="ui-icon-person"/>
-                    </c:when>
-                </c:choose>
+                <p:menuitem value="Mi Perfil" url="/faces/user_profile.xhtml" icon="ui-icon-person" rendered="#{not empty privilegesControl.userScout}"/>
                 
-                <p:submenu label="Grupos">
+                <p:submenu label="Grupos" icon="ui-icon-flag">
                     <p:menuitem value="Castores" action="#{groups.chooseGroup('Castores')}">
                         <f:param name="group" value="Castores"/>
                     </p:menuitem>
@@ -41,33 +37,28 @@
                     </p:menuitem>
                     <p:menuitem value="Scouters"/>
                 </p:submenu>
+
+                <p:submenu label="Administración" icon="ui-icon-gear" rendered="#{privilegesControl.role eq 'SCOUTER'}">
+                    <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
+                    <p:menuitem value="Gestión documental" url="/faces/documental_management_scouters.xhtml" />
+                    <p:menuitem value="Ronda solar" url="/faces/solar_round.xhtml"/>
+                </p:submenu>
                 
-                <c:choose>
-                    <c:when test="#{privilegesControl.role eq 'SCOUTER'}">
-                        <p:submenu label="Administración" icon="ui-icon-gear">
-                            <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
-                            <p:menuitem value="Gestión documental" url="/faces/documental_management_scouters.xhtml" />
-                            <p:menuitem value="Ronda solar" url="/faces/solar_round.xhtml"/>
-                        </p:submenu>
-                    </c:when>
-                    <c:when test="#{privilegesControl.role eq 'ADMIN'}">
-                        <p:submenu label="Administración" icon="ui-icon-gear">
-                            <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
-                            <p:menuitem value="Gestión documental" url="/faces/documental_management.xhtml" />
-                            <p:menuitem value="Configuración" url="#" />
-                            <p:menuitem value="Ronda solar" url="/faces/solar_round.xhtml"/>
-                            <p:menuitem value="Cargar datos de prueba" url="/faces/add_sample_data.xhtml"/>
-                        </p:submenu>
-                    </c:when>
-                </c:choose>
+                <p:submenu label="Administración" icon="ui-icon-gear" rendered="#{privilegesControl.role eq 'ADMIN'}">
+                    <p:menuitem value="Ver usuarios" url="/faces/all_users.xhtml" />
+                    <p:menuitem value="Gestión documental" url="/faces/documental_management.xhtml" />
+                    <p:menuitem value="Configuración" url="#" />
+                    <p:menuitem value="Ronda solar" url="/faces/solar_round.xhtml"/>
+                    <p:menuitem value="Cargar datos de prueba" url="/faces/add_sample_data.xhtml"/>
+                </p:submenu>
                  
                 <f:facet name="options">
                     <c:choose>
                         <c:when test="#{empty privilegesControl.userScout}">
-                            <p:commandButton value="Login" action="login.xhtml" />
+                            <p:commandButton value="Entrar" action="login.xhtml" />
                         </c:when>
                         <c:otherwise>
-                            <p:commandButton value="Logout" action="#{login.logout}" icon="ui-icon-power" />
+                            <p:commandButton value="Salir" action="#{login.logout}" icon="ui-icon-power" />
                         </c:otherwise>
                     </c:choose>
                 </f:facet>

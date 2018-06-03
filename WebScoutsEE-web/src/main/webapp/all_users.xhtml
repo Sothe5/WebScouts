@@ -14,43 +14,44 @@
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
-        <c:choose>
-            <c:when test="#{privilegesControl.role eq 'ADMIN'}">
-            <h:form>
-                <p:panel id="basic" header="" style="margin-bottom:20px">
-                    <h:panelGrid columns="5" cellpadding="30">
-                        <p:outputLabel for="groups" value="Grupo:" />
-                        <p:selectOneMenu id="groups" style="width:125px" value="#{filterView.selection_group}">
-                            <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
-                            <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}"></f:selectItems>  
-                        </p:selectOneMenu>
-                        <p:outputLabel for="roles" value="Rol:" />
-                        <p:selectOneMenu id="roles" style="width:125px" value="#{filterView.selection_role}">
-                            <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
-                            <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.id}"></f:selectItems>                     
-                        </p:selectOneMenu>
-                        <p:commandButton onclick="submit" value="Filtrar"></p:commandButton>
-                    </h:panelGrid>
-                </p:panel>
-            </h:form>
-            <p:dataTable var="user" value="#{user_Manager.filterUsers(filterView.selection_group, filterView.selection_role)}">
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{user.user_name}" />
-                </p:column>
+        <h:form>
+            <p:panel id="basic" header="" style="margin-bottom:20px">
+                <h:panelGrid columns="5" cellpadding="30">
+                    <p:outputLabel for="groups" value="Grupo:" />
+                    <p:selectOneMenu id="groups" style="width:125px" value="#{filterView.selection_group}">
+                        <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
+                        <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}"></f:selectItems>  
+                    </p:selectOneMenu>
+                    <p:outputLabel for="roles" value="Rol:" />
+                    <p:selectOneMenu id="roles" style="width:125px" value="#{filterView.selection_role}">
+                        <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
+                        <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.id}"></f:selectItems>                     
+                    </p:selectOneMenu>
+                    <p:commandButton onclick="submit" value="Filtrar"></p:commandButton>
+                    <p:link outcome="create_user" value="Crear Usuario"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+        <p:dataTable paginator="true" var="user" value="#{user_Manager.filterUsers(filterView.selection_group, filterView.selection_role)}">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{user.user_name}" />
+            </p:column>
 
-                <p:column headerText="Grupo">
-                    <h:outputText value="#{user.groupscout.name}" />
-                </p:column>
+            <p:column headerText="Grupo">
+                <h:outputText value="#{user.groupscout.name != null ? user.groupscout.name : 'SIN GRUPO'}" />
+            </p:column>
+            
+            <p:column headerText="Rol">
+                <h:outputText value="#{user.role.roleName}" />
+            </p:column>
 
-                <p:column headerText="Email">
-                    <h:outputText value="#{user.email}" />
-                </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{user.email}" />
+            </p:column>
 
-                <p:column headerText="Dirección">
-                    <h:outputText value="#{user.address}" />
-                </p:column>
-            </p:dataTable>
-            </c:when>
-        </c:choose>
+            <p:column headerText="Dirección">
+                <h:outputText value="#{user.address}" />
+            </p:column>
+        </p:dataTable>
     </h:body>
 </html>

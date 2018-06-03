@@ -1,6 +1,7 @@
 package uma.sii.mcaddss.webscouts.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,6 +96,12 @@ public class Event implements Serializable {
         return date;
     }
 
+    public String getFormattedDate() {
+        SimpleDateFormat formatter;
+        formatter = new SimpleDateFormat("dd 'de' MMM ' de' yyyy, HH:mm");
+        return formatter.format(date);
+    }
+    
     public void setDate(Date date) {
         this.date = date;
     }

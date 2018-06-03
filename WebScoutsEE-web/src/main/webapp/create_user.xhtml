@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/group.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
+    </h:head>
+    <h:body>
+        <ui:include src="./app-navbar.xhtml"></ui:include>
+        <p:panel header="Agregar nuevo usuario">
+            <h:form id="newuserform">
+                <h:panelGrid id="grid" cellpadding="5" columns="2" style="margin-bottom:10px">
+                    <f:facet name="header">
+                        <p:messages id="msgs" />
+                    </f:facet>
+
+                    <p:outputLabel for="firstname" value="Nombre" />
+                    <p:inputText id="firstname" value="#{user_Create.name}" required="true" requiredMessage="Se debe especificar un nombre" />
+
+                    <p:outputLabel for="surname1" value="Primer apellido" />
+                    <p:inputText id="surname1" value="#{user_Create.surname1}" required="true" requiredMessage="Se debe especificar un primer apellido" />
+
+                    <p:outputLabel for="surname2" value="Segundo apellido" />
+                    <p:inputText id="surname2" value="#{user_Create.surname2}" required="true" requiredMessage="Se debe especificar un segundo apellido" />
+                    
+                    <p:outputLabel for="password" value="Contraseña" />
+                    <p:password id="password" value="#{user_Create.password}" required="true" requiredMessage="Se debe especificar una contraseña" />
+
+                    <p:outputLabel for="email" value="Correo" />
+                    <p:inputText id="email" value="#{user_Create.email}" required="true" requiredMessage="Se debe especificar un correo electrónico" />
+
+                    <p:outputLabel for="birthdate" value="Fecha de nacimiento" />
+                    <p:calendar id="birthdate" value="#{user_Create.birthdate}" showOn="button" required="true" requiredMessage="Se debe especificar una fecha de nacimiento"/>
+
+                    <p:outputLabel for="group" value="Grupo"/>
+                    <p:selectOneMenu id="group" value="#{user_Create.group}" converter="#{groupConverter}">
+                        <f:selectItems value="#{user_Create.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="role" value="Rol" />
+                    <p:selectOneMenu id="role" value="#{user_Create.role}" converter="#{roleConverter}">
+                        <f:selectItems value="#{user_Create.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role}"/>
+                    </p:selectOneMenu>
+
+                    <p:commandButton value="Crear" actionListener="#{user_Create.submit}" ajax="false"/>
+                </h:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+

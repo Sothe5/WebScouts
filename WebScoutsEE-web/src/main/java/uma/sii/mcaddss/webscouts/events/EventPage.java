@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import uma.sii.mcaddss.webscouts.bean.EventLocal;
 import uma.sii.mcaddss.webscouts.data.Data;
 import uma.sii.mcaddss.webscouts.entities.Comment;
 import uma.sii.mcaddss.webscouts.entities.Document;
@@ -23,57 +25,32 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
 @Named(value = "eventPage")
 @RequestScoped
 public class EventPage implements Serializable {
-
-    private Data data;
-    private int eventId;
+    
+    @EJB
+    private EventLocal eventB;    
+    
     private Event event;
 
     public EventPage() {
-        data = new Data();
-        this.event = data.getEvent();
+        
     }
     
     public Event getEvent() {
         return event;
     }
     
-    public String showAttendees() {
+    public void setEvent(Event e) {
+        this.event = e;
+    }
+    
+    public String showAttendees(Event e) {
+        setEvent(e);
         return "event_attendees.xhtml";
     }
     
-    public void setEventId(String eventId) {
-        this.eventId = Integer.parseInt(eventId);
-    }
-
-    public String getEventName() {
-        return event.getName();
-    }
-
-    public String getEventDescription() {
-        return event.getDescription();
-    }
-    
-    public Group_Scout getEventGroup() {
-        return event.getGroupscout();
-    }
-
-    public List<Comment> getEventComments() {
-        return event.getComments();
-    }
-
-    public String getEventDateFormatted() {
-        SimpleDateFormat formatter;
-        formatter = new SimpleDateFormat("dd 'de' MMM ' de' yyyy, HH:mm");
-        Date eventDate = event.getDate();
-        return formatter.format(eventDate);
-    }
-
-    public List<Document> getNecessaryDocuments() {
-        return event.getDocuments();
-    }
-    
-    public List<EventAttendance> getEventAttendees() {
-        return event.getAttendees();
+    public String renderPage(Event e) {
+        setEvent(e);
+        return "event.xhtml";
     }
     
     public void markAssistence() {
@@ -82,6 +59,7 @@ public class EventPage implements Serializable {
         ea.setEvent(event);
         //ea.setUser(user); // Get current user
         event.getAttendees().add(ea);
+        eventB.modifyEvent(event);
     }
     
     public void markNoAssistence() {
@@ -90,6 +68,7 @@ public class EventPage implements Serializable {
         ea.setEvent(event);
         //ea.setUser(user); // Get current user
         event.getAttendees().add(ea);
+        eventB.modifyEvent(event);
     }
 
     public boolean isEnroled() {
