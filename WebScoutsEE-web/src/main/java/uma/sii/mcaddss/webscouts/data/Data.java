@@ -66,9 +66,9 @@ public class Data {
 
     public void initData() {
         // Build groups
-        Group_Scout tropa = new Group_Scout("Tropa de Kim","Tropa de Kim",13,15);
-        Group_Scout esculta = new Group_Scout("Unidad Esculta Siryu","Unidad Esculta Siryu",10,13);
-        Group_Scout otro = new Group_Scout("Otro Grupo", "Otro Grupo",18,21);    
+        Group_Scout tropa = new Group_Scout("Tropa","Tropa de Kim",13,15);
+        Group_Scout esculta = new Group_Scout("Unidad","Unidad Esculta Siryu",10,13);
+        Group_Scout otro = new Group_Scout("Castores", "Castores",18,21);    
         Group_Scout manada = new Group_Scout("Manada","Grupo de manada",15,18);
         groups.add(tropa);
         groups.add(esculta);
