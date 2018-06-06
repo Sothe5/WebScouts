@@ -29,5 +29,8 @@
                 <h:outputText value="#{event.attendeesCount}" />
             </p:column>
         </p:dataTable>
+        <c:if test="#{privilegesControl.role eq 'ADMIN'}">
+            <h:button value="Crear evento" outcome="add_event.xhtml"/>
+        </c:if>
     </h:body>
 </html>

@@ -16,6 +16,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
         <link rel="icon" type="image/png" href="./images/favicon.png"/>
+        <f:metadata>
+            <f:viewParam name="id" value="#{eventPage.eventId}"/>
+        </f:metadata>
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
@@ -44,10 +47,10 @@
                         <div class="seven columns">
                             <c:choose>
                                 <c:when test="#{eventPage.attendance.attendanceStatus == 'YES'}">
-                                    <p:button class="button-yes" value="Has confirmado tu asistencia" icon="ui-icon-check"/>
+                                    <button class="button-yes">Has confirmado tu asistencia</button>
                                 </c:when>
                                 <c:when test="#{eventPage.attendance.attendanceStatus == 'NO'}">
-                                    <p:button class="button-yes" value="Has confirmado que no vas a ir" icon="ui-icon-close"/>
+                                    <button class="button-yes">Has confirmado que no vas a ir</button>
                                 </c:when>
                                 <c:otherwise>
                                     <h:form>
@@ -74,8 +77,7 @@
                                     </c:choose>
                                </span><br/>
                                <h:form>
-                                   <h:button outcome="event_attendees.xhtml" value ="Ver participantes" class="button-primary"/>
-                                   <!--<h:commandButton value ="Ver participantes" class="button-primary" action="#{eventPage.showAttendees()}"/>-->
+                                   <h:button outcome="event_attendees.xhtml?id=#{eventPage.event.id}" value ="Ver participantes" class="button-primary"/>
                                </h:form>
                             </div>
                         </div>

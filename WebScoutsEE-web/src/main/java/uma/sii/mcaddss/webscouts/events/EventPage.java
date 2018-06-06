@@ -29,13 +29,14 @@ import uma.sii.mcaddss.webscouts.entities.User_Scout;
  * @author Carles Bordas
  */
 @Named(value = "eventPage")
-@SessionScoped
+@RequestScoped
 public class EventPage implements Serializable {
     
     @EJB
     private EventLocal eventB;
     @Inject
     private PrivilegesControl ctrl;
+    private Long event_id;
     
     private Event event;
 
@@ -49,6 +50,21 @@ public class EventPage implements Serializable {
     
     public void setEvent(Event e) {
         this.event = e;
+    }
+
+    /**
+     * @return the event_id
+     */
+    public Long getEventId() {
+        return event_id;
+    }
+
+    /**
+     * @param event_id the event_id to set
+     */
+    public void setEventId(Long event_id) {
+        this.event_id = event_id;
+        event = getEventById(event_id);
     }
     
     public Event getEventById(Long l) {
