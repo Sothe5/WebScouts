@@ -13,13 +13,10 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ValueChangeEvent;
-import org.primefaces.event.RowEditEvent;
 import uma.sii.mcaddss.webscouts.bean.Group_Manager;
 import uma.sii.mcaddss.webscouts.bean.Group_ManagerLocal;
 import uma.sii.mcaddss.webscouts.bean.Role_Manager;
 import uma.sii.mcaddss.webscouts.bean.Role_ManagerLocal;
-import uma.sii.mcaddss.webscouts.bean.UsersLocal;
 import uma.sii.mcaddss.webscouts.entities.Document;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
 import uma.sii.mcaddss.webscouts.entities.Role_Scout;
@@ -36,16 +33,10 @@ public class FilterView {
     private String selection_group;
     private String selection_role;
     
-    private Group_Scout selectedGroup;
-    private Role_Scout selectedRole;
-    
     @EJB
     private Role_ManagerLocal role_manager;
     @EJB
     private Group_ManagerLocal group_manager;
-    
-    @EJB
-    private UsersLocal user_manager;
 
     /**
      * Creates a new instance of SelectOneMenuView_Filter
@@ -104,27 +95,6 @@ public class FilterView {
             return false;
         }
         return true;
-    }
-    
-    public void selectedGroup(ValueChangeEvent event) {
-        this.selectedGroup = (Group_Scout) event.getNewValue();
-    }
-    
-    public void selectedRole(ValueChangeEvent event) {
-        this.selectedRole = (Role_Scout) event.getNewValue();
-    }
-    
-    public void onRowEdit(RowEditEvent event) {
-        User_Scout user = (User_Scout) event.getObject();
-        if (selectedGroup != null) {
-            user.setGroupscout(selectedGroup);
-            selectedGroup = null;
-        }
-        if (selectedRole != null) {
-            user.setRole(selectedRole);
-            selectedRole = null;
-        }
-        user_manager.editUser(user);
     }
     
 }
