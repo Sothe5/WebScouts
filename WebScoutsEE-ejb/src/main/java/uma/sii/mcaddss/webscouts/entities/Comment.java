@@ -133,8 +133,7 @@ public class Comment implements Serializable {
     public String getCommentDateFormatted() {
         SimpleDateFormat formatter;
         formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm");
-        Date eventDate = event.getDate();
-        return formatter.format(eventDate);
+        return formatter.format(postDate);
     }
     
     @Override
