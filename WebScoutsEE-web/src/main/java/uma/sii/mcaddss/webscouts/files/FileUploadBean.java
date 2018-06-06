@@ -58,7 +58,7 @@ public class FileUploadBean implements Serializable{
         Document doc = new Document(file.getFileName(),false,"Document");
         doc.setOwner(ctr.getUserScout());
         doc.setFile_size(file.getSize());
-        doc.setFilepath("/resources");
+        doc.setFilepath("C:\\Users\\Nexel\\Documents\\NetBeansProjects\\Webscouts_carles\\WebScoutsEE-web\\src\\main\\webapp\\resources");
        
         saveLocal(file);
 
@@ -84,12 +84,12 @@ public class FileUploadBean implements Serializable{
     
     public String saveLocal(UploadedFile file) throws IOException {
         try {
-            Files.createDirectory(Paths.get("/resources/"));
+            Files.createDirectory(Paths.get("C:\\Users\\Nexel\\Documents\\NetBeansProjects\\Webscouts_carles\\WebScoutsEE-web\\src\\main\\webapp\\resources"));
         } catch (Exception e) {
         
         }
         
-        Path dir = Paths.get("/resources/");
+        Path dir = Paths.get("C:\\Users\\Nexel\\Documents\\NetBeansProjects\\Webscouts_carles\\WebScoutsEE-web\\src\\main\\webapp\\resources");
         Path fileToCreatePath = dir.resolve(file.getFileName());
         System.out.println("File to create path: " + fileToCreatePath);
         Path newFilePath = Files.createFile(fileToCreatePath);
@@ -104,7 +104,7 @@ public class FileUploadBean implements Serializable{
         
         System.out.println("Uploaded file successfully saved in " + newFilePath);
         System.out.println(newFilePath.toAbsolutePath().toString());
-        return newFilePath.toAbsolutePath().toString();
+        return "resources\\" + file.getFileName();
 
     }
     

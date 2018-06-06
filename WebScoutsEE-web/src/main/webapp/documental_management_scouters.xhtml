@@ -27,9 +27,7 @@
                         <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
                             <p:column>
                                 <h:form>
-                                    <!--<h:outputText value="{doc.name}" />-->
-                                    <h:commandLink action="#{doc.getFilepath()}" target="_blank">
-                                        #{doc.name}
+                                    <h:commandLink action="#{doc.getFilepath()}" target="_blank" value="#{doc.name}">
                                     </h:commandLink>
                                 </h:form>
                             </p:column> 

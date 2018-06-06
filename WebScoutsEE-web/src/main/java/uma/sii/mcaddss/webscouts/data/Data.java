@@ -5,6 +5,7 @@
  */
 package uma.sii.mcaddss.webscouts.data;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -123,9 +124,9 @@ public class Data {
         events.add(event);
         
         // Build documents
-        Document doc1 = new Document("/resources/Pepe_doc.docx","Pepe_doc.docx",false,"Formulario",new Long(1252345),pepe,null);
-        Document doc2 = new Document("/resources/Manolo_doc1.docx","Manolo_doc1.docx",true,"Formulario",new Long(1748932),manolo,null);
-        Document doc3 = new Document("/resources/Manolo_doc2.pdf","Manolo_doc2.pdf",true,"PDF",new Long(17435932),manolo,null);
+        Document doc1 = new Document(Paths.get("resources/Pepe_doc.pdf").toString(),"Pepe_doc.pdf",false,"Formulario",new Long(1252345),pepe,null);
+        Document doc2 = new Document(Paths.get("resources/Manolo_doc1.pdf").toString(),"Manolo_doc1.pdf",true,"Formulario",new Long(1748932),manolo,null);
+        Document doc3 = new Document(Paths.get("resources/Manolo_doc2.pdf").toString(),"Manolo_doc2.pdf",true,"PDF",new Long(17435932),manolo,null);
         documents.add(doc1);
         documents.add(doc2);
         documents.add(doc3);
