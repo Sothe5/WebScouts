@@ -32,26 +32,48 @@
                 </h:panelGrid>
             </p:panel>
         </h:form>
-        <p:dataTable paginator="true" var="user" value="#{user_Manager.filterUsers(filterView.selection_group, filterView.selection_role)}">
-            <p:column headerText="Nombre">
-                <h:outputText value="#{user.user_name}" />
-            </p:column>
+        <h:form id="form">
+            <p:dataTable paginator="true" editable="true" var="user" value="#{user_Manager.filterUsers(filterView.selection_group, filterView.selection_role)}">
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{user.user_name}" />
+                </p:column>
+                <p:ajax event="rowEdit" listener="#{filterView.onRowEdit}"/>
+                <p:column headerText="Grupo">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{user.groupscout.name != null ? user.groupscout.name : 'SIN GRUPO'}" /></f:facet>
+                        <f:facet name="input">
+                            <h:selectOneMenu converter="#{groupConverter}" value="#{user.groupscout}" style="width:100%" valueChangeListener="#{filterView.selectedGroup}">
+                                <f:selectItems value="#{filterView.allGroups}" var="group" itemLabel="#{group.name}" itemValue="#{group}"/>
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
 
-            <p:column headerText="Grupo">
-                <h:outputText value="#{user.groupscout.name != null ? user.groupscout.name : 'SIN GRUPO'}" />
-            </p:column>
-            
-            <p:column headerText="Rol">
-                <h:outputText value="#{user.role.roleName}" />
-            </p:column>
+                </p:column>
 
-            <p:column headerText="Email">
-                <h:outputText value="#{user.email}" />
-            </p:column>
+                <p:column headerText="Rol">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{user.role.roleName}" /></f:facet>
+                        <f:facet name="input">
+                            <h:selectOneMenu converter="#{roleConverter}" value="#{user.role}" style="width:100%" valueChangeListener="#{filterView.selectedRole}">
+                                <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role}"/>
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                    
+                </p:column>
 
-            <p:column headerText="Dirección">
-                <h:outputText value="#{user.address}" />
-            </p:column>
-        </p:dataTable>
+                <p:column headerText="Email">
+                    <h:outputText value="#{user.email}" />
+                </p:column>
+
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{user.address}" />
+                </p:column>
+
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </h:body>
 </html>
