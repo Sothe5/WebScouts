@@ -58,10 +58,6 @@ public class EventPage implements Serializable {
         this.event = e;
     }
     
-    public void removeEvent(Event e) {
-        eventB.removeEvent(e);
-    }
-    
     public String showAttendees() {
         return "event_attendees.xhtml";
     }
@@ -107,6 +103,12 @@ public class EventPage implements Serializable {
         refreshEvent();
         return "event.xhtml";
     }
+    
+   /* public String deleteComment(Comment comment) {
+        eventB.deleteComment(comment);
+        refreshEvent();
+        return "event.xhtml";
+    }*/
 
     /* Comments */ 
     

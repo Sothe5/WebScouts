@@ -31,7 +31,12 @@
             <c:if test="#{privilegesControl.role eq 'ADMIN' or privilegesControl.role eq 'SCOUTER'}">
                 <p:column headerText="Eliminar">
                     <h:form>
-                        <h:commandLink value="Eliminar evento" action="#{eventPage.removeEvent(event)}"/>
+                        <h:commandLink value="Eliminar evento" action="#{eventManager.removeEvent(event)}"/>
+                    </h:form>
+                </p:column>
+                <p:column headerText="Eliminar">
+                    <h:form>
+                        <h:commandLink value="Editar evento" action="#{eventManager.renderEditPage(event)}"/>
                     </h:form>
                 </p:column>
             </c:if>
