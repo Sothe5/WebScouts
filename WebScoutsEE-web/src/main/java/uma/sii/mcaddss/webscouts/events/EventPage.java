@@ -103,6 +103,7 @@ public class EventPage implements Serializable {
     public String sendComment() {
         Comment comment = new Comment(ctrl.getUserScout(), event, message);
         eventB.addComment(comment);
+        setMessage("");
         refreshEvent();
         return "event.xhtml";
     }
