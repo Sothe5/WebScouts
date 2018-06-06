@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import uma.sii.mcaddss.webscouts.entities.Comment;
 import uma.sii.mcaddss.webscouts.entities.Event;
 import uma.sii.mcaddss.webscouts.entities.EventAttendance;
 import uma.sii.mcaddss.webscouts.entities.Group_Scout;
@@ -32,6 +33,14 @@ public class EventBusiness implements EventLocal {
     @Override
     public void addEvent(Event event) {
         em.persist(event);
+    }
+    
+    @Override
+    public void removeEvent(Event event) {
+        if (!em.contains(event)) {
+           event = em.merge(event);
+        }
+        em.remove(event);
     }
 
     @Override
@@ -80,5 +89,10 @@ public class EventBusiness implements EventLocal {
     @Override
     public Event getEventById(Long id) {
         return em.find(Event.class, id);
+    }
+    
+    @Override
+    public void addComment(Comment c) {
+        em.persist(c);
     }
 }

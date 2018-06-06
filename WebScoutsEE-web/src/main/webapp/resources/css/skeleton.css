@@ -306,19 +306,19 @@ input[type="button"].button-primary:focus {
   padding: 0 13px;
 }
 
-form .ui-button.button-yes {
+form .ui-button.button-yes, .button-confirm {
   color: #fff;
   background-color: #63ca59;
   border-color: #63ca59;
 }
 
-form .ui-button.button-yes:hover, form .button-yes:focus {
+form .ui-button.button-yes:hover, form .button-yes:focus{
   color: #fff;
   background-color: #1dc20e;
   border-color: #1dc20e;
 }
 
-form .ui-button.button-no {
+form .ui-button.button-no, .button-deny {
   color: #fff;
   background-color: #ca5959;
   border-color: #ca5959;

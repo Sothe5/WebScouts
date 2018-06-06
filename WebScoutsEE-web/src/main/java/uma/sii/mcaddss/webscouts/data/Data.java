@@ -89,13 +89,15 @@ public class Data {
         User_Scout manuel = new User_Scout(new Long(14), "manuel", manada, "manuel", "manuel", "roca", "test2@test.com", "test aa", new Date(2004,10,21), educando);
         User_Scout rosa = new User_Scout(new Long(17), "rosa", manada, "rosa", "rosa", "carrion", "test7@test.com", "test aa", new Date(2001,6,21), educando);
         User_Scout elisa = new User_Scout(new Long(55), "elisa", manada, "elisa", "elisa", "norman", "test3@test.com", "test aa oo", new Date(2006,9,14), educando);
+        User_Scout manadauser = new User_Scout(new Long(67), "manadauser", manada, "manadauser", "manadauser", "norman", "test3@test.com", "test aa oo", new Date(2006,2,11), educando);
         usuarios.add(manolo);
         usuarios.add(pepe);
         usuarios.add(unscouter);
-        usuarios.add(elisa);
+        usuarios.add(elisa);    
         usuarios.add(manuel);
         usuarios.add(pablo);
         usuarios.add(rosa);
+        usuarios.add(manadauser);
        
         // Build event
         Event event = new Event();
@@ -107,16 +109,14 @@ public class Data {
         event.setDate(new Date());
         
         // Add attendants
-        event.addAttendee(new EventAttendance(event, pablo, "yes"));
-        event.addAttendee(new EventAttendance(event, elisa, "yes"));
-        event.addAttendee(new EventAttendance(event, manuel, "yes"));
+        event.addAttendee(new EventAttendance(event, pablo, "YES"));
+        event.addAttendee(new EventAttendance(event, elisa, "NO"));
+        event.addAttendee(new EventAttendance(event, manuel, "YES"));
         
         // Build comments
         Comment comment1 = new Comment(pablo, event, "Hola a todos, yo podré ir");
         Comment comment2 = new Comment(manuel, event, "Vale");
         Comment comment3 = new Comment(elisa, event, "Aaaa bieeen");
-        comment2.setTarget(comment1);
-        comment1.addReply(comment2);
         commentList.add(comment1);
         commentList.add(comment2);
         commentList.add(comment3);
