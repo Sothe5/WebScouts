@@ -6,7 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <f:param name="event" value="#{eventPage.event}" />
     <h:head>
         <meta charset="utf-8"/>
         <title><h:outputText value="#{eventPage.event.name}"/></title>
@@ -16,12 +15,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
         <link rel="icon" type="image/png" href="./images/favicon.png"/>
-        <f:metadata>
-            <f:viewParam name="id" value="#{eventPage.eventId}"/>
-        </f:metadata>
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>
+        <h:messages></h:messages>
         <c:choose>
             <c:when test="#{not empty eventPage.event}">
                 <div class="container">
@@ -47,15 +44,15 @@
                         <div class="seven columns">
                             <c:choose>
                                 <c:when test="#{eventPage.attendance.attendanceStatus == 'YES'}">
-                                    <button class="button-yes">Has confirmado tu asistencia</button>
+                                    <button class="button-confirm">Has confirmado tu asistencia</button>
                                 </c:when>
                                 <c:when test="#{eventPage.attendance.attendanceStatus == 'NO'}">
-                                    <button class="button-yes">Has confirmado que no vas a ir</button>
+                                    <button class="button-deny">Has confirmado que no vas a ir</button>
                                 </c:when>
                                 <c:otherwise>
                                     <h:form>
-                                        <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.setAttendance('YES')}"/>
-                                        <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.setAttendance('NO')}"/>
+                                        <p:commandButton class="button-yes" value="Voy a ir" icon="ui-icon-check" action="#{eventPage.setAttendance('YES')}" ajax="false"></p:commandButton>
+                                        <p:commandButton class="button-no" value="No voy a ir" icon="ui-icon-close" action="#{eventPage.setAttendance('NO')}" ajax="false"></p:commandButton>
                                     </h:form>
                                 </c:otherwise> 
                             </c:choose>
@@ -77,13 +74,24 @@
                                     </c:choose>
                                </span><br/>
                                <h:form>
-                                   <h:button outcome="event_attendees.xhtml?id=#{eventPage.event.id}" value ="Ver participantes" class="button-primary"/>
+                                   <h:button outcome="event_attendees.xhtml" value ="Ver participantes" class="button-primary"/>
                                </h:form>
                             </div>
                         </div>
                     </div>
                     <hr class="small"/>
                     <ui:include src="./comment.xhtml"/>
+                    <c:if test="${privilegesControl.userScout.groupscout.name == eventPage.event.groupscout.name}">
+                        <p:panel header="Enviar nuevo comentario">
+                            <h:form id="reply">
+                                <p:inputTextarea id="message" value="#{eventPage.message}" required="true" requiredMessage="El comentario no puede ser vacío"/><br/>
+                                <p:commandButton  value="Enviar comentario" actionListener="#{eventPage.sendComment}" ajax="false"/>
+                                <f:facet name="header">
+                                    <p:messages id="msgs" />
+                                </f:facet>
+                            </h:form>
+                        </p:panel>
+                    </c:if>
                 </div>
             </c:when>
             <c:otherwise>

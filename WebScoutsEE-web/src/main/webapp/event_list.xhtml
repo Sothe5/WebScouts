@@ -28,9 +28,16 @@
             <p:column headerText="Asistentes">
                 <h:outputText value="#{event.attendeesCount}" />
             </p:column>
+            <c:if test="#{privilegesControl.role eq 'ADMIN' or privilegesControl.role eq 'SCOUTER'}">
+                <p:column headerText="Eliminar">
+                    <h:form>
+                        <h:commandLink value="Eliminar evento" action="#{eventPage.removeEvent(event)}"/>
+                    </h:form>
+                </p:column>
+            </c:if>
         </p:dataTable>
-        <c:if test="#{privilegesControl.role eq 'ADMIN'}">
-            <h:button value="Crear evento" outcome="add_event.xhtml"/>
+        <c:if test="#{privilegesControl.role eq 'ADMIN' or privilegesControl.role eq 'SCOUTER'}">
+            <h:button value="Crear evento" outcome="create_event.xhtml"/>
         </c:if>
     </h:body>
 </html>
