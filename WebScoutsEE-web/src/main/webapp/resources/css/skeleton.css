@@ -49,7 +49,7 @@
 .container-block {
   box-sizing: border-box;
   padding: 2rem;
-  background: #fff;
+  background-color: #f8efdd;
   border-radius: 4px;
   width: 100%;
 }
@@ -70,10 +70,28 @@
   }
 }
 
+div.event {
+    width: 75%;
+    height: auto;
+    border: 1px solid #ccc;
+    margin: 20px auto; 
+    padding: 0;
+    text-align: justify;
+    background: url("#{resource['images/wood.png']}");
+}
+
+.event div.ui-menubar {
+    background: #f8efdd;
+}
+
 /* Body
 -------------------------------------------------- */
 body {
   padding: 25px;
+}
+
+body.event {
+    background-color: #f8efdd;
 }
 
 /* Images
@@ -306,19 +324,19 @@ input[type="button"].button-primary:focus {
   padding: 0 13px;
 }
 
-form .ui-button.button-yes {
+form .ui-button.button-yes, .button-confirm {
   color: #fff;
   background-color: #63ca59;
   border-color: #63ca59;
 }
 
-form .ui-button.button-yes:hover, form .button-yes:focus {
+form .ui-button.button-yes:hover, form .button-yes:focus{
   color: #fff;
   background-color: #1dc20e;
   border-color: #1dc20e;
 }
 
-form .ui-button.button-no {
+form .ui-button.button-no, .button-deny {
   color: #fff;
   background-color: #ca5959;
   border-color: #ca5959;
@@ -504,13 +522,12 @@ hr.title {
   text-align: center; 
 } 
 hr.title:after { 
-  content: url("#{resource['images/favicon.png']}"); 
+  content: url("#{resource['images/fleur-de-lis-mini.png']}");
   display: inline-block; 
   position: relative; 
   top: -1em; 
   font-size: 1.5em; 
   padding: 0 0.25em; 
-  background: #eee;
 }
 
 /* Clearing
@@ -523,7 +540,6 @@ hr.title:after {
   content: "";
   display: table;
   clear: both; }
-
 
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

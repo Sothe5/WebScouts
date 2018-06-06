@@ -74,7 +74,7 @@ public class Document implements Serializable {
         this.event = event;
     }
     
-    public Document(String filepath, String name, boolean status, String type, Long file_size, User_Scout owner, Event event) {
+public Document(String filepath, String name, boolean status, String type, Long file_size, User_Scout owner, Event event) {
         this.filepath = filepath;
         this.name = name;
         this.status = status;

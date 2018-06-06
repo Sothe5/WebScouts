@@ -97,6 +97,12 @@ public class Groups {
 
               gr.setEvents(group_manager.getEvents(name));
                 break;
+            case "Scouters":
+                gr.setName("Scouters");
+                gr.setDescription(group_manager.getDescription(name)); 
+
+              gr.setEvents(group_manager.getEvents(name));
+                break;
             default:
                 gr.setName("Er");
                 gr.setDescription(group_manager.getDescription(name)); 

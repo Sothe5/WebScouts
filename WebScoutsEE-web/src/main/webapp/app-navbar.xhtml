@@ -35,7 +35,9 @@
                    <p:menuitem value="Clan" action="#{groups.chooseGroup('Clan')}">
                         <f:param name="group" value="Clan"/>
                     </p:menuitem>
-                    <p:menuitem value="Scouters"/>
+                    <p:menuitem value="Scouters" action="#{groups.chooseGroup('Scouters')}">
+                        <f:param name="group" value="Scouters"/>
+                    </p:menuitem>
                 </p:submenu>
                 
                 <p:menuitem value="Eventos" url="/faces/event_list.xhtml" icon="ui-icon-copy"/>

@@ -14,6 +14,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
         <link rel="icon" type="image/png" href="./images/favicon.png"/>
+        <f:metadata>
+            <f:viewParam name="id" value="#{eventPage.event.id}"/>
+        </f:metadata>            
     </h:head>
     <h:body>
         <ui:include src="./app-navbar.xhtml"></ui:include>

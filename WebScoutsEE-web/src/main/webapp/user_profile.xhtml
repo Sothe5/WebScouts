@@ -92,7 +92,10 @@
                     <p:rowExpansion>
                         <p:dataTable value="#{user_Manager.documentsUserLoged}" var="doc" rendered="#{user ne null}">
                             <p:column colspan="1">
-                                <h:outputText value="#{doc.name}" />
+                                <h:form>
+                                    <h:commandLink action="#{doc.getFilepath()}" target="_blank" value="#{doc.name}">
+                                    </h:commandLink>
+                                </h:form>
                             </p:column>
                             <p:column colspan="1">
                                 <h:outputText value="#{doc.status ? 'Validado' : 'Pendiente'}" />

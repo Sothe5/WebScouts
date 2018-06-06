@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Editar evento #{eventManager.name}</title>
+        <link rel="stylesheet" type="text/css" href="./resources/css/common.css"/>
+        <link rel="stylesheet" type="text/css" href="./resources/css/group.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon.png"/>
+    </h:head>
+    <h:body>
+        <ui:include src="./app-navbar.xhtml"></ui:include>
+        <c:choose>
+            <c:when test="#{privilegesControl.role eq 'ADMIN'}">
+                <p:panel header="Crear nuevo evento">
+                    <h:form id="newuserform">
+                        <h:panelGrid id="grid" cellpadding="5" columns="2" style="margin-bottom:10px">
+                            <f:facet name="header">
+                                <p:messages id="msgs" />
+                            </f:facet>
+
+                            <p:outputLabel for="name" value="Nombre" />
+                            <p:inputText id="name" value="#{eventManager.name}" required="true" requiredMessage="Se debe especificar un nombre" />
+
+                            <p:outputLabel for="description" value="Descripción" />
+                            <p:inputTextarea id="description" value="#{eventManager.description}" required="true" requiredMessage="Se debe escribir una descripción" />
+                                
+                            <p:outputLabel for="date" value="Fecha" />
+                            <p:calendar id="date" value="#{eventManager.date}" showOn="button" required="true" requiredMessage="Se debe especificar una fecha para el evento" pattern="MM/dd/yyyy HH:mm:ss"/>
+                               
+                            <h:inputHidden id="group" value="#{eventManager.id}"/>
+                            <h:inputHidden id="groupid" value="#{eventManager.group_id}"/>
+                            
+                            <p:commandButton value="Editar" actionListener="#{eventManager.editEvent}" ajax="false"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:panel>
+            </c:when>
+            <c:otherwise>
+                <div class="center">Error: no tiene permisos para ejecutar esta acción.</div>
+            </c:otherwise>
+        </c:choose>
+    </h:body>
+</html>

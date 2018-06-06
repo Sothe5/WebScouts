@@ -27,7 +27,7 @@
                         <f:selectItem itemLabel="Todos" itemValue="#{null}"></f:selectItem>
                         <f:selectItems value="#{filterView.allRoles}" var="role" itemLabel="#{role.roleName}" itemValue="#{role.id}"></f:selectItems>                     
                     </p:selectOneMenu>
-                    <p:commandButton onclick="submit" value="Filtrar"></p:commandButton>
+                    <p:commandButton onclick="submit()" value="Filtrar"></p:commandButton>
                     <p:link outcome="create_user" value="Crear Usuario"/>
                 </h:panelGrid>
             </p:panel>
