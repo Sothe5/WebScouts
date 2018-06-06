@@ -13,8 +13,12 @@ and open the template in the editor.
     border: 1px solid #ccc;
     border-radius: 7px;
     background: white;
-
 }
+
+.comment-wrapper p {
+    display: inline-block;
+}
+
 .avatar {
     display: inline;
     width: 50px;
@@ -38,4 +42,8 @@ and open the template in the editor.
 .comment-wrapper .date {
     color: #aaa;
     float: right;
+}
+
+textarea {
+    width: 100%;
 }
