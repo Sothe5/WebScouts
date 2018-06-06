@@ -72,11 +72,13 @@ public class Data {
         Group_Scout otro = new Group_Scout("Castores", "Castores",18,21);    
         Group_Scout manada = new Group_Scout("Manada","Grupo de manada",15,18);
         Group_Scout clan = new Group_Scout("Clan","Grupo de clan",21,24);
+        Group_Scout scouters = new Group_Scout("Scouters","Grupo de Scouters",21,24);
         groups.add(tropa);
         groups.add(esculta);
         groups.add(otro);
         groups.add(manada);
         groups.add(clan);
+        groups.add(scouters);
         
         // Build roles
         Role_Scout admin = roleB.getRoleById(1L);
