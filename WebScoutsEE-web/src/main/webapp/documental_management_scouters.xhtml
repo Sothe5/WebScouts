@@ -26,7 +26,12 @@
                     <p:rowExpansion>
                         <p:dataTable var="doc" value="#{user_Manager.getDocumentsUser(user)}">
                             <p:column>
-                                <h:outputText value="#{doc.name}" />
+                                <h:form>
+                                    <!--<h:outputText value="{doc.name}" />-->
+                                    <h:commandLink action="#{doc.getFilepath()}" target="_blank">
+                                        #{doc.name}
+                                    </h:commandLink>
+                                </h:form>
                             </p:column> 
                             <p:column>
                                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">

@@ -123,9 +123,9 @@ public class Data {
         events.add(event);
         
         // Build documents
-        Document doc1 = new Document("Pepe_doc","Pepe_doc",false,"Formulario",new Long(1252345),pepe,null);
-        Document doc2 = new Document("Manolo_doc1","Manolo_doc1",true,"Formulario",new Long(1748932),manolo,null);
-        Document doc3 = new Document("Manolo_doc2","Manolo_doc2",true,"PDF",new Long(17435932),manolo,null);
+        Document doc1 = new Document("/resources/Pepe_doc.docx","Pepe_doc.docx",false,"Formulario",new Long(1252345),pepe,null);
+        Document doc2 = new Document("/resources/Manolo_doc1.docx","Manolo_doc1.docx",true,"Formulario",new Long(1748932),manolo,null);
+        Document doc3 = new Document("/resources/Manolo_doc2.pdf","Manolo_doc2.pdf",true,"PDF",new Long(17435932),manolo,null);
         documents.add(doc1);
         documents.add(doc2);
         documents.add(doc3);
